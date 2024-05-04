@@ -1,0 +1,173 @@
+/* body {
+  background-image: linear-gradient(to right top, #9ac4fa, #0f1b27, #88600a, #8f0909, #e49937, #67bfcd, #75c1cb, #82c4c9, #6dc4d4, #56c4e0, #3ec2ee, #26c0fc);
+} */
+html {
+  scroll-behavior: smooth;
+}
+
+
+h5,
+p,
+li {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+
+}
+
+.home {
+  height: 100vh;
+
+}
+
+.boldHeading {
+  color: #f6d06e;
+  font-family: "Platypi", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 5vw;
+}
+
+.projectImage {
+  height: 35vw
+}
+
+.subHeading {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 450;
+  font-style: normal;
+  font-size: 2.5rem;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+.projectDetailPara {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 50%;
+}
+
+.arrowPoint {
+  background-color: white;
+  border-radius: 100%;
+  color: #d9d9d9;
+}
+
+.projectOverview {
+  max-width: 50vw;
+}
+
+.homeImage {
+  width: 30vw;
+  height: 30vw;
+  border-radius: 100%;
+}
+
+.skillBox {
+  padding: 2vh;
+  margin: 3vh;
+  border-radius: 3vh;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.arrowBox {
+
+
+  border-radius: 100%;
+
+}
+
+.aboutBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+
+}
+
+.aboutImage {
+  height: 500px;
+  width: 500px;
+}
+
+.skillBox:hover {
+  background-color: #252CFF;
+  
+}
+
+.skillBox:hover .skillItems {}
+
+.skillItems {
+  text-decoration: none;
+  color: black;
+}
+
+
+
+
+.arrowBox:hover {
+  background-color: #252CFF;
+
+}
+
+.arrowBox:hover .arrowIcon {
+  color: white;
+
+}
+
+.arrowIcon {
+  text-decoration: none;
+  color: black;
+}
+
+
+@media (max-width:500px) {
+  .boldHeading {
+
+    font-size: 10vw;
+  }
+
+  .projectBox {
+    flex-wrap: wrap;
+  }
+
+  .projectOverview {
+    max-width: 100%;
+  }
+
+  .imageBox {
+    justify-content: center;
+  }
+
+  .homeBox {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .homeImage {
+    width: 50vw;
+    height: 50vw;
+  }
+
+  .aboutImage {
+    height: 80vw;
+    width: 80vw;
+  }
+}
+
+@media (max-width:900px) {
+  .projectImage {
+    height: 50vw
+  }
+
+  .aboutBox {
+    flex-wrap: wrap;
+  }
+}
