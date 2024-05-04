@@ -62,12 +62,12 @@ const Skills = () => {
               key={index}
               style={{backgroundColor:theme.boxColor}}
             >
-              <Link className="skillItems">
+              <div className="skillItems">
                 <img
                   src={item.picture}
                   style={{ height: "150px", width: "150px" }}
                 ></img>
-              </Link>
+              </div>
               <h5 className="skillItems" style={{color:theme.textColor}}>{item.name}</h5>
             </div>
           ))}
@@ -87,12 +87,12 @@ const Skills = () => {
             key={index}
             style={{backgroundColor:theme.boxColor}}
           >
-            <Link className="skillItems">
+            <div className="skillItems">
               <img
                 src={item.picture}
                 style={{ height: "150px", width: "150px" }}
               ></img>
-            </Link>
+            </div>
             <h5 className="skillItems" style={{color:theme.textColor}}>{item.name}</h5>
           </div>
         ))}
@@ -111,12 +111,12 @@ const Skills = () => {
             key={index}
             style={{backgroundColor:theme.boxColor}}
           >
-            <Link className="skillItems">
+            <div className="skillItems">
               <img
                 src={item.picture}
                 style={{ height: "150px", width: "150px" }}
               ></img>
-            </Link>
+            </div>
             <h5 className="skillItems" style={{color:theme.textColor}}>{item.name}</h5>
           </div>
         ))}
