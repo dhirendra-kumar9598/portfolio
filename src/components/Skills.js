@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import HtmlLan from "../components/images/Languages/html-5.png";
 import Css from "../components/images/Languages/css-3.png";
@@ -14,6 +14,7 @@ import Next from "../components/images/Tech/nextjs-icon.webp";
 import React_Native from "../components/images/Tech/react-native.webp";
 import { ThemeContext } from "../theme";
 const Skills = () => {
+  const [over, setOver] = useState(false);
   const theme = useContext(ThemeContext).systemTheme;
   const Languages = [
     { name: "HTML", picture: HtmlLan },
@@ -35,6 +36,13 @@ const Skills = () => {
     { name: "MySql", picture: Mysql },
     { name: "MongDb", picture: Mongo },
   ];
+
+  const onMouseOver = (event) => {
+    event.target.style.backgroundColor = "red";
+  };
+  const onMouseOut = (event) => {
+    event.target.style.backgroundColor = "";
+  };
 
   return (
     <div
@@ -60,7 +68,7 @@ const Skills = () => {
             <div
               className="d-flex flex-column hustify-content-center align-items-center skillBox"
               key={index}
-              style={{backgroundColor:theme.boxColor}}
+              style={{ backgroundColor: theme.boxColor }}
             >
               <div className="skillItems">
                 <img
@@ -68,14 +76,18 @@ const Skills = () => {
                   style={{ height: "150px", width: "150px" }}
                 ></img>
               </div>
-              <h5 className="skillItems" style={{color:theme.textColor}}>{item.name}</h5>
+              <h5 className="skillItems" style={{ color: theme.textColor }}>
+                {item.name}
+              </h5>
             </div>
           ))}
         </div>
       </div>
       {/* Technologies */}
       <div className="d-flex justify-content-center">
-        <h4 className="subHeading" style={{ color: theme.textColor }}>Technologies</h4>
+        <h4 className="subHeading" style={{ color: theme.textColor }}>
+          Technologies
+        </h4>
       </div>
       <div
         className="d-flex justify-content-center"
@@ -85,7 +97,7 @@ const Skills = () => {
           <div
             className="d-flex flex-column justify-content-center align-items-center skillBox"
             key={index}
-            style={{backgroundColor:theme.boxColor}}
+            style={{ backgroundColor: theme.boxColor }}
           >
             <div className="skillItems">
               <img
@@ -93,13 +105,17 @@ const Skills = () => {
                 style={{ height: "150px", width: "150px" }}
               ></img>
             </div>
-            <h5 className="skillItems" style={{color:theme.textColor}}>{item.name}</h5>
+            <h5 className="skillItems" style={{ color: theme.textColor }}>
+              {item.name}
+            </h5>
           </div>
         ))}
       </div>
       {/* Databases */}
       <div className="d-flex justify-content-center">
-        <h4 className="subHeading" style={{ color: theme.textColor }}>Databases</h4>
+        <h4 className="subHeading" style={{ color: theme.textColor }}>
+          Databases
+        </h4>
       </div>
       <div
         className="d-flex justify-content-center "
@@ -109,7 +125,7 @@ const Skills = () => {
           <div
             className="d-flex flex-column justify-content-center align-items-center skillBox"
             key={index}
-            style={{backgroundColor:theme.boxColor}}
+            style={{ backgroundColor: theme.boxColor }}
           >
             <div className="skillItems">
               <img
@@ -117,7 +133,9 @@ const Skills = () => {
                 style={{ height: "150px", width: "150px" }}
               ></img>
             </div>
-            <h5 className="skillItems" style={{color:theme.textColor}}>{item.name}</h5>
+            <h5 className="skillItems" style={{ color: theme.textColor }}>
+              {item.name}
+            </h5>
           </div>
         ))}
       </div>

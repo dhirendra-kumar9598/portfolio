@@ -98,11 +98,13 @@ li {
 }
 
 .skillBox:hover {
-  background-color: #252CFF;
-  
+  /* background-color: #000125; */
+
 }
 
-.skillBox:hover .skillItems {}
+.skillBox:hover .skillItems {
+  /* background-color: #000125; */
+}
 
 .skillItems {
   text-decoration: none;
@@ -127,6 +129,20 @@ li {
   color: black;
 }
 
+/* @media (prefers-color-scheme: dark) {
+  .skillBox {
+    background: #753;
+    color: #dcb;
+    outline: 5px dashed #000;
+  }
+}
+@media (prefers-color-scheme: light) {
+  .skillBox {
+    background:red;
+    color: #dcb;
+    outline: 5px dashed #000;
+  }
+} */
 
 @media (max-width:500px) {
   .boldHeading {
