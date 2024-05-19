@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import HtmlLan from "../components/images/Languages/html-5.png";
 import Css from "../components/images/Languages/css-3.png";
@@ -13,9 +13,62 @@ import Mysql from "./images/Tech/pngwing.com.png";
 import Next from "../components/images/Tech/nextjs-icon.webp";
 import React_Native from "../components/images/Tech/react-native.webp";
 import { ThemeContext } from "../theme";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const Skills = () => {
   const [over, setOver] = useState(false);
   const theme = useContext(ThemeContext).systemTheme;
+  const languageRef = useRef();
+  const technologyRef = useRef();
+  const databaseRef = useRef();
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(languageRef.current, {
+      scrollTrigger: {
+        trigger: languageRef.current,
+        start: "top 100%",
+        end: "bottom 80%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: 400,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.from(technologyRef.current, {
+      scrollTrigger: {
+        trigger: technologyRef.current,
+        start: "top 100%",
+        end: "bottom 80%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: -400,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.from(databaseRef.current, {
+      scrollTrigger: {
+        trigger: databaseRef.current,
+        start: "top 100%",
+        end: "bottom 80%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: 400,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+  });
   const Languages = [
     { name: "HTML", picture: HtmlLan },
     { name: "CSS", picture: Css },
@@ -61,6 +114,7 @@ const Skills = () => {
           </h4>
         </div>
         <div
+          ref={languageRef}
           className="d-flex justify-content-center"
           style={{ flexFlow: "row", flexWrap: "wrap" }}
         >
@@ -90,6 +144,7 @@ const Skills = () => {
         </h4>
       </div>
       <div
+        ref={technologyRef}
         className="d-flex justify-content-center"
         style={{ flexFlow: "row", flexWrap: "wrap" }}
       >
@@ -118,6 +173,7 @@ const Skills = () => {
         </h4>
       </div>
       <div
+        ref={databaseRef}
         className="d-flex justify-content-center "
         style={{ flexFlow: "row", flexWrap: "wrap" }}
       >

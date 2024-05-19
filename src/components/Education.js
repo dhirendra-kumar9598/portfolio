@@ -1,8 +1,45 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import Educate from "./images/pngs/43.-Read-on-Beach.png";
 import { ThemeContext } from "../theme";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const Education = () => {
   const theme = useContext(ThemeContext).systemTheme;
+  const imageRef = useRef();
+  const dataRef = useRef();
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(imageRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 100%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: 200,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.from(dataRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 100%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: -200,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+  });
   return (
     <div>
       <div className="d-flex justify-content-center align-items-center">
@@ -12,7 +49,7 @@ const Education = () => {
       </div>
       <div className="d-flex justify-content-center align-items-center flex-wrap">
         <div>
-          <div className="d-flex flex-column">
+          <div ref={dataRef} className="d-flex flex-column">
             <div className="d-flex justify-content-center align-items-center ">
               <div style={{ marginRight: 20 }}>
                 <span
@@ -55,7 +92,7 @@ const Education = () => {
           <div></div>
         </div>
         <div>
-          <img src={Educate} className="aboutImage" />
+          <img ref={imageRef} src={Educate} className="aboutImage" />
         </div>
       </div>
     </div>

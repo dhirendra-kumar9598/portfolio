@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import TextTransition, { presets } from "react-text-transition";
 import About from "./About";
@@ -8,12 +8,57 @@ import Dhiraj from "../components/images/IMG_20231127_005126.jpg";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { dark, light, ThemeContext } from "../theme";
-import vid from "../assets/videos/second.mp4";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 export default function Main() {
   const theme = useContext(ThemeContext).systemTheme;
   const setScheme = useContext(ThemeContext).setSystemTheme;
 
   const [mode, setMode] = useState(null);
+  const imageRef = useRef();
+  const infoRef = useRef();
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.to(imageRef.current, {
+      duration: 2,
+      delay: 2,
+      rotate: 360,
+      ease:"elastic"
+    });
+    gsap.from(infoRef.current, {
+      scrollTrigger: {
+        trigger: infoRef.current,
+        // start:"bottom 70%",
+        markers: true,
+        // scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 200,
+      opacity: 0,
+      ease: "bounce.out",
+      duration: 2,
+    });
+    gsap.to(imageRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "top 20%",
+        ease: "none",
+        scrub: true,
+        toggleActions: "restart pause reverse pause",
+      },
+      x: -400,
+    });
+    gsap.to(infoRef.current, {
+      scrollTrigger: {
+        trigger: infoRef.current,
+        start: "top 20%",
+        ease: "none",
+        scrub: true,
+        toggleActions: "restart pause reverse pause",
+      },
+      x: 400,
+    });
+  });
 
   const setTheme = (value) => {
     if (value == "light") {
@@ -96,9 +141,9 @@ export default function Main() {
           }}
         >
           <div className="d-flex justify-content-center imageBox">
-            <img className="homeImage" src={Dhiraj} alt="" />
+            <img className="homeImage" ref={imageRef} src={Dhiraj} alt="" />
           </div>
-          <div style={{ margin: "20px" }}>
+          <div style={{ margin: "20px" }} ref={infoRef}>
             <div>
               <div style={fontStyle}>
                 <div>

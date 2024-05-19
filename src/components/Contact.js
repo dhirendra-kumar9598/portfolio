@@ -10,8 +10,36 @@ import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { ThemeContext } from "../theme";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const Contact = () => {
   const theme = useContext(ThemeContext).systemTheme;
+  useGSAP(() => {
+    gsap.from(["#mail", "#phone", "#location"], {
+      scrollTrigger: {
+        trigger: "#mail",
+        // start:"bottom 70%",
+        // scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 200,
+      opacity: 0,
+      ease: "bounce.out",
+      duration: 2,
+    });
+    gsap.from(["#social"], {
+      scrollTrigger: {
+        trigger: "#social",
+        // start:"bottom 70%",
+        // scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 200,
+      opacity: 0,
+      ease: "back.in",
+      duration: 2,
+    });
+  });
   return (
     <div className="pt-5" id="contact">
       <div>
@@ -42,7 +70,7 @@ const Contact = () => {
             className="d-flex justify-content-center align-items-center"
             style={{ flexFlow: "row", flexWrap: "wrap" }}
           >
-            <div>
+            <div id="mail">
               <Link
                 to={"mailto:kumardhiraj609@gmail.com"}
                 className="skillItems"
@@ -67,6 +95,7 @@ const Contact = () => {
               </Link>
             </div>
             <div
+              id="phone"
               className="d-flex"
               style={{ flexFlow: "row", flexWrap: "wrap" }}
             >
@@ -95,6 +124,7 @@ const Contact = () => {
             </div>
             <div>
               <div
+                id="location"
                 className="d-flex "
                 style={{ flexFlow: "row", flexWrap: "wrap" }}
               >
@@ -125,6 +155,7 @@ const Contact = () => {
         </div>
 
         <div
+          id="social"
           className="d-flex justify-content-center align-items-center flex-wrap"
           style={{ color: "whitesmoke" }}
         >

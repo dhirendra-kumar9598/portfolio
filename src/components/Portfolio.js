@@ -51,6 +51,8 @@ import travel2 from "../assets/images/projects/images/travel/travel2.png";
 import travel3 from "../assets/images/projects/images/travel/travel3.png";
 import travel4 from "../assets/images/projects/images/travel/travel4.png";
 import { ThemeContext } from "../theme";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 
 const Portfolio = () => {
   const theme = useContext(ThemeContext).systemTheme;
@@ -151,6 +153,21 @@ const Portfolio = () => {
     },
   ];
 
+  useGSAP(() => {
+    gsap.from(".projectBox", {
+      scrollTrigger: {
+        trigger: ".projectBox",
+        // start:"bottom 70%",
+        // scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 200,
+      opacity: 0,
+      ease: "none",
+      duration: 2,
+    });
+  });
+
   return (
     <div className=" " id="portfolio">
       <div className="d-flex justify-content-center align-items-center">
@@ -184,20 +201,21 @@ const Portfolio = () => {
                 >
                   <div className="d-flex justify-content-center align-items-center">
                     <div>
-                      <h5 className="subHeading" style={{color:theme.textColor}}>{item.name}</h5>
+                      <h5
+                        className="subHeading"
+                        style={{ color: theme.textColor }}
+                      >
+                        {item.name}
+                      </h5>
                     </div>
-                    <Link
-                      to="/project"
-                      state={{ item }}
-                      className="skillItems"
-                    >
+                    <Link to="/project" state={{ item }} className="skillItems">
                       <div className="arrowBox mx-2">
                         <OutboundIcon fontSize="large" className="arrowIcon" />
                       </div>
                     </Link>
                   </div>
                   <div>
-                    <h6 style={{color:theme.textColor}}> ({item.type})</h6>
+                    <h6 style={{ color: theme.textColor }}> ({item.type})</h6>
                   </div>
                 </div>
               </div>
@@ -220,7 +238,9 @@ const Portfolio = () => {
                       alignItems: "center",
                     }}
                   >
-                    <p style={{color:theme.textColor}}>{item.info.Overview}</p>
+                    <p style={{ color: theme.textColor }}>
+                      {item.info.Overview}
+                    </p>
                   </div>
                 </div>
               </div>
