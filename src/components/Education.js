@@ -1,5 +1,6 @@
 import React, { useContext, useRef } from "react";
-import Educate from "./images/pngs/43.-Read-on-Beach.png";
+
+import Boy from "../assets/images/characters/laptop2.png"
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -92,7 +93,7 @@ const Education = () => {
           <div></div>
         </div>
         <div>
-          <img ref={imageRef} src={Educate} className="aboutImage" />
+          <img ref={imageRef} src={Boy} className="aboutImage" />
         </div>
       </div>
     </div>

@@ -23,13 +23,13 @@ export default function Main() {
       duration: 2,
       delay: 2,
       rotate: 360,
-      ease:"elastic"
+      ease: "elastic",
     });
     gsap.from(infoRef.current, {
       scrollTrigger: {
         trigger: infoRef.current,
         // start:"bottom 70%",
-        markers: true,
+        // markers: true,
         // scrub: true,
         toggleActions: "restart pause resume pause",
       },

@@ -1,7 +1,8 @@
 import React, { useContext, useRef } from "react";
 import Skills from "./Skills";
 import Education from "./Education";
-import Read from "./images/pngs/389-Coding.png";
+
+import Boy from "../assets/images/characters/laptop.png"
 import { ThemeContext } from "../theme";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -59,7 +60,7 @@ const About = () => {
       </div>
       <div className="aboutBox">
         <div>
-          <img ref={imageRef} src={Read} className="aboutImage" />
+          <img ref={imageRef} src={Boy} className="aboutImage" />
         </div>
         <div>
           <div>
