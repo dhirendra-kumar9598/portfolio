@@ -153,20 +153,20 @@ const Portfolio = () => {
     },
   ];
 
-  useGSAP(() => {
-    gsap.from(".projectBox", {
-      scrollTrigger: {
-        trigger: ".projectBox",
-        // start:"bottom 70%",
-        // scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 200,
-      opacity: 0,
-      ease: "none",
-      duration: 2,
-    });
-  });
+  // useGSAP(() => {
+  //   gsap.from(".projectBox", {
+  //     scrollTrigger: {
+  //       trigger: ".projectBox",
+  //       // start:"bottom 70%",
+  //       // scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     y: 200,
+  //     opacity: 0,
+  //     ease: "none",
+  //     duration: 2,
+  //   });
+  // });
 
   return (
     <div className=" " id="portfolio">

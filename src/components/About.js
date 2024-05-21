@@ -10,37 +10,37 @@ const About = () => {
   const imageRef = useRef();
   const dataRef = useRef();
   const theme = useContext(ThemeContext).systemTheme;
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from(imageRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "1% 100%",
-        end: "bottom 100%",
+  // useGSAP(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
+  //   gsap.from(imageRef.current, {
+  //     scrollTrigger: {
+  //       trigger: imageRef.current,
+  //       start: "1% 100%",
+  //       end: "bottom 100%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: -200,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-    });
-    gsap.from(dataRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "1% 100%",
-        end: "bottom 100%",
+  //       scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     x: -200,
+  //     duration: 2,
+  //     delay: 1,
+  //     opacity: 0,
+  //   });
+  //   gsap.from(dataRef.current, {
+  //     scrollTrigger: {
+  //       trigger: imageRef.current,
+  //       start: "1% 100%",
+  //       end: "bottom 100%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: 200,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-    });
-  });
+  //       scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     x: 200,
+  //     duration: 2,
+  //     delay: 1,
+  //     opacity: 0,
+  //   });
+  // });
   return (
     <div
       className="d-flex flex-column justify-content-center "

@@ -8,39 +8,39 @@ const Education = () => {
   const theme = useContext(ThemeContext).systemTheme;
   const imageRef = useRef();
   const dataRef = useRef();
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from(imageRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "1% 100%",
-        end: "bottom 100%",
+  // useGSAP(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
+  //   gsap.from(imageRef.current, {
+  //     scrollTrigger: {
+  //       trigger: imageRef.current,
+  //       start: "1% 100%",
+  //       end: "bottom 100%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: 200,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-    gsap.from(dataRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "1% 100%",
-        end: "bottom 100%",
+  //       scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     x: 200,
+  //     duration: 2,
+  //     delay: 1,
+  //     opacity: 0,
+  //     ease: "none",
+  //   });
+  //   gsap.from(dataRef.current, {
+  //     scrollTrigger: {
+  //       trigger: imageRef.current,
+  //       start: "1% 100%",
+  //       end: "bottom 100%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: -200,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-  });
+  //       scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     x: -200,
+  //     duration: 2,
+  //     delay: 1,
+  //     opacity: 0,
+  //     ease: "none",
+  //   });
+  // });
   return (
     <div>
       <div className="d-flex justify-content-center align-items-center">

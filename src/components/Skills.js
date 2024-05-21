@@ -21,54 +21,54 @@ const Skills = () => {
   const languageRef = useRef();
   const technologyRef = useRef();
   const databaseRef = useRef();
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.from(languageRef.current, {
-      scrollTrigger: {
-        trigger: languageRef.current,
-        start: "top 100%",
-        end: "bottom 80%",
+  // useGSAP(() => {
+  //   gsap.registerPlugin(ScrollTrigger);
+  //   gsap.from(languageRef.current, {
+  //     scrollTrigger: {
+  //       trigger: languageRef.current,
+  //       start: "top 100%",
+  //       end: "bottom 80%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: 400,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-    gsap.from(technologyRef.current, {
-      scrollTrigger: {
-        trigger: technologyRef.current,
-        start: "top 100%",
-        end: "bottom 80%",
+  //       scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     x: 400,
+  //     duration: 2,
+  //     delay: 1,
+  //     opacity: 0,
+  //     ease: "none",
+  //   });
+  //   gsap.from(technologyRef.current, {
+  //     scrollTrigger: {
+  //       trigger: technologyRef.current,
+  //       start: "top 100%",
+  //       end: "bottom 80%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: -400,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-    gsap.from(databaseRef.current, {
-      scrollTrigger: {
-        trigger: databaseRef.current,
-        start: "top 100%",
-        end: "bottom 80%",
+  //       scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     x: -400,
+  //     duration: 2,
+  //     delay: 1,
+  //     opacity: 0,
+  //     ease: "none",
+  //   });
+  //   gsap.from(databaseRef.current, {
+  //     scrollTrigger: {
+  //       trigger: databaseRef.current,
+  //       start: "top 100%",
+  //       end: "bottom 80%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: 400,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-  });
+  //       scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     x: 400,
+  //     duration: 2,
+  //     delay: 1,
+  //     opacity: 0,
+  //     ease: "none",
+  //   });
+  // });
   const Languages = [
     { name: "HTML", picture: HtmlLan },
     { name: "CSS", picture: Css },

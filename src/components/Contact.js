@@ -15,32 +15,32 @@ import gsap from "gsap";
 import Boy from "../assets/images/characters/contact.png";
 const Contact = () => {
   const theme = useContext(ThemeContext).systemTheme;
-  useGSAP(() => {
-    gsap.from(["#mail", "#phone", "#location"], {
-      scrollTrigger: {
-        trigger: "#mail",
-        // start:"bottom 70%",
-        // scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 200,
-      opacity: 0,
-      ease: "bounce.out",
-      duration: 2,
-    });
-    gsap.from(["#social"], {
-      scrollTrigger: {
-        trigger: "#social",
-        // start:"bottom 70%",
-        // scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 200,
-      opacity: 0,
-      ease: "back.in",
-      duration: 2,
-    });
-  });
+  // useGSAP(() => {
+  //   gsap.from(["#mail", "#phone", "#location"], {
+  //     scrollTrigger: {
+  //       trigger: "#mail",
+  //       // start:"bottom 70%",
+  //       // scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     y: 200,
+  //     opacity: 0,
+  //     ease: "bounce.out",
+  //     duration: 2,
+  //   });
+  //   gsap.from(["#social"], {
+  //     scrollTrigger: {
+  //       trigger: "#social",
+  //       // start:"bottom 70%",
+  //       // scrub: true,
+  //       toggleActions: "restart pause resume pause",
+  //     },
+  //     y: 200,
+  //     opacity: 0,
+  //     ease: "back.in",
+  //     duration: 2,
+  //   });
+  // });
   return (
     <div className="pt-5" id="contact">
       <div>
