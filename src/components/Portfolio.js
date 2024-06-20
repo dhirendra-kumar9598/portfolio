@@ -7,7 +7,7 @@ import Travel from "../assets/images/projects/travel.png";
 import Habit from "../assets/images/projects/habit.png";
 import news from "../assets/images/projects/news.png";
 
-import OutboundIcon from "@mui/icons-material/Outbound";
+import Visibility from "@mui/icons-material/Outbound";
 import { shopee, Ezshop, nuzino, wallpaper, gym, travel } from "../assets/data";
 import shopee1 from "../assets/images/projects/images/Shoppe/shopee1.png";
 import shopee2 from "../assets/images/projects/images/Shoppe/shopee2.png";
@@ -181,7 +181,7 @@ const Portfolio = () => {
         style={{ flexFlow: "row", flexWrap: "wrap" }}
       >
         {projects.map((item) => (
-          <div className="d-flex flex-row justify-content-center align-items-center flex-wrap projectBox p-3 ">
+          <div className="d-flex flex-row justify-content-center align-items-center flex-wrap projectBox ">
             <div className=" ">
               <div className="d-flex flex-column justify-content-center align-items-center">
                 <div>
@@ -189,33 +189,30 @@ const Portfolio = () => {
                 </div>
               </div>
             </div>
-            <div className="d-flex flex-column justify-content-center">
+            <div className="d-flex flex-column ">
               <div>
                 <div
                   style={{
                     display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    // justifyContent: "center",
+                    // flexDirection: "column",
+                    // alignItems: "center",
                   }}
                 >
-                  <div className="d-flex justify-content-center align-items-center">
+                  <div className="d-flex ">
                     <div>
                       <h5
                         className="subHeading"
                         style={{ color: theme.textColor }}
                       >
-                        {item.name}
+                        {item.name}({item.type})
                       </h5>
                     </div>
                     <Link to="/project" state={{ item }} className="skillItems">
                       <div className="arrowBox mx-2">
-                        <OutboundIcon fontSize="large" className="arrowIcon" />
+                        <Visibility fontSize="large" className="arrowIcon" />
                       </div>
                     </Link>
-                  </div>
-                  <div>
-                    <h6 style={{ color: theme.textColor }}> ({item.type})</h6>
                   </div>
                 </div>
               </div>
@@ -225,17 +222,17 @@ const Portfolio = () => {
                   className="projectOverview"
                   style={{
                     display: "flex",
-                    justifyContent: "center",
-                    flexDirection: "column",
-                    alignItems: "center",
+                    // justifyContent: "center",
+                    // flexDirection: "column",
+                    // alignItems: "center",
                     // maxWidth:"50vw"
                   }}
                 >
                   <div
                     style={{
                       display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
+                      // justifyContent: "center",
+                      // alignItems: "center",
                     }}
                   >
                     <p style={{ color: theme.textColor }}>
@@ -243,6 +240,30 @@ const Portfolio = () => {
                     </p>
                   </div>
                 </div>
+              </div>
+              <div className="d-flex justify-content-center align-items-center flex-wrap">
+                {item.info.tech.map((item) => (
+                  <div className="" style={{ margin: "2px" }}>
+                    <div
+                      style={{
+                        backgroundColor: theme.boxColor,
+
+                        borderTopLeftRadius: "20px",
+                        borderBottomRightRadius: "20px",
+                      }}
+                    >
+                      <h6
+                        style={{
+                          color: theme.textColor,
+                          padding: "5px",
+                          margin: "5px",
+                        }}
+                      >
+                        {item}
+                      </h6>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>

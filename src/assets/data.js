@@ -35,6 +35,7 @@ export const shopee = {
     Scalability:
       "Designing the application to handle a large number of users and transactions efficiently.",
   },
+  tech: ["React", "Express", "Node", "Mongodb", "Redux","Razorpay"],
   Conclusion:
     "By developing this e-commerce web application with the MERN stack and integrating the Razorpay payment gateway, we aim to provide users with a seamless and secure shopping experience while enabling admins to efficiently manage the e-commerce platform.",
 };
@@ -79,6 +80,7 @@ export const Ezshop = {
     "Offline Functionality":
       "Implementing offline support for basic app functions to enhance user experience in low connectivity areas.",
   },
+  tech: ["React Native", "React Native Paper", "React Navigation", "Redux","Razorpay"],
   Conclusion:
     "By developing this e-commerce Android app using React Native and integrating the Razorpay payment gateway, we aim to provide users with a convenient and secure platform for online shopping. The app will offer a wide range of features to enhance the shopping experience and encourage user engagement.",
 };
@@ -119,7 +121,10 @@ export const nuzino = {
     "Optimizing API Requests":
       "Implementing efficient data fetching strategies to minimize network usage and improve app performance.",
   },
-
+  tech: [
+    "React Native",
+    "MUI"
+  ],
   Conclusion:
     "By developing this news Android app using React Native and integrating the NewsAPI, we aim to provide users with a convenient and personalized platform for staying updated with the latest news. The app will offer a range of features to enhance the news reading experience and keep users engaged.",
 };
@@ -131,7 +136,7 @@ export const wallpaper = {
     "The aim of this project is to develop a wallpaper application for Android using React Native, leveraging the Pexels API to fetch high-quality wallpapers. The app will provide users with a vast collection of wallpapers across different categories, allowing them to customize their device's home and lock screens.",
 
   features: {
-    "API": "Pexels API for fetching wallpapers",
+    API: "Pexels API for fetching wallpapers",
     "Wallpaper Categories":
       "Display wallpapers in various categories such as nature, landscapes, abstract, etc., sourced from the Pexels API.",
     "Search Functionality":
@@ -146,9 +151,8 @@ export const wallpaper = {
       "Ensure the app is responsive and provides a consistent user experience across different Android devices.",
   },
   "Tech Stack": {
-    Frontend:
-      "React Native, React Navigation for routing",
-   
+    Frontend: "React Native, React Navigation for routing",
+
     "Other Libraries":
       "Fetch for making API requests, AsyncStorage for storing favorite wallpapers and user preferences",
   },
@@ -160,7 +164,10 @@ export const wallpaper = {
     "User Engagement":
       "Designing features to encourage user interaction and exploration of different wallpaper categories.",
   },
-
+  tech: [
+    "React Native",
+    "Pexels API",
+  ],
   Conclusion:
     "By developing this wallpaper Android app using React Native and integrating the Pexels API, we aim to provide users with a diverse collection of high-quality wallpapers to personalize their devices. The app will offer a range of features to enhance the wallpaper browsing and customization experience.",
 };
@@ -190,6 +197,13 @@ export const gym = {
     "Real-time Updates":
       "Implementing real-time updates for class schedules, member registrations, and other dynamic data.",
   },
+  tech: [
+    "HTML",
+    "CSS",
+    "Javascript",
+    "React",
+    "Next Js"
+  ],
   Conclusion:
     "The Gym Web App using the MERN stack will provide a robust and scalable solution for managing gym operations effectively. By integrating features for member management, class scheduling, trainer management, and payment processing, the app will enhance the overall gym experience for both members and administrators.",
 };
@@ -216,7 +230,12 @@ export const travel = {
     "User Experience":
       "Designing a user-friendly interface for browsing destinations.",
   },
-
+  tech: [
+    "HTML",
+    "CSS",
+    "Javascript",
+    "React",
+  ],
   Conclusion:
     "The Travel Web App using the MERN stack will provide travelers with a comprehensive platform to discover, plan, and book their travel experiences. By integrating features for destination discovery, trip planning, and booking services, the app will enhance the overall travel planning experience for users.",
 };

@@ -2,7 +2,7 @@ import React, { useContext, useRef } from "react";
 import Skills from "./Skills";
 import Education from "./Education";
 
-import Boy from "../assets/images/characters/laptop.png"
+import Boy from "../assets/images/characters/laptop.png";
 import { ThemeContext } from "../theme";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -10,37 +10,36 @@ const About = () => {
   const imageRef = useRef();
   const dataRef = useRef();
   const theme = useContext(ThemeContext).systemTheme;
-  // useGSAP(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
-  //   gsap.from(imageRef.current, {
-  //     scrollTrigger: {
-  //       trigger: imageRef.current,
-  //       start: "1% 100%",
-  //       end: "bottom 100%",
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(imageRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 100%",
+        end: "bottom 100%",
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 100,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+    });
+    gsap.from(dataRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 100%",
+        end: "bottom 100%",
 
-  //       scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     x: -200,
-  //     duration: 2,
-  //     delay: 1,
-  //     opacity: 0,
-  //   });
-  //   gsap.from(dataRef.current, {
-  //     scrollTrigger: {
-  //       trigger: imageRef.current,
-  //       start: "1% 100%",
-  //       end: "bottom 100%",
-
-  //       scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     x: 200,
-  //     duration: 2,
-  //     delay: 1,
-  //     opacity: 0,
-  //   });
-  // });
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 100,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+    });
+  });
   return (
     <div
       className="d-flex flex-column justify-content-center "

@@ -32,8 +32,18 @@ li {
   font-size: 5vw;
 }
 
+.projectBox {
+
+  margin: 20px;
+  border-radius: 3vh;
+  max-width: 45vw;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
 .projectImage {
-  height: 35vw
+  height: 20vw;
+  max-width: 40vw;
 }
 
 .subHeading {
@@ -41,7 +51,7 @@ li {
   font-optical-sizing: auto;
   font-weight: 450;
   font-style: normal;
-  font-size: 2.5rem;
+  font-size: 2.5vw;
   font-variation-settings:
     "wdth" 100;
 }
@@ -59,9 +69,9 @@ li {
   color: #d9d9d9;
 }
 
-.projectOverview {
+/* .projectOverview {
   max-width: 50vw;
-}
+} */
 
 .homeImage {
   width: 30vw;
@@ -129,6 +139,8 @@ li {
   color: black;
 }
 
+
+
 /* @media (prefers-color-scheme: dark) {
   .skillBox {
     background: #753;
@@ -180,7 +192,7 @@ li {
 
 @media (max-width:900px) {
   .projectImage {
-    height: 50vw
+    /* height: 50vw */
   }
 
   .aboutBox {
