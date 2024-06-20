@@ -23,9 +23,9 @@ export default function Project() {
       </div>
       <div>
         <div className="d-flex justify-content-center align-items-center">
-          <div>
+          {/* <div>
             <img src={data.image} style={{ width: "40vw", height: "20vw" }} />
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="container">
