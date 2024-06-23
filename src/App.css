@@ -19,7 +19,8 @@ li {
 }
 
 .home {
-  /* height: 100vh; */
+  margin-top: 10px;
+  margin-bottom: 60px;
 
 }
 
@@ -37,7 +38,7 @@ li {
   margin: 20px;
   border-radius: 3vh;
   width: 400px;
-  padding: 2px;
+  padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
@@ -110,7 +111,7 @@ li {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-
+  margin-bottom: 30px;
 }
 
 .aboutImage {

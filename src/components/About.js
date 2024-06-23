@@ -22,7 +22,7 @@ const About = () => {
       },
       y: 100,
       duration: 2,
-      delay: 1,
+      delay: 2,
       opacity: 0,
     });
     gsap.from(dataRef.current, {
@@ -34,9 +34,10 @@ const About = () => {
         scrub: true,
         toggleActions: "restart pause resume pause",
       },
-      y: 100,
+      y: 200,
       duration: 2,
       delay: 1,
+      ease: "elastic",
       opacity: 0,
     });
   });
@@ -50,7 +51,7 @@ const About = () => {
     >
       <div className="d-flex justify-content-center align-items-center">
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <div style={{textAlign:"center"}}>
+        <div style={{ textAlign: "center" }}>
           <h1 className="boldHeading">My Story</h1>
         </div>
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
