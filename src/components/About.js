@@ -46,15 +46,13 @@ const About = () => {
       id="about"
       style={{
         color: "black",
-        padding: "5vh",
       }}
     >
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ padding: "20px" }}
-      >
+      <div className="d-flex justify-content-center align-items-center">
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading">My Story</h1>
+        <div style={{textAlign:"center"}}>
+          <h1 className="boldHeading">My Story</h1>
+        </div>
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
       </div>
       <div className="aboutBox">

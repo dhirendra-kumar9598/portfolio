@@ -108,10 +108,10 @@ const Skills = () => {
       </div>
       {/* Programming Languages */}
       <div>
-        <div className="d-flex justify-content-center ">
-          <h4 className="subHeading" style={{ color: theme.textColor }}>
-            Programming Languages
-          </h4>
+        <div className="d-flex justify-content-center  ">
+          <h5 className="subHeading" style={{ color: theme.textColor }}>
+            Languages
+          </h5>
         </div>
         <div
           ref={languageRef}
@@ -125,14 +125,13 @@ const Skills = () => {
               style={{ backgroundColor: theme.boxColor }}
             >
               <div className="skillItems">
-                <img
-                  src={item.picture}
-                  style={{ height: "150px", width: "150px" }}
-                ></img>
+                <img src={item.picture} className="skillItem"></img>
               </div>
-              <h5 className="skillItems" style={{ color: theme.textColor }}>
-                {item.name}
-              </h5>
+              <div style={{ textAlign: "center" }}>
+                <h5 className="skillItems" style={{ color: theme.textColor }}>
+                  {item.name}
+                </h5>
+              </div>
             </div>
           ))}
         </div>
@@ -155,14 +154,13 @@ const Skills = () => {
             style={{ backgroundColor: theme.boxColor }}
           >
             <div className="skillItems">
-              <img
-                src={item.picture}
-                style={{ height: "150px", width: "150px" }}
-              ></img>
+              <img src={item.picture} className="skillItem"></img>
             </div>
-            <h5 className="skillItems" style={{ color: theme.textColor }}>
-              {item.name}
-            </h5>
+            <div style={{ textAlign: "center" }}>
+              <h5 className="skillItems" style={{ color: theme.textColor }}>
+                {item.name}
+              </h5>
+            </div>
           </div>
         ))}
       </div>
@@ -184,14 +182,13 @@ const Skills = () => {
             style={{ backgroundColor: theme.boxColor }}
           >
             <div className="skillItems">
-              <img
-                src={item.picture}
-                style={{ height: "150px", width: "150px" }}
-              ></img>
+              <img src={item.picture} className="skillItem"></img>
             </div>
-            <h5 className="skillItems" style={{ color: theme.textColor }}>
-              {item.name}
-            </h5>
+            <div style={{ textAlign: "center" }}>
+              <h5 className="skillItems" style={{ color: theme.textColor }}>
+                {item.name}
+              </h5>
+            </div>
           </div>
         ))}
       </div>

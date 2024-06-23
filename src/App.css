@@ -19,7 +19,7 @@ li {
 }
 
 .home {
-  height: 100vh;
+  /* height: 100vh; */
 
 }
 
@@ -33,25 +33,28 @@ li {
 }
 
 .projectBox {
-
+  flex-wrap: wrap;
   margin: 20px;
   border-radius: 3vh;
-  max-width: 45vw;
+  width: 400px;
+  padding: 2px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
 }
 
 .projectImage {
   height: 20vw;
-  max-width: 40vw;
+  width: 100%;
 }
+
+
 
 .subHeading {
   font-family: "Fredoka", sans-serif;
   font-optical-sizing: auto;
   font-weight: 450;
   font-style: normal;
-  font-size: 2.5vw;
+  font-size: 2.5rem;
   font-variation-settings:
     "wdth" 100;
 }
@@ -80,11 +83,19 @@ li {
 }
 
 .skillBox {
-  padding: 2vh;
-  margin: 3vh;
-  border-radius: 3vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1vh;
+  margin: 2vh;
+  border-radius: 1vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
+}
+
+.skillItem {
+  height: 10vw;
+  width: 10vw
 }
 
 .arrowBox {
@@ -155,6 +166,15 @@ li {
     outline: 5px dashed #000;
   }
 } */
+@media (max-width:800px) {
+  .projectBox {
+    width: 100%;
+  }
+
+  .projectImage {
+    height: 50vw
+  }
+}
 
 @media (max-width:500px) {
   .boldHeading {
@@ -162,8 +182,8 @@ li {
     font-size: 10vw;
   }
 
-  .projectBox {
-    flex-wrap: wrap;
+  .projectName {
+    font-size: 5vw;
   }
 
   .projectOverview {
@@ -190,12 +210,26 @@ li {
   }
 }
 
-@media (max-width:900px) {
-  .projectImage {
-    /* height: 50vw */
+@media (max-width:700px) {
+  .skillBox {
+    height: 100px;
+    width: 100px;
   }
+
+  .skillItem {
+    height: 40px;
+    width: 40px
+  }
+}
+
+@media (max-width:900px) {
+
 
   .aboutBox {
     flex-wrap: wrap;
+  }
+
+  .projectName {
+    font-size: 1.5rem;
   }
 }

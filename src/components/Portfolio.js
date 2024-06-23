@@ -202,7 +202,7 @@ const Portfolio = () => {
                   <div className="d-flex ">
                     <div>
                       <h5
-                        className="subHeading"
+                        className="projectName"
                         style={{ color: theme.textColor }}
                       >
                         {item.name}({item.type})
