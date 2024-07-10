@@ -208,11 +208,11 @@ const Portfolio = () => {
                         {item.name}({item.type})
                       </h5>
                     </div>
-                    <Link to="/project" state={{ item }} className="skillItems">
+                    {/* <Link to="/project" state={{ item }} className="skillItems">
                       <div className="arrowBox mx-2">
                         <Visibility fontSize="large" className="arrowIcon" />
                       </div>
-                    </Link>
+                    </Link> */}
                   </div>
                 </div>
               </div>
