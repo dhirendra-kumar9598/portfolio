@@ -181,7 +181,7 @@ const Portfolio = () => {
         style={{ flexFlow: "row", flexWrap: "wrap" }}
       >
         {projects.map((item) => (
-          <div className="d-flex flex-row justify-content-center align-items-center flex-wrap projectBox ">
+          <div className="d-flex flex-row justify-content-center align-items-center flex-wrap projectBox " style={{ backgroundColor: theme.boxColor }}>
             <div className=" ">
               <div className="d-flex flex-column justify-content-center align-items-center">
                 <div>

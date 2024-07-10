@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
-import React, { useContext, useEffect, useRef, useState } from "react";
-
+import React, {
+  Suspense,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { LineWave } from "react-loader-spinner";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
@@ -8,6 +14,8 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import EmailIcon from "@mui/icons-material/Email";
 import CallIcon from "@mui/icons-material/Call";
+import MapIcon from "@mui/icons-material/Map";
+import PhoneIcon from "@mui/icons-material/Phone";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
@@ -15,11 +23,14 @@ import gsap from "gsap";
 import Boy from "../assets/images/characters/contact.png";
 
 import emailjs from "@emailjs/browser";
+import Loader from "./MicroComp/Loader";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [status, setStatus] = useState("init");
+  const [isloading, setLoading] = useState(false);
   const form = useRef();
   const initialize = () => {
     window.emailjs.init({
@@ -43,8 +54,7 @@ const Contact = () => {
 
   const sendMessage = async (e) => {
     e.preventDefault();
-    console.log("message sent");
-
+    setLoading(true);
     var data = {
       name,
       email,
@@ -57,10 +67,24 @@ const Contact = () => {
       })
       .then(
         () => {
+          setLoading(false);
           console.log("SUCCESS!");
+          setStatus("success");
+          setName("");
+          setEmail("");
+          setMessage("");
+          setSubject("");
+          setTimeout(() => {
+            setStatus("init");
+          }, 5000);
         },
         (error) => {
+          setLoading(false);
           console.log("FAILED...", error);
+          setStatus("error");
+          setTimeout(() => {
+            setStatus("init");
+          }, 5000);
         }
       );
   };
@@ -117,119 +141,320 @@ const Contact = () => {
           />
         </div>
 
-        <div className=" aboutBox">
-          <div>
-            <h4 style={{ color: theme.textColor }}>Lets's conect</h4>
-            <form ref={form} onSubmit={sendMessage}>
-              <div className="container">
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label for="name" style={{ color: theme.textColor }}>
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        value={name}
-                        name="name"
-                        onChange={(e) => setName(e.target.value)}
-                        style={{
-                          backgroundColor: theme.backgroundColor,
-                          color: theme.textColor,
-                        }}
-                      />
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignItems: "center",
+            marginBottom: "30px",
+            flexWrap:"wrap"
+          }}
+        >
+          <div className="formBox " style={{ backgroundColor: theme.boxColor }}>
+            <div>
+              <h4 className="subHeading" style={{ color: theme.textColor }}>
+                Lets's conect
+              </h4>
+              <form ref={form} onSubmit={sendMessage}>
+                <div className="container">
+                  <div
+                    className="row"
+                    style={{ margin: "5px", paddingTop: "10px" }}
+                  >
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label for="name" style={{ color: theme.textColor }}>
+                          Name
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="name"
+                          value={name}
+                          name="name"
+                          onChange={(e) => setName(e.target.value)}
+                          style={{
+                            backgroundColor: theme.backgroundColor,
+                            color: theme.textColor,
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="form-group">
+                        <label for="email" style={{ color: theme.textColor }}>
+                          Email
+                        </label>
+                        <input
+                          type="email"
+                          className="form-control"
+                          id="email"
+                          name="email"
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          style={{
+                            backgroundColor: theme.backgroundColor,
+                            color: theme.textColor,
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label for="email" style={{ color: theme.textColor }}>
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        id="email"
-                        name="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        style={{
-                          backgroundColor: theme.backgroundColor,
-                          color: theme.textColor,
-                        }}
-                      />
+                  <div
+                    className="row"
+                    style={{ margin: "5px", paddingTop: "10px" }}
+                  >
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <label for="subject" style={{ color: theme.textColor }}>
+                          Subject
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="subject"
+                          name="subject"
+                          value={subject}
+                          onChange={(e) => setSubject(e.target.value)}
+                          style={{
+                            backgroundColor: theme.backgroundColor,
+                            color: theme.textColor,
+                          }}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="form-group">
-                      <label for="subject" style={{ color: theme.textColor }}>
-                        Subject
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="subject"
-                        name="subject"
-                        value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
-                        style={{
-                          backgroundColor: theme.backgroundColor,
-                          color: theme.textColor,
-                        }}
-                      />
+                  <div
+                    className="row"
+                    style={{ margin: "5px", paddingTop: "10px" }}
+                  >
+                    <div className="col-md-12">
+                      <div className="form-group">
+                        <label for="message" style={{ color: theme.textColor }}>
+                          Message
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id="message"
+                          name="message"
+                          value={message}
+                          onChange={(e) => setMessage(e.target.value)}
+                          style={{
+                            backgroundColor: theme.backgroundColor,
+                            color: theme.textColor,
+                          }}
+                          rows="5"
+                        ></textarea>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="form-group">
-                      <label for="message" style={{ color: theme.textColor }}>
-                        Message
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="message"
-                        name="message"
-                        value={message}
-                        onChange={(e) => setMessage(e.target.value)}
-                        style={{
-                          backgroundColor: theme.backgroundColor,
-                          color: theme.textColor,
-                        }}
-                        rows="5"
-                      ></textarea>
+                  <div
+                    className="row"
+                    style={{ margin: "5px", paddingTop: "10px" }}
+                  >
+                    <div className="col-md-12 mt-4">
+                      {!isloading ? (
+                        <button
+                          type="submit"
+                          className="btn btn-primary"
+                          disabled={
+                            name.length == 0 ||
+                            email.length == 0 ||
+                            subject.length == 0 ||
+                            message == 0
+                          }
+                        >
+                          Send
+                        </button>
+                      ) : (
+                        <LineWave
+                          visible={true}
+                          height="100"
+                          width="100"
+                          color="yellow"
+                          ariaLabel="line-wave-loading"
+                          wrapperStyle={{}}
+                          wrapperClass=""
+                          firstLineColor=""
+                          middleLineColor=""
+                          lastLineColor=""
+                        />
+                      )}
                     </div>
+
+                    {status == "success" && (
+                      <div style={{ color: "green" }}>
+                        <span> Email sent successfully!</span>
+                      </div>
+                    )}
+                    {status == "error" && (
+                      <div style={{ color: "red" }}>
+                        <span>
+                          {" "}
+                          Failed to send email. Please try again later.
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </div>
-                <div className="row">
-                  <div className="col-md-12 mt-4">
-                    <button type="submit" className="btn btn-primary">
-                      Send
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div
-                id="successAlert"
-                className="alert alert-success"
-                style={{ display: "none" }}
-              >
-                Email sent successfully!
-              </div>
-              <div
-                id="errorAlert"
-                className="alert alert-danger"
-                style={{ display: "none" }}
-              >
-                Failed to send email. Please try again later.
-              </div>
-            </form>
+              </form>
+            </div>
           </div>
-          <div>
-            <img src={Boy} className="aboutImage" />
+
+          <div className="" style={{ width: "" }}>
+            <div
+              className="d-flex flex-column justify-content-center align-items-center formBox"
+              style={{
+                backgroundColor: theme.boxColor,
+                padding: "20px",
+                margin: "5px",
+              }}
+            >
+              <div style={{ padding: "10px" }}>
+                <MapIcon style={{ color: theme.textColor }} />
+              </div>
+              <div>
+                <div className="row">
+                  <div className="d-flex fles-row justify-content-between">
+                    <div>
+                      <span style={{ color: theme.textColor }}> Country:</span>
+                    </div>
+                    <div>
+                      <span style={{ color: theme.textColor }}> India</span>
+                    </div>
+                  </div>
+                  <div className="d-flex fles-row justify-content-between">
+                    <div>
+                      <span style={{ color: theme.textColor }}> State:</span>
+                    </div>
+                    <div>
+                      <span style={{ color: theme.textColor }}>
+                        Uttar Pradesh
+                      </span>
+                    </div>
+                  </div>
+                  <div className="d-flex fles-row justify-content-between">
+                    <div>
+                      <span style={{ color: theme.textColor }}> City:</span>
+                    </div>
+                    <div>
+                      <span style={{ color: theme.textColor }}> Lucknow</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="d-flex flex-column justify-content-center align-items-center formBox"
+              style={{
+                backgroundColor: theme.boxColor,
+                padding: "20px",
+                margin: "5px",
+              }}
+            >
+              <div style={{ padding: "10px" }}>
+                <EmailIcon style={{ color: theme.textColor }} />
+              </div>
+              <div>
+                <div className="row">
+                  <div className="d-flex fles-row justify-content-between">
+                    <div>
+                      <span style={{ color: theme.textColor }}> Github:</span>
+                    </div>
+                    <div>
+                      <Link
+                        to="https://github.com/dhirendra-kumar9598"
+                        style={{
+                          textDecoration: "none",
+                          color: "black",
+                        }}
+                      >
+                        <span style={{ color: theme.textColor }}>
+                          dhirendra-kumar9598
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="d-flex fles-row justify-content-between">
+                    <div>
+                      <span style={{ color: theme.textColor }}> Linkedin:</span>
+                    </div>
+                    <div>
+                      <Link
+                        to="https://www.linkedin.com/in/dhirendra-kr/"
+                        style={{
+                          textDecoration: "none",
+                          color: theme.textColor,
+                        }}
+                      >
+                        <span style={{ color: theme.textColor }}>
+                          dhirendra-kr
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className="d-flex flex-column justify-content-center align-items-center formBox"
+              style={{
+                backgroundColor: theme.boxColor,
+                padding: "20px",
+                margin: "5px",
+              }}
+            >
+              <div style={{ padding: "10px" }}>
+                <CallIcon style={{ color: theme.textColor }} />
+              </div>
+              <div>
+                <div className="row">
+                  <div className="d-flex flex-row justify-content-between">
+                    <div>
+                      <span style={{ color: theme.textColor }}> Email:</span>
+                    </div>
+                    <div>
+                      <Link
+                        to={"mailto:kumardhiraj609@gmail.com"}
+                        className="skillItems"
+                        style={{ color: theme.textColor }}
+                      >
+                        <span style={{ color: theme.textColor }}>
+                          kumardhiraj609@gmail.com
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                  <div className="d-flex flex-row justify-content-between">
+                    <div>
+                      <span style={{ color: theme.textColor }}> Phone:</span>
+                    </div>
+                    <div>
+                      <Link
+                        to={"tel:+919598560187"}
+                        style={{
+                          color: theme.textColor,
+                          textDecoration: "none",
+                        }}
+                      >
+                        <span
+                          style={{
+                            color: theme.textColor,
+                            textDecoration: "none",
+                          }}
+                        >
+                          9598560187
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* <img src={Boy} className="aboutImage" /> */}
           </div>
         </div>
 
