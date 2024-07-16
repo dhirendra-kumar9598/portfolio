@@ -125,7 +125,7 @@ const Skills = () => {
               style={{ backgroundColor: theme.boxColor }}
             >
               <div className="skillItems">
-                <img src={item.picture} className="skillItem"></img>
+                <img  loading="lazy" src={item.picture} className="skillItem"></img>
               </div>
               <div style={{ textAlign: "center" }}>
                 <h5 className="skillItems" style={{ color: theme.textColor }}>
@@ -154,7 +154,7 @@ const Skills = () => {
             style={{ backgroundColor: theme.boxColor }}
           >
             <div className="skillItems">
-              <img src={item.picture} className="skillItem"></img>
+              <img loading="lazy" src={item.picture} className="skillItem"></img>
             </div>
             <div style={{ textAlign: "center" }}>
               <h5 className="skillItems" style={{ color: theme.textColor }}>
@@ -182,7 +182,7 @@ const Skills = () => {
             style={{ backgroundColor: theme.boxColor }}
           >
             <div className="skillItems">
-              <img src={item.picture} className="skillItem"></img>
+              <img loading="lazy" src={item.picture} className="skillItem"></img>
             </div>
             <div style={{ textAlign: "center" }}>
               <h5 className="skillItems" style={{ color: theme.textColor }}>

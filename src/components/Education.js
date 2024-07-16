@@ -93,7 +93,7 @@ const Education = () => {
           <div></div>
         </div>
         <div>
-          <img ref={imageRef} src={Boy} className="aboutImage" />
+          <img loading="lazy" ref={imageRef} src={Boy} className="aboutImage" />
         </div>
       </div>
     </div>

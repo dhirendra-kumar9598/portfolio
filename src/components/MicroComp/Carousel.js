@@ -21,6 +21,7 @@ export default function Carousel({ data, logo, type }) {
         <div class="carousel-inner">
           <div class="carousel-item active">
             <img
+            loading="lazy"
               src={images[0]}
               style={type == "Android" ? android : web}
               alt="..."
@@ -29,6 +30,7 @@ export default function Carousel({ data, logo, type }) {
           {images.map((items,index) => (
             <div className="carousel-item" key={index}>
               <img
+              loading="lazy"
                 src={items}
                 alt="..."
                 style={type == "Android" ? android : web}

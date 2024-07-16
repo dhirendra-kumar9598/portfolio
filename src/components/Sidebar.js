@@ -142,7 +142,7 @@ export default function Sidebar() {
           }}
         >
           <div className="d-flex justify-content-center imageBox">
-            <img className="homeImage" ref={imageRef} src={Dhiraj} alt="" />
+            <img loading="lazy" className="homeImage" ref={imageRef} src={Dhiraj} alt="" />
           </div>
           <div style={{ margin: "20px" }} ref={infoRef}>
             <div>

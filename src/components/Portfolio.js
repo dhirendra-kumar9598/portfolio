@@ -185,7 +185,7 @@ const Portfolio = () => {
             <div className=" ">
               <div className="d-flex flex-column justify-content-center align-items-center">
                 <div>
-                  <img src={item.screenshots[0]} className="projectImage"></img>
+                  <img loading="lazy" src={item.screenshots[0]} className="projectImage"></img>
                 </div>
               </div>
             </div>
