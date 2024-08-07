@@ -206,10 +206,10 @@ li {
     flex-direction: column;
   }
 
-  /* .homeImage {
-    width: 50vw;
-    height: 50vw;
-  } */
+  .homeImage {
+    width: 60vw;
+    height: 60vw;
+  }
 
   .aboutImage {
     height: 80vw;
