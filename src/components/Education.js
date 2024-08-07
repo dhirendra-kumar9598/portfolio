@@ -20,9 +20,9 @@ const Education = () => {
         scrub: true,
         toggleActions: "restart pause resume pause",
       },
-      x: 150,
-      duration: 1,
-      delay: 1,
+      x: 50,
+      duration: 2,
+      delay: 2,
       opacity: 0,
       ease: "none",
     });
@@ -36,8 +36,8 @@ const Education = () => {
         toggleActions: "restart pause resume pause",
       },
       x: -50,
-      duration: 1,
-      delay: 1,
+      duration: 2,
+      delay: 2,
       opacity: 0,
       ease: "none",
     });

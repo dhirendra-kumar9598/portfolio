@@ -100,65 +100,65 @@ const Contact = () => {
   const theme = useContext(ThemeContext).systemTheme;
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.from(conRef.current, {
-      scrollTrigger: {
-        trigger:conRef.current,
-        start: "1% 60%",
-        end: "bottom 100%",
+    // gsap.from(conRef.current, {
+    //   scrollTrigger: {
+    //     trigger:conRef.current,
+    //     start: "1% 60%",
+    //     end: "bottom 100%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: 150,
-      duration: 1,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-    gsap.from(locRef.current, {
-      scrollTrigger: {
-        trigger: form.current,
-        start: "1% 60%",
-        end: "bottom 100%",
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   x: 50,
+    //   duration: 2,
+    //   delay: 2,
+    //   opacity: 0,
+    //   ease: "none",
+    // });
+    // gsap.from(locRef.current, {
+    //   scrollTrigger: {
+    //     trigger: form.current,
+    //     start: "1% 60%",
+    //     end: "bottom 100%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      x: -50,
-      duration: 1,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-    gsap.to(headRef.current, {
-      scrollTrigger: {
-        trigger: form.current,
-        start: "1% 50%",
-        end: "bottom 100%",
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   x: -50,
+    //   duration: 2,
+    //   delay: 2,
+    //   opacity: 0,
+    //   ease: "none",
+    // });
+    // gsap.to(headRef.current, {
+    //   scrollTrigger: {
+    //     trigger: form.current,
+    //     start: "1% 50%",
+    //     end: "bottom 100%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      duration: 4,
-      delay: 2,
-      rotateY: 360,
-      ease: "none",
-    });
-    gsap.to(messRef.current, {
-      scrollTrigger: {
-        trigger: messRef.current,
-        start: "bottom 10%",
-        end: "bottom 10%",
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   duration: 4,
+    //   delay: 2,
+    //   rotateY: 360,
+    //   ease: "none",
+    // });
+    // gsap.to(messRef.current, {
+    //   scrollTrigger: {
+    //     trigger: messRef.current,
+    //     start: "bottom 10%",
+    //     end: "bottom 10%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 100,
-      duration: 2,
-      delay: 1,
-      rotateY: 360,
-      ease: "none",
-    });
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   y: 100,
+    //   duration: 2,
+    //   delay: 1,
+    //   rotateY: 360,
+    //   ease: "none",
+    // });
   });
   return (
     <div className="pt-5" id="contact">
