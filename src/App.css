@@ -5,7 +5,6 @@ html {
   scroll-behavior: smooth;
 }
 
-
 h5,
 p,
 li {
@@ -13,15 +12,12 @@ li {
   font-optical-sizing: auto;
   font-weight: 400;
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
-
+  font-variation-settings: "wdth" 100;
 }
 
 .home {
   margin-top: 10px;
   margin-bottom: 60px;
-
 }
 
 .boldHeading {
@@ -48,7 +44,6 @@ li {
   width: 400px;
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .formBox {
@@ -58,17 +53,12 @@ li {
 
   padding: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
-
-
 
 .projectImage {
   height: 20vw;
   width: 100%;
 }
-
-
 
 .subHeading {
   font-family: "Fredoka", sans-serif;
@@ -76,8 +66,7 @@ li {
   font-weight: 450;
   font-style: normal;
   font-size: 2.5rem;
-  font-variation-settings:
-    "wdth" 100;
+  font-variation-settings: "wdth" 100;
 }
 
 .projectDetailPara {
@@ -101,7 +90,17 @@ li {
   width: 30vw;
   height: 30vw;
   border-radius: 100%;
+  zoom: 100%;
 }
+.imageBox {
+  -webkit-mask-image: url("./assets/images/characters/download.png");
+  mask-image:  url("./assets/images/characters/b.png");
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;    
+}
+
 
 .skillBox {
   display: flex;
@@ -111,19 +110,15 @@ li {
   margin: 2vh;
   border-radius: 1vh;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 .skillItem {
   height: 10vw;
-  width: 10vw
+  width: 10vw;
 }
 
 .arrowBox {
-
-
   border-radius: 100%;
-
 }
 
 .aboutBox {
@@ -141,7 +136,6 @@ li {
 
 .skillBox:hover {
   /* background-color: #000125; */
-
 }
 
 .skillBox:hover .skillItems {
@@ -153,25 +147,18 @@ li {
   color: black;
 }
 
-
-
-
 .arrowBox:hover {
-  background-color: #252CFF;
-
+  background-color: #252cff;
 }
 
 .arrowBox:hover .arrowIcon {
   color: white;
-
 }
 
 .arrowIcon {
   text-decoration: none;
   color: black;
 }
-
-
 
 /* @media (prefers-color-scheme: dark) {
   .skillBox {
@@ -187,19 +174,18 @@ li {
     outline: 5px dashed #000;
   }
 } */
-@media (max-width:800px) {
+@media (max-width: 800px) {
   .projectBox {
     width: 100%;
   }
 
   .projectImage {
-    height: 50vw
+    height: 50vw;
   }
 }
 
-@media (max-width:500px) {
+@media (max-width: 500px) {
   .boldHeading {
-
     font-size: 10vw;
   }
 
@@ -220,10 +206,10 @@ li {
     flex-direction: column;
   }
 
-  .homeImage {
+  /* .homeImage {
     width: 50vw;
     height: 50vw;
-  }
+  } */
 
   .aboutImage {
     height: 80vw;
@@ -231,7 +217,7 @@ li {
   }
 }
 
-@media (max-width:700px) {
+@media (max-width: 700px) {
   .skillBox {
     height: 100px;
     width: 100px;
@@ -239,13 +225,11 @@ li {
 
   .skillItem {
     height: 40px;
-    width: 40px
+    width: 40px;
   }
 }
 
-@media (max-width:900px) {
-
-
+@media (max-width: 900px) {
   .aboutBox {
     flex-wrap: wrap;
   }

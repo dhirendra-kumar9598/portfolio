@@ -15,6 +15,9 @@ import Project from "./components/Project";
 import Main from "./components/Main";
 import { dark, light, ThemeContext } from "./theme";
 import Welcome from "./components/Welcome";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -31,25 +34,31 @@ const App = () => {
       setLoading(true);
     }, 3000);
   }, []);
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+  });
   return (
-    <>
-      <ThemeContext.Provider value={{ systemTheme, setSystemTheme }}>
-        {!loading ? (
-          <Welcome />
-        ) : (
-          <BrowserRouter>
-            <Navbar />
-            <Routes>
-              {/* <Route path="/" element={<Home/>} /> */}
-              <Route element={<Home />}>
-                <Route path="/" element={<Main />} />
-                <Route path="/project" element={<Project />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        )}
-      </ThemeContext.Provider>
-    </>
+    <div className="box-wrapper">
+      <div className="box-content">
+        <ThemeContext.Provider value={{ systemTheme, setSystemTheme }}>
+          {!loading ? (
+            <Welcome />
+          ) : (
+            <BrowserRouter>
+              <Navbar />
+              <Routes>
+                {/* <Route path="/" element={<Home/>} /> */}
+                <Route element={<Home />}>
+                  <Route path="/" element={<Main />} />
+                  <Route path="/project" element={<Project />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          )}
+        </ThemeContext.Provider>
+      </div>
+    </div>
   );
 };
 

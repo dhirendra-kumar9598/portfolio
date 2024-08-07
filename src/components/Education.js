@@ -8,44 +8,59 @@ const Education = () => {
   const theme = useContext(ThemeContext).systemTheme;
   const imageRef = useRef();
   const dataRef = useRef();
-  // useGSAP(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
-  //   gsap.from(imageRef.current, {
-  //     scrollTrigger: {
-  //       trigger: imageRef.current,
-  //       start: "1% 100%",
-  //       end: "bottom 100%",
+  const headRef = useRef();
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(imageRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 60%",
+        end: "bottom 100%",
 
-  //       scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     x: 200,
-  //     duration: 2,
-  //     delay: 1,
-  //     opacity: 0,
-  //     ease: "none",
-  //   });
-  //   gsap.from(dataRef.current, {
-  //     scrollTrigger: {
-  //       trigger: imageRef.current,
-  //       start: "1% 100%",
-  //       end: "bottom 100%",
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: 150,
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.from(dataRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 60%",
+        end: "bottom 100%",
 
-  //       scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     x: -200,
-  //     duration: 2,
-  //     delay: 1,
-  //     opacity: 0,
-  //     ease: "none",
-  //   });
-  // });
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: -50,
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.to(headRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 60%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      duration: 4,
+      delay: 2,
+      rotateY: 360,
+      ease:"none",
+    });
+  });
   return (
     <div>
       <div className="d-flex justify-content-center align-items-center">
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading">Education</h1>
+        <h1 className="boldHeading" ref={headRef}>Education</h1>
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
       </div>
       <div className="d-flex justify-content-center align-items-center flex-wrap">

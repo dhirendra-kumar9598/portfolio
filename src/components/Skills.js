@@ -21,54 +21,69 @@ const Skills = () => {
   const languageRef = useRef();
   const technologyRef = useRef();
   const databaseRef = useRef();
-  // useGSAP(() => {
-  //   gsap.registerPlugin(ScrollTrigger);
-  //   gsap.from(languageRef.current, {
-  //     scrollTrigger: {
-  //       trigger: languageRef.current,
-  //       start: "top 100%",
-  //       end: "bottom 80%",
+  const headRef = useRef();
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(languageRef.current, {
+      scrollTrigger: {
+        trigger: languageRef.current,
+        start: "top 100%",
+        end: "bottom 80%",
 
-  //       scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     x: 400,
-  //     duration: 2,
-  //     delay: 1,
-  //     opacity: 0,
-  //     ease: "none",
-  //   });
-  //   gsap.from(technologyRef.current, {
-  //     scrollTrigger: {
-  //       trigger: technologyRef.current,
-  //       start: "top 100%",
-  //       end: "bottom 80%",
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 100,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.from(technologyRef.current, {
+      scrollTrigger: {
+        trigger: technologyRef.current,
+        start: "top 100%",
+        end: "bottom 80%",
 
-  //       scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     x: -400,
-  //     duration: 2,
-  //     delay: 1,
-  //     opacity: 0,
-  //     ease: "none",
-  //   });
-  //   gsap.from(databaseRef.current, {
-  //     scrollTrigger: {
-  //       trigger: databaseRef.current,
-  //       start: "top 100%",
-  //       end: "bottom 80%",
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 100,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.from(databaseRef.current, {
+      scrollTrigger: {
+        trigger: databaseRef.current,
+        start: "top 100%",
+        end: "bottom 80%",
 
-  //       scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     x: 400,
-  //     duration: 2,
-  //     delay: 1,
-  //     opacity: 0,
-  //     ease: "none",
-  //   });
-  // });
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 100,
+      duration: 2,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.to(headRef.current, {
+      scrollTrigger: {
+        trigger: headRef.current,
+        start: "1% 60%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      duration: 4,
+      delay: 2,
+      rotateY: 360,
+      ease:"none",
+    });
+  });
   const Languages = [
     { name: "HTML", picture: HtmlLan },
     { name: "CSS", picture: Css },
@@ -103,18 +118,17 @@ const Skills = () => {
     >
       <div className="d-flex justify-content-center align-items-center">
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading">Skills</h1>
+        <h1 className="boldHeading" ref={headRef}>Skills</h1>
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
       </div>
       {/* Programming Languages */}
-      <div>
+      <div ref={languageRef}>
         <div className="d-flex justify-content-center  ">
           <h5 className="subHeading" style={{ color: theme.textColor }}>
             Languages
           </h5>
         </div>
         <div
-          ref={languageRef}
           className="d-flex justify-content-center"
           style={{ flexFlow: "row", flexWrap: "wrap" }}
         >
@@ -125,7 +139,11 @@ const Skills = () => {
               style={{ backgroundColor: theme.boxColor }}
             >
               <div className="skillItems">
-                <img  loading="lazy" src={item.picture} className="skillItem"></img>
+                <img
+                  loading="lazy"
+                  src={item.picture}
+                  className="skillItem"
+                ></img>
               </div>
               <div style={{ textAlign: "center" }}>
                 <h5 className="skillItems" style={{ color: theme.textColor }}>
@@ -137,60 +155,71 @@ const Skills = () => {
         </div>
       </div>
       {/* Technologies */}
-      <div className="d-flex justify-content-center">
-        <h4 className="subHeading" style={{ color: theme.textColor }}>
-          Technologies
-        </h4>
-      </div>
-      <div
-        ref={technologyRef}
-        className="d-flex justify-content-center"
-        style={{ flexFlow: "row", flexWrap: "wrap" }}
-      >
-        {Technologies.map((item, index) => (
-          <div
-            className="d-flex flex-column justify-content-center align-items-center skillBox"
-            key={index}
-            style={{ backgroundColor: theme.boxColor }}
-          >
-            <div className="skillItems">
-              <img loading="lazy" src={item.picture} className="skillItem"></img>
+      <div ref={technologyRef}>
+        <div className="d-flex justify-content-center">
+          <h4 className="subHeading" style={{ color: theme.textColor }}>
+            Technologies
+          </h4>
+        </div>
+        <div
+          className="d-flex justify-content-center"
+          style={{ flexFlow: "row", flexWrap: "wrap" }}
+        >
+          {Technologies.map((item, index) => (
+            <div
+              className="d-flex flex-column justify-content-center align-items-center skillBox"
+              key={index}
+              style={{ backgroundColor: theme.boxColor }}
+            >
+              <div className="skillItems">
+                <img
+                  loading="lazy"
+                  src={item.picture}
+                  className="skillItem"
+                ></img>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <h5 className="skillItems" style={{ color: theme.textColor }}>
+                  {item.name}
+                </h5>
+              </div>
             </div>
-            <div style={{ textAlign: "center" }}>
-              <h5 className="skillItems" style={{ color: theme.textColor }}>
-                {item.name}
-              </h5>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
+
       {/* Databases */}
-      <div className="d-flex justify-content-center">
-        <h4 className="subHeading" style={{ color: theme.textColor }}>
-          Databases
-        </h4>
-      </div>
-      <div
-        ref={databaseRef}
-        className="d-flex justify-content-center "
-        style={{ flexFlow: "row", flexWrap: "wrap" }}
-      >
-        {Databases.map((item, index) => (
-          <div
-            className="d-flex flex-column justify-content-center align-items-center skillBox"
-            key={index}
-            style={{ backgroundColor: theme.boxColor }}
-          >
-            <div className="skillItems">
-              <img loading="lazy" src={item.picture} className="skillItem"></img>
+      <div ref={databaseRef}>
+        <div className="d-flex justify-content-center">
+          <h4 className="subHeading" style={{ color: theme.textColor }}>
+            Databases
+          </h4>
+        </div>
+        <div
+          className="d-flex justify-content-center "
+          style={{ flexFlow: "row", flexWrap: "wrap" }}
+        >
+          {Databases.map((item, index) => (
+            <div
+              className="d-flex flex-column justify-content-center align-items-center skillBox"
+              key={index}
+              style={{ backgroundColor: theme.boxColor }}
+            >
+              <div className="skillItems">
+                <img
+                  loading="lazy"
+                  src={item.picture}
+                  className="skillItem"
+                ></img>
+              </div>
+              <div style={{ textAlign: "center" }}>
+                <h5 className="skillItems" style={{ color: theme.textColor }}>
+                  {item.name}
+                </h5>
+              </div>
             </div>
-            <div style={{ textAlign: "center" }}>
-              <h5 className="skillItems" style={{ color: theme.textColor }}>
-                {item.name}
-              </h5>
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

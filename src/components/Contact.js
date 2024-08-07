@@ -32,6 +32,10 @@ const Contact = () => {
   const [status, setStatus] = useState("init");
   const [isloading, setLoading] = useState(false);
   const form = useRef();
+  const conRef=useRef();
+  const locRef = useRef();
+  const headRef = useRef();
+  const messRef = useRef();
   const initialize = () => {
     window.emailjs.init({
       publicKey: "aEiL70VPn9kKnNqZL",
@@ -94,32 +98,68 @@ const Contact = () => {
   }, [name]);
 
   const theme = useContext(ThemeContext).systemTheme;
-  // useGSAP(() => {
-  //   gsap.from(["#mail", "#phone", "#location"], {
-  //     scrollTrigger: {
-  //       trigger: "#mail",
-  //       // start:"bottom 70%",
-  //       // scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     y: 200,
-  //     opacity: 0,
-  //     ease: "bounce.out",
-  //     duration: 2,
-  //   });
-  //   gsap.from(["#social"], {
-  //     scrollTrigger: {
-  //       trigger: "#social",
-  //       // start:"bottom 70%",
-  //       // scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     y: 200,
-  //     opacity: 0,
-  //     ease: "back.in",
-  //     duration: 2,
-  //   });
-  // });
+  useGSAP(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.from(conRef.current, {
+      scrollTrigger: {
+        trigger:conRef.current,
+        start: "1% 60%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: 150,
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.from(locRef.current, {
+      scrollTrigger: {
+        trigger: form.current,
+        start: "1% 60%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: -50,
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.to(headRef.current, {
+      scrollTrigger: {
+        trigger: form.current,
+        start: "1% 50%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      duration: 4,
+      delay: 2,
+      rotateY: 360,
+      ease: "none",
+    });
+    gsap.to(messRef.current, {
+      scrollTrigger: {
+        trigger: messRef.current,
+        start: "bottom 10%",
+        end: "bottom 10%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 100,
+      duration: 2,
+      delay: 1,
+      rotateY: 360,
+      ease: "none",
+    });
+  });
   return (
     <div className="pt-5" id="contact">
       <div>
@@ -131,7 +171,9 @@ const Contact = () => {
             style={{ color: "#4a48ff" }}
           />
           <div style={{ textAlign: "center" }}>
-            <h1 className="boldHeading">Contact Me</h1>
+            <h1 className="boldHeading" ref={headRef}>
+              Contact Me
+            </h1>
           </div>
           <hr
             width="35%"
@@ -147,15 +189,19 @@ const Contact = () => {
             justifyContent: "space-around",
             alignItems: "center",
             marginBottom: "30px",
-            flexWrap:"wrap"
+            flexWrap: "wrap",
           }}
         >
-          <div className="formBox " style={{ backgroundColor: theme.boxColor }}>
-            <div>
+          <div
+            className="formBox "
+            ref={conRef}
+            style={{ backgroundColor: theme.boxColor }}
+          >
+            <div  className="formBox1 " >
               <h4 className="subHeading" style={{ color: theme.textColor }}>
                 Lets's conect
               </h4>
-              <form ref={form} onSubmit={sendMessage}>
+              <form onSubmit={sendMessage} ref={form}>
                 <div className="container">
                   <div
                     className="row"
@@ -290,7 +336,7 @@ const Contact = () => {
                     {status == "error" && (
                       <div style={{ color: "red" }}>
                         <span>
-                          {" "}
+                          
                           Failed to send email. Please try again later.
                         </span>
                       </div>
@@ -301,7 +347,7 @@ const Contact = () => {
             </div>
           </div>
 
-          <div className="" style={{ width: "" }}>
+          <div className="" ref={locRef} style={{ width: "" }}>
             <div
               className="d-flex flex-column justify-content-center align-items-center formBox"
               style={{
@@ -458,11 +504,11 @@ const Contact = () => {
           </div>
         </div>
 
-     
-
         <div className="d-flex justify-content-center align-items-center p-5 flex-wrap">
           <div style={{ textAlign: "center" }}>
-            <h1 className="boldHeading">"Thanks for scrolling"</h1>
+            <h1 className="boldHeading" >
+              "Thanks for scrolling"
+            </h1>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import Shoppe from "../assets/images/projects/shopee.png";
 import ezshop from "../assets/images/projects/ezshop.png";
@@ -56,6 +56,8 @@ import gsap from "gsap";
 
 const Portfolio = () => {
   const theme = useContext(ThemeContext).systemTheme;
+  const projectRef = useRef();
+  const headRef = useRef();
   const boxStyle = {
     padding: "3vh",
     margin: "3vh",
@@ -153,26 +155,43 @@ const Portfolio = () => {
     },
   ];
 
-  // useGSAP(() => {
-  //   gsap.from(".projectBox", {
-  //     scrollTrigger: {
-  //       trigger: ".projectBox",
-  //       // start:"bottom 70%",
-  //       // scrub: true,
-  //       toggleActions: "restart pause resume pause",
-  //     },
-  //     y: 200,
-  //     opacity: 0,
-  //     ease: "none",
-  //     duration: 2,
-  //   });
-  // });
+  useGSAP(() => {
+    gsap.from(".projectBox", {
+      scrollTrigger: {
+        trigger: ".projectBox",
+        start: "1% 100%",
+        end: "bottom 100%",
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      y: 200,
+      opacity: 0,
+      ease: "none",
+      duration: 2,
+    });
+    gsap.to(headRef.current, {
+      scrollTrigger: {
+        trigger: ".projectBox",
+        start: "1% 50%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      duration: 4,
+      delay: 2,
+      rotateY: 360,
+      ease: "none",
+    });
+  });
 
   return (
     <div className=" " id="portfolio">
       <div className="d-flex justify-content-center align-items-center">
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading">Projects</h1>
+        <h1 className="boldHeading" ref={headRef}>
+          Projects
+        </h1>
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
       </div>
 
@@ -181,11 +200,19 @@ const Portfolio = () => {
         style={{ flexFlow: "row", flexWrap: "wrap" }}
       >
         {projects.map((item) => (
-          <div className="d-flex flex-row justify-content-center align-items-center flex-wrap projectBox " style={{ backgroundColor: theme.boxColor }}>
+          <div
+            className="d-flex flex-row justify-content-center align-items-center flex-wrap projectBox "
+            ref={projectRef}
+            style={{ backgroundColor: theme.boxColor }}
+          >
             <div className=" ">
               <div className="d-flex flex-column justify-content-center align-items-center">
                 <div>
-                  <img loading="lazy" src={item.screenshots[0]} className="projectImage"></img>
+                  <img
+                    loading="lazy"
+                    src={item.screenshots[0]}
+                    className="projectImage"
+                  ></img>
                 </div>
               </div>
             </div>
@@ -246,7 +273,7 @@ const Portfolio = () => {
                   <div className="" style={{ margin: "2px" }}>
                     <div
                       style={{
-                        backgroundColor: theme.boxColor,
+                        backgroundColor: "#4a48ff",
 
                         borderTopLeftRadius: "20px",
                         borderBottomRightRadius: "20px",

@@ -9,36 +9,53 @@ import { useGSAP } from "@gsap/react";
 const About = () => {
   const imageRef = useRef();
   const dataRef = useRef();
+  const headRef = useRef();
   const theme = useContext(ThemeContext).systemTheme;
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.from(imageRef.current, {
       scrollTrigger: {
         trigger: imageRef.current,
-        start: "1% 100%",
-        end: "bottom 100%",
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 100,
-      duration: 2,
-      delay: 2,
-      opacity: 0,
-    });
-    gsap.from(dataRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "1% 100%",
+        start: "1% 60%",
         end: "bottom 100%",
 
         scrub: true,
         toggleActions: "restart pause resume pause",
       },
-      y: 200,
-      duration: 2,
+      x: 150,
+      duration: 1,
       delay: 1,
-      ease: "elastic",
       opacity: 0,
+      ease: "none",
+    });
+    gsap.from(dataRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 60%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      x: -100,
+      duration: 1,
+      delay: 1,
+      opacity: 0,
+      ease: "none",
+    });
+    gsap.to(headRef.current, {
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "1% 60%",
+        end: "bottom 100%",
+
+        scrub: true,
+        toggleActions: "restart pause resume pause",
+      },
+      duration: 4,
+      delay: 2,
+      rotateY: 360,
+      ease: "none",
     });
   });
   return (
@@ -52,7 +69,9 @@ const About = () => {
       <div className="d-flex justify-content-center align-items-center">
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
         <div style={{ textAlign: "center" }}>
-          <h1 className="boldHeading">My Story</h1>
+          <h1 className="boldHeading" ref={headRef}>
+            My Story
+          </h1>
         </div>
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
       </div>

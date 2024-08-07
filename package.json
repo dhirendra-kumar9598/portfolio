@@ -20,6 +20,7 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "^5.0.1",
     "react-text-transition": "^3.1.0",
+    "split-text": "^1.0.0",
     "styled-components": "^5.3.11"
   },
   "scripts": {
