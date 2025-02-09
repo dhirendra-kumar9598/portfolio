@@ -6,6 +6,7 @@ import Boy from "../assets/images/characters/laptop.png";
 import { ThemeContext } from "../theme";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
+import Experience from "./Experience";
 const About = () => {
   const imageRef = useRef();
   const dataRef = useRef();
@@ -13,50 +14,92 @@ const About = () => {
   const theme = useContext(ThemeContext).systemTheme;
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
+    // gsap.from(imageRef.current, {
+    //   scrollTrigger: {
+    //     trigger: imageRef.current,
+    //     start: "1% 60%",
+    //     end: "bottom 100%",
+
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   x: 50,
+    //   duration: 5,
+    //   delay: 2,
+    //   opacity: 0,
+    //   ease: "none",
+    // });
+    // gsap.from(dataRef.current, {
+    //   scrollTrigger: {
+    //     trigger: imageRef.current,
+    //     start: "1% 60%",
+    //     end: "bottom 100%",
+
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   x: -50,
+    //   duration: 2,
+    //   delay: 2,
+    //   opacity: 0,
+    //   ease: "none",
+    // });
     gsap.from(imageRef.current, {
       scrollTrigger: {
         trigger: imageRef.current,
-        start: "1% 60%",
-        end: "bottom 100%",
+        start: "top 100%",
+        end: "bottom 80%",
 
         scrub: true,
         toggleActions: "restart pause resume pause",
       },
-      x: 50,
+      y: 100,
       duration: 2,
-      delay: 2,
+      delay: 1,
       opacity: 0,
       ease: "none",
     });
     gsap.from(dataRef.current, {
       scrollTrigger: {
-        trigger: imageRef.current,
-        start: "1% 60%",
-        end: "bottom 100%",
+        trigger: dataRef.current,
+        start: "top 100%",
+        end: "bottom 80%",
 
         scrub: true,
         toggleActions: "restart pause resume pause",
       },
-      x: -50,
+      y: 100,
       duration: 2,
-      delay: 2,
+      delay: 1,
       opacity: 0,
       ease: "none",
     });
+    // gsap.to(headRef.current, {
+    //   scrollTrigger: {
+    //     trigger: imageRef.current,
+    //     start: "1% 60%",
+    //     end: "bottom 100%",
+
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   duration: 4,
+    //   delay: 1,
+    //   rotateY: 360,
+    //   ease: "none",
+    // });
     gsap.to(headRef.current, {
       scrollTrigger: {
         trigger: imageRef.current,
-        start: "1% 60%",
-        end: "bottom 100%",
-
-        scrub: true,
-        toggleActions: "restart pause resume pause",
+        start: "top 100%", // Start when the element is near entering the viewport
+        end: "bottom 20%", // End when it's almost out of the viewport
+        scrub: 1, // Adds a smooth transition effect with a slight delay
+        toggleActions: "play none none none",
       },
-      duration: 4,
-      delay: 1,
-      rotateY: 360,
+      rotateY: 720,
       ease: "none",
     });
+    
   });
   return (
     <div
@@ -77,12 +120,12 @@ const About = () => {
       </div>
       <div className="aboutBox">
         <div>
-          <img ref={imageRef} loading="lazy" src={Boy} className="aboutImage" />
+          <img ref={imageRef} loading="lazy" src={Boy} className="aboutImage"  />
         </div>
         <div>
           <div>
             <figure className="text-center">
-              <blockquote ref={dataRef} className="blockquote">
+              {/* <blockquote ref={dataRef} className="blockquote">
                 <h5 style={{ color: theme.textColor }}>
                   Greetings, I'm Dhirendra Kumar—a passionate web developer,
                   dedicated observer, and contemplative thinker. My journey as a
@@ -96,14 +139,31 @@ const About = () => {
                   Additionally, I'm enthusiastic about mobile app development,
                   with a focus on cross-platform solutions using React Native.
                 </p>
+              </blockquote> */}
+              <blockquote ref={dataRef} className="blockquote">
+                <h5 style={{ color: theme.textColor }}>
+                  Hello, I'm Dhirendra Kumar—a dedicated web developer, keen
+                  observer, and analytical thinker. My journey in software
+                  development is fueled by a relentless curiosity and a passion
+                  for exploring innovative digital solutions.
+                </h5>
+                <p style={{ color: theme.textColor }}>
+                  With a strong technical foundation and hands-on experience in
+                  full-stack web development, I specialize in technologies such
+                  as HTML, CSS, JavaScript, React.js, Express.js, MongoDB, and
+                  Node.js. Additionally, I am deeply interested in mobile app
+                  development, focusing on building cross-platform solutions
+                  using React Native.
+                </p>
               </blockquote>
             </figure>
           </div>
         </div>
       </div>
+      <Experience />
 
-      <Education />
       <Skills />
+      <Education />
     </div>
   );
 };

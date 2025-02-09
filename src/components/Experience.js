@@ -1,10 +1,10 @@
 import React, { useContext, useRef } from "react";
 
-import Boy from "../assets/images/characters/laptop2.png"
+import Boy from "../assets/images/characters/laptop2.png";
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-const Education = () => {
+const Experience = () => {
   const theme = useContext(ThemeContext).systemTheme;
   const imageRef = useRef();
   const dataRef = useRef();
@@ -26,6 +26,21 @@ const Education = () => {
     //   opacity: 0,
     //   ease: "none",
     // });
+    // gsap.from(imageRef.current, {
+    //     scrollTrigger: {
+    //       trigger: imageRef.current,
+    //       start: "top 100%",
+    //       end: "bottom 80%",
+  
+    //       scrub: true,
+    //       toggleActions: "restart pause resume pause",
+    //     },
+    //     y: 100,
+    //     duration: 2,
+    //     delay: 1,
+    //     opacity: 0,
+    //     ease: "none",
+    //   });
     // gsap.from(dataRef.current, {
     //   scrollTrigger: {
     //     trigger: imageRef.current,
@@ -53,14 +68,16 @@ const Education = () => {
       duration: 4,
       delay: 2,
       rotateY: 360,
-      ease:"none",
+      ease: "none",
     });
   });
   return (
     <div>
       <div className="d-flex justify-content-center align-items-center">
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading" ref={headRef}>Education</h1>
+        <h1 className="boldHeading" ref={headRef}>
+        Experience
+        </h1>
         <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
       </div>
       <div className="d-flex justify-content-center align-items-center flex-wrap">
@@ -72,15 +89,15 @@ const Education = () => {
                   className="badge "
                   style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
                 >
-                  2024
+                 2024 Aug-2025 Feb
                 </span>
               </div>
               <div>
                 <h3 style={{ color: theme.textColor }}>
-                  Master of Computer Application
+                  Trainee Software Associate
                 </h3>
                 <h5 style={{ color: theme.textColor }}>
-                  APJ Abdul Kalam Technical University,Lucknow
+                  MERN Stack
                 </h5>
                 {/* <h6>CGPA 8.0</h6> */}
               </div>
@@ -91,15 +108,15 @@ const Education = () => {
                   className="badge"
                   style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
                 >
-                  2022
+                  2023 July-2024 July
                 </span>
               </div>
               <div>
                 <h3 style={{ color: theme.textColor }}>
-                  Bachelor of Computer Application
+                  Freelancer(Fullstack Developer)
                 </h3>
                 <h5 style={{ color: theme.textColor }}>
-                  MCRP University,Bhopal
+                  MERN Stack,React Native
                 </h5>
                 {/* <h6>CGPA= 7.9</h6> */}
               </div>
@@ -115,4 +132,4 @@ const Education = () => {
   );
 };
 
-export default Education;
+export default Experience;

@@ -128,7 +128,9 @@ li {
   flex-direction: row;
   margin-bottom: 30px;
 }
-
+.blockquote{
+  padding-right: 20px;
+}
 .aboutImage {
   height: 500px;
   width: 500px;

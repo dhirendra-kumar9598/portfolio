@@ -10,12 +10,11 @@ import { dark, light, ThemeContext } from "../theme";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch, { SwitchProps } from "@mui/material/Switch";
-
+import Experience from "./Experience";
 
 export default function Main() {
   const theme = useContext(ThemeContext).systemTheme;
@@ -24,7 +23,7 @@ export default function Main() {
   const [mode, setMode] = useState(null);
   const imageRef = useRef();
   const infoRef = useRef();
-  const nameRef=useRef();
+  const nameRef = useRef();
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.to(imageRef.current, {
@@ -210,7 +209,9 @@ export default function Main() {
                   <h2 style={{ color: "#4a48ff" }}>Hey,I'm </h2>
                 </div>
 
-                <h1 className="boldHeading" ref={nameRef}>Dhirendra Kumar</h1>
+                <h1 className="boldHeading" ref={nameRef}>
+                  Dhirendra Kumar
+                </h1>
               </div>
             </div>
             <div style={fontStyle}>
@@ -222,10 +223,17 @@ export default function Main() {
                 </h2>
               </div>
             </div>
-            <div style={{ paddingTop: "30px" }}>
+            <div style={{ paddingTop: "30px",display:"flex",flexWrap:"wrap" }}>
               <a
                 href="#contact"
                 style={{
+                  // backgroundColor: "#4a48ff",
+                  // padding: "10px",
+                  // borderRadius: "5px",
+                  // textDecoration: "none",
+                  // color: "white",
+                  // paddingTop: "10px",
+                  // margin: "5px",
                   backgroundColor: "#4a48ff",
                   padding: "10px",
                   borderRadius: "5px",
@@ -236,6 +244,27 @@ export default function Main() {
                 }}
               >
                 Get In Touch
+              </a>
+              <a
+                href="/#portfolio"
+                style={{
+                  // backgroundColor: "#4a48ff",
+                  // padding: "10px",
+                  // borderRadius: "5px",
+                  // textDecoration: "none",
+                  // color: "white",
+                  // paddingTop: "10px",
+                  // margin: "5px",
+                  backgroundColor: "#97792c",
+                  padding: "10px",
+                  borderRadius: "5px",
+                  textDecoration: "none",
+                  color: "white",
+                  paddingTop: "10px",
+                  margin: "5px",
+                }}
+              >
+                See My Works
               </a>
               <a
                 href="../resume.pdf"
@@ -258,6 +287,7 @@ export default function Main() {
       </div>
 
       <About />
+
       <Portfolio />
       <Contact />
     </div>

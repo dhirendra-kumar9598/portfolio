@@ -12,6 +12,10 @@ import Mongo from "../components/images/Tech/mongodb-icon.webp";
 import Mysql from "./images/Tech/pngwing.com.png";
 import Next from "../components/images/Tech/nextjs-icon.webp";
 import React_Native from "../components/images/Tech/react-native.webp";
+import Bootstrap from "../components/images/Tech/boostrap.jpeg"
+import Git from "../components/images/Tech/git.png"
+import Npm from "../components/images/Tech/npm.png"
+import MUI from "../components/images/Tech/mui.png"
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -98,6 +102,10 @@ const Skills = () => {
     { name: "Node Js", picture: Node },
     { name: "React Native", picture: React_Native },
     { name: "Next Js", picture: Next },
+    { name: "MUI", picture: MUI },
+    { name: "Bootstrap", picture: Bootstrap },
+    { name: "Git", picture: Git },
+    { name: "Npm", picture: Npm },
   ];
 
   const Databases = [
