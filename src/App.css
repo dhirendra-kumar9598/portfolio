@@ -1,8 +1,15 @@
 /* body {
   background-image: linear-gradient(to right top, #9ac4fa, #0f1b27, #88600a, #8f0909, #e49937, #67bfcd, #75c1cb, #82c4c9, #6dc4d4, #56c4e0, #3ec2ee, #26c0fc);
 } */
+::-webkit-scrollbar {
+  display: none;
+}
 html {
   scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+body {
+  overflow: auto;
 }
 
 h5,
