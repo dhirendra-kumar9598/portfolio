@@ -64,6 +64,11 @@ const Navbar = () => {
                   Contact
                 </a>
               </li>
+               <li className="nav-item px-1">
+                <a className="nav-link" style={linkStyle} href="/#certificates">
+                  Certificates
+                </a>
+              </li>
             </ul>
           </div>
         </div>

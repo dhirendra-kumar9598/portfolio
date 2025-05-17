@@ -17,6 +17,10 @@ import { dark, light, ThemeContext } from "./theme";
 import Welcome from "./components/Welcome";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import Certifications from "./components/Certifications";
+import { pdfjs } from "react-pdf";
+// Set the worker source globally
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 
 const App = () => {
@@ -52,6 +56,7 @@ const App = () => {
                 <Route element={<Home />}>
                   <Route path="/" element={<Main />} />
                   <Route path="/project" element={<Project />} />
+                   <Route path="/certificates" element={<Certifications />} />
                 </Route>
               </Routes>
             </BrowserRouter>

@@ -65,7 +65,7 @@ const Education = () => {
       </div>
       <div className="d-flex justify-content-center align-items-center flex-wrap">
         <div>
-          <div ref={dataRef} className="d-flex flex-column">
+          <div ref={dataRef} className="d-flex flex-column align-items-start">
             <div className="d-flex justify-content-center align-items-center ">
               <div style={{ marginRight: 20 }}>
                 <span

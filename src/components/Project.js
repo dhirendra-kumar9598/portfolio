@@ -1,8 +1,5 @@
 import React, { useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Navbar from "./Navbar";
-import pic from "../assets/home1.png";
-import { shopee } from "../assets/data";
 import Carousel from "./MicroComp/Carousel";
 import { ThemeContext } from "../theme";
 export default function Project() {

@@ -15,6 +15,7 @@ import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch, { SwitchProps } from "@mui/material/Switch";
 import Experience from "./Experience";
+import Certifications from "./Certifications";
 
 export default function Main() {
   const theme = useContext(ThemeContext).systemTheme;
@@ -223,7 +224,9 @@ export default function Main() {
                 </h2>
               </div>
             </div>
-            <div style={{ paddingTop: "30px",display:"flex",flexWrap:"wrap" }}>
+            <div
+              style={{ paddingTop: "30px", display: "flex", flexWrap: "wrap" }}
+            >
               <a
                 href="#contact"
                 style={{
@@ -287,7 +290,7 @@ export default function Main() {
       </div>
 
       <About />
-
+      <Certifications />
       <Portfolio />
       <Contact />
     </div>

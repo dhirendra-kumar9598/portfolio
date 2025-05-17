@@ -101,13 +101,12 @@ li {
 }
 .imageBox {
   -webkit-mask-image: url("./assets/images/characters/download.png");
-  mask-image:  url("./assets/images/characters/b.png");
+  mask-image: url("./assets/images/characters/b.png");
   -webkit-mask-size: 100%;
   mask-size: 100%;
   -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;    
+  mask-repeat: no-repeat;
 }
-
 
 .skillBox {
   display: flex;
@@ -135,7 +134,7 @@ li {
   flex-direction: row;
   margin-bottom: 30px;
 }
-.blockquote{
+.blockquote {
   padding-right: 20px;
 }
 .aboutImage {
@@ -167,6 +166,17 @@ li {
 .arrowIcon {
   text-decoration: none;
   color: black;
+}
+.container-certificate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+  border-radius: 3vh;
+  width: 400px;
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 /* @media (prefers-color-scheme: dark) {
