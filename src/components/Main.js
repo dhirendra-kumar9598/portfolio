@@ -5,15 +5,22 @@ import About from "./About";
 import Portfolio from "./Portfolio";
 import Contact from "./Contact";
 // import Dhiraj from "../components/images/IMG_20231127_005126.jpg";
-import Dhiraj from "../components/images/full2.jpg";
+import Dhiraj from "../components/images/full2.jpeg";
 import { dark, light, ThemeContext } from "../theme";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
 import { styled } from "@mui/material/styles";
 import FormGroup from "@mui/material/FormGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Switch, { SwitchProps } from "@mui/material/Switch";
+import GitHubIcon from "@mui/icons-material/GitHub";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+import FacebookIcon from "@mui/icons-material/Facebook";
 import Experience from "./Experience";
 import Certifications from "./Certifications";
 
@@ -85,7 +92,7 @@ export default function Main() {
   // };
 
   const handleTheme = () => {
-    if (theme == light) {
+    if (theme === light) {
       setScheme(dark);
     } else {
       setScheme(light);
@@ -194,7 +201,7 @@ export default function Main() {
             alignItems: "center",
           }}
         >
-          <div className="d-flex justify-content-center imageBox">
+          <div className="d-flex justify-content-center ">
             <img
               className="homeImage"
               loading="lazy"
@@ -225,18 +232,88 @@ export default function Main() {
               </div>
             </div>
             <div
+              style={{ paddingTop: "20px", display: "flex", gap: "15px", flexWrap: "wrap", alignItems: "center" }}
+            >
+              <a
+                href="https://github.com/dhirendra-kumar9598"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: theme.textColor,
+                  transition: "all 0.3s ease",
+                }}
+                className="social-icon"
+              >
+                <GitHubIcon fontSize="large" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/dhirendra-kr/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: theme.textColor,
+                  transition: "all 0.3s ease",
+                }}
+                className="social-icon"
+              >
+                <LinkedInIcon fontSize="large" />
+              </a>
+              {/* <a
+                href="https://twitter.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: theme.textColor,
+                  transition: "all 0.3s ease",
+                }}
+                className="social-icon"
+              >
+                <TwitterIcon fontSize="large" />
+              </a> */}
+              <a
+                href="https://www.instagram.com/_dhiraj.kr"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: theme.textColor,
+                  transition: "all 0.3s ease",
+                }}
+                className="social-icon"
+              >
+                <InstagramIcon fontSize="large" />
+              </a>
+              {/* <a
+                href="https://www.youtube.com/@yourchannel"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: theme.textColor,
+                  transition: "all 0.3s ease",
+                }}
+                className="social-icon"
+              >
+                <YouTubeIcon fontSize="large" />
+              </a> */}
+              {/* <a
+                href="https://www.facebook.com/yourprofile"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  color: theme.textColor,
+                  transition: "all 0.3s ease",
+                }}
+                className="social-icon"
+              >
+                <FacebookIcon fontSize="large" />
+              </a> */}
+            </div>
+            <div
               style={{ paddingTop: "30px", display: "flex", flexWrap: "wrap" }}
             >
               <a
                 href="#contact"
+                className="btn-primary"
                 style={{
-                  // backgroundColor: "#4a48ff",
-                  // padding: "10px",
-                  // borderRadius: "5px",
-                  // textDecoration: "none",
-                  // color: "white",
-                  // paddingTop: "10px",
-                  // margin: "5px",
                   backgroundColor: "#4a48ff",
                   padding: "10px",
                   borderRadius: "5px",
@@ -250,14 +327,8 @@ export default function Main() {
               </a>
               <a
                 href="/#portfolio"
+                className="btn-secondary"
                 style={{
-                  // backgroundColor: "#4a48ff",
-                  // padding: "10px",
-                  // borderRadius: "5px",
-                  // textDecoration: "none",
-                  // color: "white",
-                  // paddingTop: "10px",
-                  // margin: "5px",
                   backgroundColor: "#97792c",
                   padding: "10px",
                   borderRadius: "5px",
@@ -272,6 +343,7 @@ export default function Main() {
               <a
                 href="../resume.pdf"
                 download={"resume.pdf"}
+                className="btn-dark"
                 style={{
                   backgroundColor: "BLACK",
                   padding: "10px",

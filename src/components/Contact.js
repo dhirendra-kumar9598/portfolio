@@ -20,6 +20,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Boy from "../assets/images/characters/contact.png";
 
 import emailjs from "@emailjs/browser";
@@ -304,10 +305,10 @@ const Contact = () => {
                           type="submit"
                           className="btn btn-primary"
                           disabled={
-                            name.length == 0 ||
-                            email.length == 0 ||
-                            subject.length == 0 ||
-                            message == 0
+                            name.length === 0 ||
+                            email.length === 0 ||
+                            subject.length === 0 ||
+                            message.length === 0
                           }
                         >
                           Send

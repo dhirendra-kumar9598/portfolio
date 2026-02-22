@@ -5,6 +5,7 @@ import Education from "./Education";
 import Boy from "../assets/images/characters/laptop.png";
 import { ThemeContext } from "../theme";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import Experience from "./Experience";
 const About = () => {

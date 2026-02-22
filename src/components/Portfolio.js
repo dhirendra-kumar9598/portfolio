@@ -53,6 +53,7 @@ import travel4 from "../assets/images/projects/images/travel/travel4.png";
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const Portfolio = () => {
   const theme = useContext(ThemeContext).systemTheme;
@@ -156,19 +157,20 @@ const Portfolio = () => {
   ];
 
   useGSAP(() => {
-    gsap.from(".projectBox", {
-      scrollTrigger: {
-        trigger: ".projectBox",
-        start: "1% 100%",
-        end: "bottom 100%",
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 200,
-      opacity: 0,
-      ease: "none",
-      duration: 2,
-    });
+    // Removed projectBox animation that was causing visibility issues
+    // gsap.from(".projectBox", {
+    //   scrollTrigger: {
+    //     trigger: ".projectBox",
+    //     start: "1% 100%",
+    //     end: "bottom 100%",
+    //     scrub: true,
+    //     toggleActions: "restart pause resume pause",
+    //   },
+    //   y: 200,
+    //   opacity: 0,
+    //   ease: "none",
+    //   duration: 2,
+    // });
     gsap.to(headRef.current, {
       scrollTrigger: {
         trigger: ".projectBox",
@@ -201,7 +203,7 @@ const Portfolio = () => {
       >
         {projects.map((item) => (
           <div
-            className="d-flex flex-row justify-content-center align-items-center flex-wrap projectBox "
+            className="projectBox"
             ref={projectRef}
             style={{ backgroundColor: theme.boxColor }}
           >
@@ -268,29 +270,42 @@ const Portfolio = () => {
                   </div>
                 </div>
               </div>
-              <div className="d-flex justify-content-center align-items-center flex-wrap">
-                {item.info.tech.map((item) => (
-                  <div className="" style={{ margin: "2px" }}>
-                    <div
-                      style={{
-                        backgroundColor: "#4a48ff",
-
-                        borderTopLeftRadius: "20px",
-                        borderBottomRightRadius: "20px",
-                      }}
-                    >
-                      <h6
+              <div className="d-flex justify-content-center align-items-center flex-wrap" style={{ gap: "8px" }}>
+                {item.info.tech.map((techItem, techIndex) => {
+                  // Color palette from user's image
+                  const techColors = [
+                    '#D4AF37', // Gold/Yellow
+                    '#FF8C00', // Orange
+                    '#DC143C', // Crimson/Red
+                    '#8B00FF', // Purple/Violet
+                    '#1E90FF', // Blue
+                  ];
+                  const bgColor = techColors[techIndex % techColors.length];
+                  
+                  return (
+                    <div className="" key={techIndex}>
+                      <div
+                        className="tech-tag"
                         style={{
-                          color: theme.textColor,
-                          padding: "5px",
-                          margin: "5px",
+                          backgroundColor: bgColor,
+                          borderTopLeftRadius: "20px",
+                          borderBottomRightRadius: "20px",
                         }}
+                        data-color={bgColor}
                       >
-                        {item}
-                      </h6>
+                        <h6
+                          style={{
+                            color: "white",
+                            padding: "5px",
+                            margin: "5px",
+                          }}
+                        >
+                          {techItem}
+                        </h6>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           </div>

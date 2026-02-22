@@ -9,6 +9,7 @@ import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { dark, light, ThemeContext } from "../theme";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 export default function Sidebar() {
   const theme = useContext(ThemeContext).systemTheme;
@@ -62,7 +63,7 @@ export default function Sidebar() {
   });
 
   const setTheme = (value) => {
-    if (value == "light") {
+    if (value === "light") {
       setScheme(light);
     } else {
       setScheme(dark);

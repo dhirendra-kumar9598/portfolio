@@ -4,6 +4,7 @@ import Boy from "../assets/images/characters/laptop2.png"
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 const Education = () => {
   const theme = useContext(ThemeContext).systemTheme;
   const imageRef = useRef();

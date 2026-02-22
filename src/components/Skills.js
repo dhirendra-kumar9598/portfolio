@@ -19,6 +19,7 @@ import MUI from "../components/images/Tech/mui.png"
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 const Skills = () => {
   const [over, setOver] = useState(false);
   const theme = useContext(ThemeContext).systemTheme;
