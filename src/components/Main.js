@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import TextTransition, { presets } from "react-text-transition";
 import About from "./About";
@@ -21,6 +21,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Experience from "./Experience";
 import Certifications from "./Certifications";
 
@@ -29,9 +30,28 @@ export default function Main() {
   const setScheme = useContext(ThemeContext).setSystemTheme;
 
   const [mode, setMode] = useState(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const imageRef = useRef();
   const infoRef = useRef();
   const nameRef = useRef();
+
+  // Handle scroll to top button visibility
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 300);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
     gsap.to(imageRef.current, {
@@ -365,6 +385,17 @@ export default function Main() {
       <Certifications />
       <Portfolio />
       <Contact />
+
+      {/* Scroll to top button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="scroll-to-top"
+          aria-label="Scroll to top"
+        >
+          <KeyboardArrowUpIcon fontSize="large" />
+        </button>
+      )}
     </div>
   );
 }
