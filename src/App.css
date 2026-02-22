@@ -105,6 +105,17 @@ body {
   cursor: none;
 }
 
+/* Show default cursor on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+  
+  * {
+    cursor: auto !important;
+  }
+}
+
 /* Fixed Navbar */
 .sticky-top {
   position: fixed !important;
@@ -382,7 +393,7 @@ h1, h2, h3, h4, h5, h6, p, span, a, label {
 }
 
 .boldHeading {
-  color: #f6d06e;
+  color: #DC143C;
   font-family: "Platypi", serif;
   font-optical-sizing: auto;
   font-weight: 700;
@@ -793,6 +804,67 @@ h1, h2, h3, h4, h5, h6, p, span, a, label {
   /* Ensure sections don't overlap with navbar */
   section, .home {
     scroll-margin-top: 80px;
+  }
+
+  /* Experience section - stack year above title on mobile */
+  .experience-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .experience-badge {
+    margin-bottom: 10px;
+  }
+
+  .experience-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .experience-content h5 {
+    font-size: 1rem;
+  }
+
+  /* Education section - same layout as experience */
+  .education-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .education-badge {
+    margin-bottom: 10px;
+  }
+
+  .education-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .education-content h5 {
+    font-size: 1rem;
+  }
+
+  /* Desktop layout */
+  @media (min-width: 501px) {
+    .experience-item {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .experience-badge {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
+
+    .education-item {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .education-badge {
+      margin-right: 20px;
+      margin-bottom: 0;
+    }
   }
 
   .projectName {

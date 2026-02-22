@@ -230,6 +230,7 @@ const AnimatedBackground = ({ theme }) => {
   }, [theme]);
 
   const isLight = theme.textColor === "#1e293b";
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
   return (
     <>
@@ -247,20 +248,22 @@ const AnimatedBackground = ({ theme }) => {
           pointerEvents: 'none'
         }}
       />
-      {/* Cursor canvas on top */}
-      <canvas
-        ref={cursorCanvasRef}
-        style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 9999,
-          pointerEvents: 'none',
-          cursor: 'none'
-        }}
-      />
+      {/* Cursor canvas on top - hide on touch devices */}
+      {!isTouchDevice && (
+        <canvas
+          ref={cursorCanvasRef}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 9999,
+            pointerEvents: 'none',
+            cursor: 'none'
+          }}
+        />
+      )}
     </>
   );
 };

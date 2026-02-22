@@ -66,9 +66,9 @@ const Education = () => {
       </div>
       <div className="d-flex justify-content-center align-items-center flex-wrap">
         <div>
-          <div ref={dataRef} className="d-flex flex-column align-items-start">
-            <div className="d-flex justify-content-center align-items-center ">
-              <div style={{ marginRight: 20 }}>
+          <div ref={dataRef} className="d-flex flex-column align-items-start education-list">
+            <div className="education-item">
+              <div className="education-badge">
                 <span
                   className="badge "
                   style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
@@ -76,18 +76,18 @@ const Education = () => {
                   2024
                 </span>
               </div>
-              <div>
+              <div className="education-content">
                 <h3 style={{ color: theme.textColor }}>
                   Master of Computer Application
                 </h3>
                 <h5 style={{ color: theme.textColor }}>
-                  APJ Abdul Kalam Technical University,Lucknow
+                  AKTU University,Lucknow
                 </h5>
                 {/* <h6>CGPA 8.0</h6> */}
               </div>
             </div>
-            <div className="d-flex justify-content-center align-items-center pt-5 ">
-              <div style={{ marginRight: 20 }}>
+            <div className="education-item pt-5">
+              <div className="education-badge">
                 <span
                   className="badge"
                   style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
@@ -95,7 +95,7 @@ const Education = () => {
                   2022
                 </span>
               </div>
-              <div>
+              <div className="education-content">
                 <h3 style={{ color: theme.textColor }}>
                   Bachelor of Computer Application
                 </h3>

@@ -83,9 +83,9 @@ const Experience = () => {
       </div>
       <div className="d-flex justify-content-center align-items-center flex-wrap">
         <div>
-          <div ref={dataRef} className="d-flex flex-column align-items-start">
-            <div className="d-flex justify-content-center align-items-center ">
-              <div style={{ marginRight: 20 }}>
+          <div ref={dataRef} className="d-flex flex-column align-items-start experience-list">
+            <div className="experience-item">
+              <div className="experience-badge">
                 <span
                   className="badge "
                   style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
@@ -93,7 +93,7 @@ const Experience = () => {
                   2025 April-Current
                 </span>
               </div>
-              <div>
+              <div className="experience-content">
                 <h3 style={{ color: theme.textColor }}>
                   Software Associate Developer
                 </h3>
@@ -102,8 +102,8 @@ const Experience = () => {
               </div>
             </div>
 
-            <div className="d-flex justify-content-center align-items-center pt-3">
-              <div style={{ marginRight: 20 }}>
+            <div className="experience-item pt-3">
+              <div className="experience-badge">
                 <span
                   className="badge "
                   style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
@@ -111,7 +111,7 @@ const Experience = () => {
                   2024 Aug-2025 April
                 </span>
               </div>
-              <div>
+              <div className="experience-content">
                 <h3 style={{ color: theme.textColor }}>
                   Trainee Software Associate
                 </h3>
@@ -119,8 +119,8 @@ const Experience = () => {
                 {/* <h6>CGPA 8.0</h6> */}
               </div>
             </div>
-            <div className="d-flex justify-content-center align-items-center pt-3 ">
-              <div style={{ marginRight: 20 }}>
+            <div className="experience-item pt-3">
+              <div className="experience-badge">
                 <span
                   className="badge"
                   style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
@@ -128,7 +128,7 @@ const Experience = () => {
                   2023 July-2024 July
                 </span>
               </div>
-              <div>
+              <div className="experience-content">
                 <h3 style={{ color: theme.textColor }}>
                   Freelancer(Fullstack Developer)
                 </h3>
