@@ -9,16 +9,18 @@ const AnimatedBackground = ({ theme }) => {
 
   useEffect(() => {
     const bgCanvas = backgroundCanvasRef.current;
-    const cursorCanvas = cursorCanvasRef.current;
-    if (!bgCanvas || !cursorCanvas) return;
+    if (!bgCanvas) return;
 
     const bgCtx = bgCanvas.getContext('2d');
-    const cursorCtx = cursorCanvas.getContext('2d');
-    
+    const cursorCanvas = cursorCanvasRef.current;
+    const cursorCtx = cursorCanvas ? cursorCanvas.getContext('2d') : null;
+
     bgCanvas.width = window.innerWidth;
     bgCanvas.height = window.innerHeight;
-    cursorCanvas.width = window.innerWidth;
-    cursorCanvas.height = window.innerHeight;
+    if (cursorCanvas) {
+      cursorCanvas.width = window.innerWidth;
+      cursorCanvas.height = window.innerHeight;
+    }
 
     // Check if it's light mode
     const isLight = theme.textColor === "#1e293b";
@@ -115,17 +117,16 @@ const AnimatedBackground = ({ theme }) => {
 
     // Animation loop
     const animate = () => {
-      // Clear both canvases
       bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
-      cursorCtx.clearRect(0, 0, cursorCanvas.width, cursorCanvas.height);
+      if (cursorCtx && cursorCanvas) {
+        cursorCtx.clearRect(0, 0, cursorCanvas.width, cursorCanvas.height);
+      }
 
-      // Update and draw particles on background canvas
       particlesRef.current.forEach(particle => {
         particle.update();
         particle.draw();
       });
 
-      // Draw connections between particles on background canvas
       for (let i = 0; i < particlesRef.current.length; i++) {
         for (let j = i + 1; j < particlesRef.current.length; j++) {
           const dx = particlesRef.current[i].x - particlesRef.current[j].x;
@@ -144,8 +145,7 @@ const AnimatedBackground = ({ theme }) => {
         }
       }
 
-      // Draw mouse connections and cursor on cursor canvas (top layer)
-      if (mouseRef.current.x !== null && mouseRef.current.y !== null) {
+      if (cursorCtx && cursorCanvas && mouseRef.current.x !== null && mouseRef.current.y !== null) {
         // Connect nearby particles to mouse
         particlesRef.current.forEach(particle => {
           const dx = particle.x - mouseRef.current.x;
@@ -213,8 +213,10 @@ const AnimatedBackground = ({ theme }) => {
     const handleResize = () => {
       bgCanvas.width = window.innerWidth;
       bgCanvas.height = window.innerHeight;
-      cursorCanvas.width = window.innerWidth;
-      cursorCanvas.height = window.innerHeight;
+      if (cursorCanvas) {
+        cursorCanvas.width = window.innerWidth;
+        cursorCanvas.height = window.innerHeight;
+      }
     };
 
     window.addEventListener('resize', handleResize);
