@@ -5,6 +5,7 @@ import Css from "../components/images/Languages/css-3.png";
 import JS from "../components/images/Languages/js.png";
 import JAVA from "../components/images/Languages/java.png";
 import C from "../components/images/Languages/c-.png";
+import TS from "../components/images/Languages/typescript1.png";
 import Node from "../components/images/Tech/node-js-icon.webp";
 import Express from "../components/images/Tech/express-js-icon.webp";
 import Reacts from "../components/images/Tech/react-js-icon.webp";
@@ -16,6 +17,7 @@ import Bootstrap from "../components/images/Tech/boostrap.jpeg"
 import Git from "../components/images/Tech/git.png"
 import Npm from "../components/images/Tech/npm.png"
 import MUI from "../components/images/Tech/mui.png"
+import Angular from "../components/images/Tech/angular.png"
 import { ThemeContext } from "../theme";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
@@ -93,6 +95,7 @@ const Skills = () => {
     { name: "HTML", picture: HtmlLan },
     { name: "CSS", picture: Css },
     { name: "Javascript", picture: JS },
+    { name: "TypeScript", picture: TS },
     { name: "Java", picture: JAVA },
     { name: "C/C++", picture: C },
   ];
@@ -103,6 +106,7 @@ const Skills = () => {
     { name: "Node Js", picture: Node },
     { name: "React Native", picture: React_Native },
     { name: "Next Js", picture: Next },
+    { name: "Angular", picture: Angular },
     { name: "MUI", picture: MUI },
     { name: "Bootstrap", picture: Bootstrap },
     { name: "Git", picture: Git },

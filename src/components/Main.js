@@ -234,7 +234,7 @@ export default function Main() {
             <div>
               <div style={fontStyle}>
                 <div>
-                  <h2 style={{ color: "#4a48ff" }}>Hey,I'm </h2>
+                  <h2 style={{ color: "#4a48ff", fontSize: "1.5rem", fontWeight: 400, letterSpacing: "0.05em" }}>Hey, I'm</h2>
                 </div>
 
                 <h1 className="boldHeading" ref={nameRef}>

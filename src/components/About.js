@@ -141,19 +141,29 @@ const About = () => {
                 </p>
               </blockquote> */}
               <blockquote ref={dataRef} className="blockquote">
-                <h5 style={{ color: theme.textColor }}>
-                  Hello, I'm Dhirendra Kumar—a dedicated web developer, keen
-                  observer, and analytical thinker. My journey in software
-                  development is fueled by a relentless curiosity and a passion
-                  for exploring innovative digital solutions.
-                </h5>
-                <p style={{ color: theme.textColor }}>
-                  With a strong technical foundation and hands-on experience in
-                  full-stack web development, I specialize in technologies such
-                  as HTML, CSS, JavaScript, React.js, Express.js, MongoDB, and
-                  Node.js. Additionally, I am deeply interested in mobile app
-                  development, focusing on building cross-platform solutions
-                  using React Native.
+                <p style={{ color: theme.textColor, fontSize: '1.0625rem', lineHeight: '1.85', marginBottom: '1rem' }}>
+                  Hello, I'm Dhirendra Kumar — a passionate Full-Stack Developer
+                  with a strong focus on building scalable web and mobile applications.
+                  I enjoy solving real-world problems and creating efficient, user-centric
+                  digital solutions.
+                </p>
+                <p style={{ color: theme.textColor, fontSize: '1.0625rem', lineHeight: '1.85', marginBottom: '1rem' }}>
+                  I have hands-on experience developing full-stack applications using
+                  React.js, Node.js, Express.js, MongoDB, and modern JavaScript.
+                  Currently, I work on Healthcare and Facility Management systems,
+                  designing features that streamline workflows and improve operational
+                  efficiency. I also build SaaS-based multi-tenant applications with
+                  role-based access, tenant configurations, and scalable architecture.
+                </p>
+                <p style={{ color: theme.textColor, fontSize: '1.0625rem', lineHeight: '1.85', marginBottom: '1rem' }}>
+                  Alongside web development, I build cross-platform mobile apps using
+                  React Native, focusing on performance, clean UI, and seamless user
+                  experience. I continuously explore AI integrations, REST APIs,
+                  real-time systems, and scalable backend architectures.
+                </p>
+                <p style={{ color: theme.textColor, fontSize: '1.0625rem', lineHeight: '1.85', marginBottom: 0 }}>
+                  I am driven by curiosity, analytical thinking, and a commitment to
+                  writing clean, maintainable code while delivering impactful solutions.
                 </p>
               </blockquote>
             </figure>

@@ -20,15 +20,15 @@ const Navbar = () => {
     
   };
 
+  const isDark = theme.textColor === '#f1f5f9';
+
   const navbarStyle = {
     color: theme.textColor,
-    background: !scrolled 
-      ? (theme.textColor === '#f1f5f9' 
-          ? 'rgb(0 0 0 / 60%)' 
-          : 'rgba(240, 244, 255, 0.6)')
-      : 'transparent',
+    background: isDark ? 'rgb(0 0 0 / 60%)' : 'rgba(240, 244, 255, 0.7)',
     backdropFilter: !scrolled ? 'blur(20px)' : 'none',
     WebkitBackdropFilter: !scrolled ? 'blur(20px)' : 'none',
+    borderBottom: !scrolled ? '1px solid rgba(255,255,255,0.1)' : 'none',
+    boxShadow: !scrolled ? '0 4px 20px rgba(0,0,0,0.1)' : 'none',
     transition: 'all 0.3s ease',
   };
 

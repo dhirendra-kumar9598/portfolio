@@ -57,7 +57,7 @@ export default function Certifications() {
           <h5 className="boldHeading">Certificates</h5>
         </div>
       </div>
-      <div className="d-flex flex-wrap">
+      <div className="d-flex flex-wrap justify-content-center">
         {certificates.map((item, index) => (
           <div
             key={index}
@@ -67,7 +67,7 @@ export default function Certifications() {
             <div className="d-flex flex-column">
               <div
                 className="d-flex justify-content-center align-items-center"
-                style={{ width: "100%" }}
+                style={{ width: "100%", height: "220px", overflow: "hidden", borderRadius: "8px" }}
               >
                 <PDFViewer path={item.media}/>
               </div>

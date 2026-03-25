@@ -20,13 +20,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/b
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const prefersDarkMode =
-    window.matchMedia &&
-    window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [systemTheme, setSystemTheme] = useState(
-    prefersDarkMode === true ? dark : light
-  );
-  console.log("dark mode =>", prefersDarkMode);
+  const [systemTheme, setSystemTheme] = useState(light);
 
   useEffect(() => {
     setTimeout(() => {
