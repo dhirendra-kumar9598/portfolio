@@ -8,9 +8,6 @@ import Dhiraj from "../components/images/IMG_20231127_005126.jpg";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import { dark, light, ThemeContext } from "../theme";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 export default function Sidebar() {
   const theme = useContext(ThemeContext).systemTheme;
   const setScheme = useContext(ThemeContext).setSystemTheme;
@@ -18,49 +15,6 @@ export default function Sidebar() {
   const [mode, setMode] = useState(null);
   const imageRef = useRef();
   const infoRef = useRef();
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.to(imageRef.current, {
-      duration: 2,
-      delay: 2,
-      rotate: 360,
-      ease: "elastic",
-    });
-    // gsap.from(infoRef.current, {
-    //   scrollTrigger: {
-    //     trigger: infoRef.current,
-    //     start: "bottom 50%",
-    //     markers: true,
-    //     scrub: true,
-
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   y: 200,
-    //   opacity: 0,
-    //   ease: "bounce.out",
-    //   duration: 2,
-    //   stagger: 0.45,
-    // });
-    // gsap.to(imageRef.current, {
-    //   scrollTrigger: {
-    //     trigger: imageRef.current,
-    //     start: "top 40%",
-    //     ease: "none",
-    //     scrub: true,
-    //     toggleActions: "restart pause reverse pause",
-    //   },
-    //   y: -400,
-    // });
-    // gsap.to(infoRef.current, {
-    //   scrollTrigger: {
-    //     trigger: infoRef.current,
-    //     start: "bottom 20%",
-    //     ease: "none",
-    //     scrub: true,
-    //     toggleActions: "restart pause reverse pause",
-    //   },
-    // });
-  });
 
   const setTheme = (value) => {
     if (value === "light") {

@@ -6,23 +6,8 @@ const AnimatedBackground = ({ theme }) => {
   const starsRef  = useRef([]);
   const rafRef    = useRef(null);
   const mouseRef  = useRef({ x: null, y: null });
-  const glow1Ref  = useRef(null);
-  const glow2Ref  = useRef(null);
-  const glow3Ref  = useRef(null);
 
   const isLight = theme.textColor === "#24292f";
-
-  // Scroll-driven parallax on glow spots — each at its own depth
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      if (glow1Ref.current) glow1Ref.current.style.transform = `translateY(${y * 0.14}px)`;
-      if (glow2Ref.current) glow2Ref.current.style.transform = `translateY(${y * -0.09}px)`;
-      if (glow3Ref.current) glow3Ref.current.style.transform = `translateY(${y * 0.06}px)`;
-    };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   useEffect(() => {
     const canvas       = canvasRef.current;
@@ -33,7 +18,7 @@ const AnimatedBackground = ({ theme }) => {
     const cursorCtx = cursorCanvas ? cursorCanvas.getContext("2d") : null;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
+      canvas.width  = window.innerWidth;
       canvas.height = window.innerHeight;
       if (cursorCanvas) {
         cursorCanvas.width  = window.innerWidth;
@@ -43,7 +28,8 @@ const AnimatedBackground = ({ theme }) => {
     resize();
 
     const STAR_COUNT = isLight ? 50 : 160;
-    const starFill   = isLight ? "rgba(88,166,255," : "rgba(240,246,252,";
+    // Light: soft blue dots · Dark: warm white/cream dots
+    const starFill = isLight ? "rgba(88,166,255," : "rgba(240,230,220,";
 
     class Star {
       constructor() { this.reset(); }
@@ -53,8 +39,8 @@ const AnimatedBackground = ({ theme }) => {
         this.r = Math.random() * 1.0 + 0.15;
         this.vx = (Math.random() - 0.5) * 0.12;
         this.vy = (Math.random() - 0.5) * 0.12;
-        this.baseOpacity   = Math.random() * 0.45 + (isLight ? 0.05 : 0.15);
-        this.twinkleSpeed  = Math.random() * 0.01 + 0.003;
+        this.baseOpacity  = Math.random() * 0.45 + (isLight ? 0.05 : 0.15);
+        this.twinkleSpeed = Math.random() * 0.01 + 0.003;
         this.twinkleOffset = Math.random() * Math.PI * 2;
       }
       update() {
@@ -78,11 +64,12 @@ const AnimatedBackground = ({ theme }) => {
     starsRef.current = Array.from({ length: STAR_COUNT }, () => new Star());
 
     const handleMouseMove  = (e) => { mouseRef.current = { x: e.clientX, y: e.clientY }; };
-    const handleMouseLeave = ()  => { mouseRef.current = { x: null, y: null }; };
+    const handleMouseLeave = ()  => { mouseRef.current = { x: null,      y: null      }; };
     window.addEventListener("mousemove",  handleMouseMove);
     window.addEventListener("mouseleave", handleMouseLeave);
 
-    const cursorAccent = isLight ? "rgba(88,166,255," : "rgba(63,185,80,";
+    // Orange cursor in dark mode, blue in light mode
+    const cursorAccent = isLight ? "rgba(88,166,255," : "rgba(255,105,0,";
 
     let t = 0;
     const animate = () => {
@@ -121,8 +108,8 @@ const AnimatedBackground = ({ theme }) => {
           // Cursor pointer triangle
           cursorCtx.save();
           cursorCtx.translate(x, y);
-          cursorCtx.shadowColor = "rgba(0,0,0,0.3)";
-          cursorCtx.shadowBlur  = 5;
+          cursorCtx.shadowColor   = "rgba(0,0,0,0.3)";
+          cursorCtx.shadowBlur    = 5;
           cursorCtx.shadowOffsetX = 1;
           cursorCtx.shadowOffsetY = 1;
           cursorCtx.beginPath();
@@ -132,11 +119,11 @@ const AnimatedBackground = ({ theme }) => {
           cursorCtx.closePath();
           cursorCtx.fillStyle = isLight
             ? "rgba(88,166,255,0.92)"
-            : "rgba(63,185,80,0.92)";
+            : "rgba(255,105,0,0.92)";
           cursorCtx.fill();
-          cursorCtx.shadowColor = "transparent";
-          cursorCtx.strokeStyle = "rgba(255,255,255,0.88)";
-          cursorCtx.lineWidth = 1.5;
+          cursorCtx.shadowColor  = "transparent";
+          cursorCtx.strokeStyle  = "rgba(255,255,255,0.88)";
+          cursorCtx.lineWidth    = 1.5;
           cursorCtx.stroke();
           cursorCtx.restore();
         }
@@ -163,26 +150,11 @@ const AnimatedBackground = ({ theme }) => {
       <div className={`animated-background ${isLight ? "light" : "dark"}`}>
         {!isLight && (
           <>
-            {/*
-              Three elliptical gradient glows, each at its own scroll depth:
-              1. Purple — top-center (GitHub's dominant glow)
-              2. Green  — bottom-left
-              3. Blue   — far right
-            */}
-            <div ref={glow1Ref} aria-hidden="true" style={{
+            {/* Static orange/amber glow layers — no scroll movement */}
+            <div aria-hidden="true" style={{
               position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse 100% 60% at 50% -8%, rgba(139,92,246,0.2) 0%, transparent 70%)",
-              pointerEvents: "none", willChange: "transform",
-            }} />
-            <div ref={glow2Ref} aria-hidden="true" style={{
-              position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse 80% 55% at -8% 105%, rgba(63,185,80,0.14) 0%, transparent 65%)",
-              pointerEvents: "none", willChange: "transform",
-            }} />
-            <div ref={glow3Ref} aria-hidden="true" style={{
-              position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse 70% 50% at 108% 95%, rgba(88,166,255,0.08) 0%, transparent 60%)",
-              pointerEvents: "none", willChange: "transform",
+              background: "radial-gradient(ellipse 100% 60% at 50% -8%, rgba(255,105,0,0.18) 0%, transparent 70%)",
+              pointerEvents: "none",
             }} />
           </>
         )}

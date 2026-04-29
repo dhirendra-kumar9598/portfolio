@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -8,9 +8,6 @@ import Project from "./components/Project";
 import Main from "./components/Main";
 import { dark, light, ThemeContext } from "./theme";
 import Welcome from "./components/Welcome";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Certifications from "./components/Certifications";
 import AnimatedBackground from "./components/AnimatedBackground";
 import { pdfjs } from "react-pdf";
@@ -45,9 +42,45 @@ const App = () => {
     return () => clearTimeout(timer);
   }, [loading]);
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-  });
+  // Parallax — moves section headings and standalone images at reduced scroll speed
+  const rafRef = useRef(null);
+  useEffect(() => {
+    if (!loading) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const RULES = [
+      { selector: ".gh-section-head", factor: 0.06 },
+      { selector: ".aboutImage",      factor: 0.10 },
+      { selector: ".gh-hero-dot-grid",factor: 0.03 },
+    ];
+
+    const tick = () => {
+      const vy = window.scrollY;
+      const vh = window.innerHeight;
+
+      RULES.forEach(({ selector, factor }) => {
+        document.querySelectorAll(selector).forEach((el) => {
+          const rect = el.getBoundingClientRect();
+          const center = rect.top + rect.height / 2;
+          const offset = (vh / 2 - center) * factor;
+          el.style.transform = `translateY(${offset.toFixed(2)}px)`;
+        });
+      });
+
+      rafRef.current = null;
+    };
+
+    const onScroll = () => {
+      if (!rafRef.current) rafRef.current = requestAnimationFrame(tick);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    tick(); // run once on mount
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [loading]);
 
   const isDark = systemTheme === dark;
 
