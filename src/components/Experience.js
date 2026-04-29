@@ -1,152 +1,53 @@
-import React, { useContext, useRef } from "react";
-
+import React from "react";
 import Boy from "../assets/images/characters/laptop2.png";
-import { ThemeContext } from "../theme";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-const Experience = () => {
-  const theme = useContext(ThemeContext).systemTheme;
-  const imageRef = useRef();
-  const dataRef = useRef();
-  const headRef = useRef();
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    // gsap.from(imageRef.current, {
-    //   scrollTrigger: {
-    //     trigger: imageRef.current,
-    //     start: "1% 60%",
-    //     end: "bottom 100%",
 
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   x: 50,
-    //   duration: 2,
-    //   delay: 2,
-    //   opacity: 0,
-    //   ease: "none",
-    // });
-    // gsap.from(imageRef.current, {
-    //     scrollTrigger: {
-    //       trigger: imageRef.current,
-    //       start: "top 100%",
-    //       end: "bottom 80%",
+const jobs = [
+  {
+    period: "Apr 2025 – Current",
+    title: "Software Associate Developer",
+    stack: "MERN / MEAN Stack · React Native · Flutter",
+  },
+  {
+    period: "Aug 2024 – Apr 2025",
+    title: "Trainee Software Associate",
+    stack: "MERN / MEAN Stack · React Native",
+  },
+  {
+    period: "Jul 2023 – Jul 2024",
+    title: "Freelancer — Full-Stack Developer",
+    stack: "MERN / MEAN Stack · React Native",
+  },
+];
 
-    //       scrub: true,
-    //       toggleActions: "restart pause resume pause",
-    //     },
-    //     y: 100,
-    //     duration: 2,
-    //     delay: 1,
-    //     opacity: 0,
-    //     ease: "none",
-    //   });
-    // gsap.from(dataRef.current, {
-    //   scrollTrigger: {
-    //     trigger: imageRef.current,
-    //     start: "1% 60%",
-    //     end: "bottom 100%",
+const Experience = () => (
+  <div className="experience-section">
+    <div className="gh-section-head gh-reveal">
+      <span className="gh-label">Experience</span>
+      <h1 className="boldHeading">Work History</h1>
+    </div>
 
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   x: -50,
-    //   duration: 2,
-    //   delay: 2,
-    //   opacity: 0,
-    //   ease: "none",
-    // });
-    gsap.to(headRef.current, {
-      scrollTrigger: {
-        trigger: imageRef.current,
-        start: "1% 60%",
-        end: "bottom 100%",
-
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      duration: 4,
-      delay: 2,
-      rotateY: 360,
-      ease: "none",
-    });
-  });
-  return (
-    <div>
-      <div className="d-flex justify-content-center align-items-center">
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading" ref={headRef}>
-          Experience
-        </h1>
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-      </div>
-      <div className="d-flex justify-content-center align-items-center flex-wrap">
-        <div>
-          <div ref={dataRef} className="d-flex flex-column align-items-start experience-list">
-            <div className="experience-item">
-              <div className="experience-badge">
-                <span
-                  className="badge "
-                  style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
-                >
-                  2025 April-Current
-                </span>
-              </div>
-              <div className="experience-content">
-                <h3 style={{ color: theme.textColor }}>
-                  Software Associate Developer
-                </h3>
-                <h5 style={{ color: theme.textColor }}>MERN/MEAN Stack,React Native,Flutter</h5>
-                {/* <h6>CGPA 8.0</h6> */}
-              </div>
-            </div>
-
-            <div className="experience-item pt-3">
-              <div className="experience-badge">
-                <span
-                  className="badge "
-                  style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
-                >
-                  2024 Aug-2025 April
-                </span>
-              </div>
-              <div className="experience-content">
-                <h3 style={{ color: theme.textColor }}>
-                  Trainee Software Associate
-                </h3>
-                <h5 style={{ color: theme.textColor }}>MERN/MEAN Stack,React Native</h5>
-                {/* <h6>CGPA 8.0</h6> */}
-              </div>
-            </div>
-            <div className="experience-item pt-3">
-              <div className="experience-badge">
-                <span
-                  className="badge"
-                  style={{ fontSize: "1em", backgroundColor: "#4a48ff" }}
-                >
-                  2023 July-2024 July
-                </span>
-              </div>
-              <div className="experience-content">
-                <h3 style={{ color: theme.textColor }}>
-                  Freelancer(Fullstack Developer)
-                </h3>
-                <h5 style={{ color: theme.textColor }}>
-                  MERN/MEAN Stack,React Native
-                </h5>
-                {/* <h6>CGPA= 7.9</h6> */}
-              </div>
+    <div className="d-flex justify-content-center align-items-center flex-wrap" style={{ gap: "40px" }}>
+      <div className="timeline-list gh-reveal gh-reveal-d1">
+        {jobs.map((job, i) => (
+          <div className="timeline-item" key={i}>
+            <div className="timeline-dot" />
+            <div className="timeline-card">
+              <span className="timeline-badge">{job.period}</span>
+              <h3 className="timeline-title">{job.title}</h3>
+              <p className="timeline-stack">{job.stack}</p>
             </div>
           </div>
-          <div></div>
-        </div>
-        <div>
-          <img loading="lazy" ref={imageRef} src={Boy} className="aboutImage" />
-        </div>
+        ))}
       </div>
+
+      <img
+        loading="lazy"
+        src={Boy}
+        className="aboutImage gh-reveal gh-reveal-d2"
+        alt="Experience illustration"
+      />
     </div>
-  );
-};
+  </div>
+);
 
 export default Experience;

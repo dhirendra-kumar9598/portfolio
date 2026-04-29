@@ -1,5 +1,4 @@
-import React, { useContext, useRef } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import Shoppe from "../assets/images/projects/shopee.png";
 import ezshop from "../assets/images/projects/ezshop.png";
 import Neo from "../assets/images/projects/neo.png";
@@ -50,22 +49,7 @@ import travel1 from "../assets/images/projects/images/travel/travel1.png";
 import travel2 from "../assets/images/projects/images/travel/travel2.png";
 import travel3 from "../assets/images/projects/images/travel/travel3.png";
 import travel4 from "../assets/images/projects/images/travel/travel4.png";
-import { ThemeContext } from "../theme";
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 const Portfolio = () => {
-  const theme = useContext(ThemeContext).systemTheme;
-  const projectRef = useRef();
-  const headRef = useRef();
-  const boxStyle = {
-    padding: "3vh",
-    margin: "3vh",
-    backgroundColor: "#d5e5e9",
-
-    borderRadius: "3vh",
-  };
 
   const projects = [
     {
@@ -156,156 +140,45 @@ const Portfolio = () => {
     },
   ];
 
-  useGSAP(() => {
-    // Removed projectBox animation that was causing visibility issues
-    // gsap.from(".projectBox", {
-    //   scrollTrigger: {
-    //     trigger: ".projectBox",
-    //     start: "1% 100%",
-    //     end: "bottom 100%",
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   y: 200,
-    //   opacity: 0,
-    //   ease: "none",
-    //   duration: 2,
-    // });
-    gsap.to(headRef.current, {
-      scrollTrigger: {
-        trigger: ".projectBox",
-        start: "1% 50%",
-        end: "bottom 100%",
-
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      duration: 4,
-      delay: 2,
-      rotateY: 360,
-      ease: "none",
-    });
-  });
-
   return (
-    <div className=" " id="portfolio">
-      <div className="d-flex justify-content-center align-items-center">
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading" ref={headRef}>
-          Projects
-        </h1>
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
+    <div id="portfolio">
+      <div className="gh-section-head gh-reveal">
+        <span className="gh-label">Projects</span>
+        <h1 className="boldHeading">Projects</h1>
       </div>
 
-      <div
-        className="d-flex flex-row justify-content-center"
-        style={{ flexFlow: "row", flexWrap: "wrap" }}
-      >
-        {projects.map((item) => (
+      <div className="project-grid">
+        {projects.map((item, idx) => (
           <div
-            className="projectBox"
-            ref={projectRef}
-            style={{ backgroundColor: theme.boxColor }}
+            key={idx}
+            className={`projectBox gh-reveal gh-reveal-d${Math.min(idx + 1, 5)}`}
           >
-            <div className=" ">
-              <div className="d-flex flex-column justify-content-center align-items-center">
-                <div>
-                  <img
-                    loading="lazy"
-                    src={item.screenshots[0]}
-                    className="projectImage"
-                  ></img>
-                </div>
-              </div>
+            {/* Image fills top of card */}
+            <div className="project-img-wrap">
+              <img
+                loading="lazy"
+                src={item.screenshots[0]}
+                className="projectImage"
+                alt={item.name}
+              />
             </div>
-            <div className="d-flex flex-column ">
-              <div>
-                <div
-                  style={{
-                    display: "flex",
-                    // justifyContent: "center",
-                    // flexDirection: "column",
-                    // alignItems: "center",
-                  }}
-                >
-                  <div className="d-flex ">
-                    <div>
-                      <h5
-                        className="projectName"
-                        style={{ color: theme.textColor }}
-                      >
-                        {item.name}({item.type})
-                      </h5>
-                    </div>
-                    {/* <Link to="/project" state={{ item }} className="skillItems">
-                      <div className="arrowBox mx-2">
-                        <Visibility fontSize="large" className="arrowIcon" />
-                      </div>
-                    </Link> */}
-                  </div>
-                </div>
+
+            {/* Card body */}
+            <div className="project-body">
+              <span className="project-new-badge">{item.type}</span>
+              <h5 className="projectName">{item.name}</h5>
+
+              <div className="projectOverview">
+                <p>{item.info.Overview}</p>
               </div>
 
-              <div>
-                <div
-                  className="projectOverview"
-                  style={{
-                    display: "flex",
-                    // justifyContent: "center",
-                    // flexDirection: "column",
-                    // alignItems: "center",
-                    // maxWidth:"50vw"
-                  }}
-                >
-                  <div
-                    style={{
-                      display: "flex",
-                      // justifyContent: "center",
-                      // alignItems: "center",
-                    }}
-                  >
-                    <p style={{ color: theme.textColor }}>
-                      {item.info.Overview}
-                    </p>
+              {/* Tech tags */}
+              <div className="tech-tags-row">
+                {item.info.tech.map((techItem, techIndex) => (
+                  <div className="tech-tag" key={techIndex}>
+                    <h6>{techItem}</h6>
                   </div>
-                </div>
-              </div>
-              <div className="d-flex justify-content-center align-items-center flex-wrap" style={{ gap: "8px" }}>
-                {item.info.tech.map((techItem, techIndex) => {
-                  // Color palette from user's image
-                  const techColors = [
-                    '#D4AF37', // Gold/Yellow
-                    '#FF8C00', // Orange
-                    '#DC143C', // Crimson/Red
-                    '#8B00FF', // Purple/Violet
-                    '#1E90FF', // Blue
-                  ];
-                  const bgColor = techColors[techIndex % techColors.length];
-                  
-                  return (
-                    <div className="" key={techIndex}>
-                      <div
-                        className="tech-tag"
-                        style={{
-                          backgroundColor: bgColor,
-                          borderTopLeftRadius: "20px",
-                          borderBottomRightRadius: "20px",
-                        }}
-                        data-color={bgColor}
-                      >
-                        <h6
-                          style={{
-                            color: "white",
-                            padding: "5px",
-                            margin: "5px",
-                          }}
-                        >
-                          {techItem}
-                        </h6>
-                      </div>
-                    </div>
-                  );
-                })}
+                ))}
               </div>
             </div>
           </div>

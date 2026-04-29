@@ -1,101 +1,136 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Outlet, Link } from "react-router-dom";
 import { ThemeContext } from "../theme";
+import { dark, light } from "../theme";
+
+const NAV_LINKS = [
+  { label: "Home",         href: "/#home" },
+  { label: "About",        href: "/#about" },
+  { label: "Projects",     href: "/#portfolio" },
+  { label: "Certificates", href: "/#certificates" },
+  { label: "Contact",      href: "/#contact" },
+];
+
 const Navbar = () => {
-  const theme = useContext(ThemeContext).systemTheme;
-  const [scrolled, setScrolled] = useState(false);
+  const { systemTheme, setSystemTheme } = useContext(ThemeContext);
+  const [menuOpen,       setMenuOpen]       = useState(false);
+  const [scrolled,       setScrolled]       = useState(false);
+  const [activeSection,  setActiveSection]  = useState("home");
+  const isDark = systemTheme === dark;
 
   useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      setScrolled(isScrolled);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const linkStyle = {
-    color: theme.textColor,
-    
-  };
+  // Active-link tracking via IntersectionObserver on each section
+  useEffect(() => {
+    const ids = ["home", "about", "portfolio", "certificates", "contact"];
+    const observers = ids.map((id) => {
+      const el = document.getElementById(id);
+      if (!el) return null;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      obs.observe(el);
+      return obs;
+    });
+    return () => observers.forEach((o) => o?.disconnect());
+  }, []);
 
-  const isDark = theme.textColor === '#f1f5f9';
+  const handleLinkClick = () => setMenuOpen(false);
+  const toggleTheme = () => setSystemTheme(isDark ? light : dark);
 
-  const navbarStyle = {
-    color: theme.textColor,
-    background: isDark ? 'rgb(0 0 0 / 60%)' : 'rgba(240, 244, 255, 0.7)',
-    backdropFilter: !scrolled ? 'blur(20px)' : 'none',
-    WebkitBackdropFilter: !scrolled ? 'blur(20px)' : 'none',
-    borderBottom: !scrolled ? '1px solid rgba(255,255,255,0.1)' : 'none',
-    boxShadow: !scrolled ? '0 4px 20px rgba(0,0,0,0.1)' : 'none',
-    transition: 'all 0.3s ease',
-  };
+  const isActive = (href) => activeSection === href.replace("/#", "");
 
   return (
-    <div
-      className="sticky-top"
-      style={navbarStyle}
+    <header
+      className="gh-navbar"
+      style={{ boxShadow: scrolled ? "0 1px 0 var(--gh-border)" : "none" }}
     >
-      <nav className="navbar navbar-expand-sm sticky-top ">
-        <div className="container-fluid justify-content-between">
-          <a className="navbar-brand px-5" style={linkStyle} href="/#home">
-            Dhirendra
-          </a>
-          <button
-            className="navbar-toggler custom-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="custom-toggler-icon"></span>
-            <span className="custom-toggler-icon"></span>
-            <span className="custom-toggler-icon"></span>
-          </button>
-          <div
-            className="collapse navbar-collapse px-5 justify-content-end"
-            id="navbarNav"
-          >
-            <ul className="navbar-nav">
-              <li className="nav-item px-1">
-                <a
-                  className="nav-link active"
-                  aria-current="page"
-                  style={linkStyle}
-                  href="/#home"
-                >
-                  Home
-                </a>
-              </li>
-              <li className="nav-item px-1">
-                <a className="nav-link" style={linkStyle} href="/#portfolio">
-                  Projects
-                </a>
-              </li>
-              <li className="nav-item px-1">
-                <a className="nav-link" style={linkStyle} href="/#about">
-                  About
-                </a>
-              </li>
+      <div className="gh-navbar-inner">
+        {/* Brand */}
+        <a href="/#home" className="gh-navbar-brand" aria-label="Home">
+          <span className="gh-logo" aria-hidden="true">DK</span>
+          Dhirendra
+        </a>
 
-              <li className="nav-item px-1">
-                <a className="nav-link" style={linkStyle} href="/#contact">
-                  Contact
-                </a>
-              </li>
-               <li className="nav-item px-1">
-                <a className="nav-link" style={linkStyle} href="/#certificates">
-                  Certificates
-                </a>
-              </li>
-            </ul>
-          </div>
+        {/* Desktop nav */}
+        <nav className="gh-navbar-links" aria-label="Primary navigation">
+          {NAV_LINKS.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              className={`gh-nav-link${isActive(href) ? " active" : ""}`}
+              aria-current={isActive(href) ? "page" : undefined}
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Actions */}
+        <div className="gh-navbar-actions">
+          <button
+            onClick={toggleTheme}
+            aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            className="gh-theme-toggle"
+          >
+            {isDark ? "☀" : "☾"}
+          </button>
+
+          <a href="/#contact" className="gh-btn gh-btn-green">
+            Hire Me
+          </a>
+
+          <button
+            className="gh-hamburger"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMenuOpen((o) => !o)}
+          >
+            <span className="gh-hamburger-line" />
+            <span className="gh-hamburger-line" />
+            <span className="gh-hamburger-line" />
+          </button>
         </div>
+      </div>
+
+      {/* Mobile drawer — animated via max-height transition */}
+      <nav
+        id="mobile-menu"
+        className={`gh-mobile-menu${menuOpen ? " open" : ""}`}
+        aria-label="Mobile navigation"
+        aria-hidden={!menuOpen}
+      >
+        {NAV_LINKS.map(({ label, href }) => (
+          <a
+            key={label}
+            href={href}
+            className="gh-mobile-link"
+            onClick={handleLinkClick}
+          >
+            {label}
+          </a>
+        ))}
+        <a
+          href="/#contact"
+          className="gh-mobile-link"
+          onClick={handleLinkClick}
+          style={{
+            marginTop: 8,
+            color: "var(--gh-green)",
+            borderTop: "1px solid var(--gh-border)",
+            paddingTop: 12,
+            fontWeight: 600,
+          }}
+        >
+          Hire Me →
+        </a>
       </nav>
-    </div>
+    </header>
   );
 };
 

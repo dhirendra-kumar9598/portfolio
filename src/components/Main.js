@@ -1,399 +1,196 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+
 import TextTransition, { presets } from "react-text-transition";
 import About from "./About";
 import Portfolio from "./Portfolio";
 import Contact from "./Contact";
-// import Dhiraj from "../components/images/IMG_20231127_005126.jpg";
 import Dhiraj from "../components/images/full2.jpeg";
-import { dark, light, ThemeContext } from "../theme";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { ThemeContext } from "../theme";
 
-import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Switch, { SwitchProps } from "@mui/material/Switch";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import YouTubeIcon from "@mui/icons-material/YouTube";
-import FacebookIcon from "@mui/icons-material/Facebook";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import Experience from "./Experience";
 import Certifications from "./Certifications";
 
+const ROLES = [
+  "Full-Stack Developer",
+  "Frontend Developer",
+  "Backend Developer",
+  "Android Developer",
+];
+
+const STATS = [
+  { value: 2,  suffix: "+",  label: "Years Experience" },
+  { value: 15, suffix: "+",  label: "Projects Shipped" },
+  { value: 10, suffix: "+",  label: "Technologies" },
+  { value: 8,  suffix: "k+", label: "Lines of Code / day" },
+];
+
+const animateCounter = (el, target, suffix, duration = 1600) => {
+  const startTime = performance.now();
+  const tick = (now) => {
+    const t = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - t, 3);
+    el.textContent = Math.round(eased * target) + suffix;
+    if (t < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+};
+
 export default function Main() {
-  const theme = useContext(ThemeContext).systemTheme;
-  const setScheme = useContext(ThemeContext).setSystemTheme;
-
-  const [mode, setMode] = useState(null);
+  const { systemTheme } = useContext(ThemeContext);
+  const [roleIndex, setRoleIndex] = useState(0);
   const [showScrollTop, setShowScrollTop] = useState(false);
-  const imageRef = useRef();
-  const infoRef = useRef();
-  const nameRef = useRef();
 
-  // Handle scroll to top button visibility
   useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const id = setInterval(() => setRoleIndex((i) => i + 1), 3000);
+    return () => clearInterval(id);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
+  useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
-  useGSAP(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    gsap.to(imageRef.current, {
-      duration: 2,
-      delay: 2,
-      rotate: 360,
-      ease: "elastic",
-    });
-    gsap.to(nameRef.current, {
-      duration: 5,
-      delay: 3,
-      rotateX: 360,
-      ease: "elastic",
-    });
-    // gsap.from(infoRef.current, {
-    //   scrollTrigger: {
-    //     trigger: infoRef.current,
-    //     start: "top 100%",
-    //     markers: true,
-    //     scrub: true,
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   y: 100,
-    //   opacity: 0,
-    //   ease: "bounce.out",
-    //   duration: 2,
-    //   stagger: 0.45,
-    // });
-    // gsap.to(imageRef.current, {
-    //   scrollTrigger: {
-    //     trigger: imageRef.current,
-    //     start: "top 40%",
-    //     ease: "none",
-    //     scrub: true,
-    //     toggleActions: "restart pause reverse pause",
-    //   },
-    //   y: -400,
-    // });
-    gsap.to(infoRef.current, {
-      scrollTrigger: {
-        trigger: infoRef.current,
-        start: "bottom 20%",
-        ease: "none",
-        scrub: true,
-        // markers: true,
-        toggleActions: "restart pause reverse pause",
+  const statsRef = useRef();
+  const statsAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !statsAnimated.current) {
+          statsAnimated.current = true;
+          const els = entry.target.querySelectorAll(".gh-stat-number");
+          els.forEach((el, i) => {
+            const { value, suffix } = STATS[i];
+            setTimeout(() => animateCounter(el, value, suffix), i * 120);
+          });
+        }
       },
-    });
-  });
-  // console.log("theme =>", theme);
-  // const setTheme = (value) => {
-  //   if (value == "light") {
-  //     setScheme(light);
-  //   } else {
-  //     setScheme(dark);
-  //   }
-  // };
-
-  const handleTheme = () => {
-    if (theme === light) {
-      setScheme(dark);
-    } else {
-      setScheme(light);
-    }
-  };
-
-  const fontStyle = {
-    color: "black",
-  };
-  const [index, setIndex] = React.useState(0);
-  const TEXTS = [
-    "Frontend Developer",
-    "Backend Developer",
-    "Fullstack Developer",
-    "Android Developer",
-  ];
-
-  React.useEffect(() => {
-    const intervalId = setInterval(
-      () => setIndex((index) => index + 1),
-      3000 // every 3 seconds
+      { threshold: 0.5 }
     );
-    return () => clearTimeout(intervalId);
+    if (statsRef.current) observer.observe(statsRef.current);
+    return () => observer.disconnect();
   }, []);
-
-  const MaterialUISwitch = styled(Switch)(({ theme }) => ({
-    width: 62,
-    height: 34,
-    padding: 7,
-    "& .MuiSwitch-switchBase": {
-      margin: 1,
-      padding: 0,
-      transform: "translateX(6px)",
-      "&.Mui-checked": {
-        color: "#fff",
-        transform: "translateX(22px)",
-        "& .MuiSwitch-thumb:before": {
-          backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-            "#fff"
-          )}" d="M4.2 2.5l-.7 1.8-1.8.7 1.8.7.7 1.8.6-1.8L6.7 5l-1.9-.7-.6-1.8zm15 8.3a6.7 6.7 0 11-6.6-6.6 5.8 5.8 0 006.6 6.6z"/></svg>')`,
-        },
-        "& + .MuiSwitch-track": {
-          opacity: 1,
-          backgroundColor:
-            theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
-        },
-      },
-    },
-    "& .MuiSwitch-thumb": {
-      backgroundColor: theme.palette.mode === "dark" ? "#003892" : "#001e3c",
-      width: 32,
-      height: 32,
-      "&::before": {
-        content: "''",
-        position: "absolute",
-        width: "100%",
-        height: "100%",
-        left: 0,
-        top: 0,
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
-        backgroundImage: `url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" viewBox="0 0 20 20"><path fill="${encodeURIComponent(
-          "#fff"
-        )}" d="M9.305 1.667V3.75h1.389V1.667h-1.39zm-4.707 1.95l-.982.982L5.09 6.072l.982-.982-1.473-1.473zm10.802 0L13.927 5.09l.982.982 1.473-1.473-.982-.982zM10 5.139a4.872 4.872 0 00-4.862 4.86A4.872 4.872 0 0010 14.862 4.872 4.872 0 0014.86 10 4.872 4.872 0 0010 5.139zm0 1.389A3.462 3.462 0 0113.471 10a3.462 3.462 0 01-3.473 3.472A3.462 3.462 0 016.527 10 3.462 3.462 0 0110 6.528zM1.665 9.305v1.39h2.083v-1.39H1.666zm14.583 0v1.39h2.084v-1.39h-2.084zM5.09 13.928L3.616 15.4l.982.982 1.473-1.473-.982-.982zm9.82 0l-.982.982 1.473 1.473.982-.982-1.473-1.473zM9.305 16.25v2.083h1.389V16.25h-1.39z"/></svg>')`,
-      },
-    },
-    "& .MuiSwitch-track": {
-      opacity: 1,
-      backgroundColor: theme.palette.mode === "dark" ? "#8796A5" : "#aab4be",
-      borderRadius: 20 / 2,
-    },
-  }));
 
   return (
     <div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-          alignItems: "center",
-          paddingTop: "50px",
-          paddingRight: "50px",
-        }}
-      >
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <MaterialUISwitch
-                sx={{ m: 1 }}
-                checked={theme === dark ? true : false}
-                onChange={handleTheme}
-              />
-            }
+      {/* ── Hero ─────────────────────────────────────────────── */}
+      <section id="home" className="gh-hero" aria-label="Hero section">
+
+        <div className="gh-hero-dot-grid" aria-hidden="true" />
+        <div className="gh-hero-glow-top"  aria-hidden="true" />
+
+        {/* Avatar */}
+        <div className="gh-hero-avatar-wrap">
+          <img
+            src={Dhiraj}
+            alt="Dhirendra Kumar — Full-Stack Developer"
+            className="gh-hero-avatar"
+            loading="eager"
+            width={112}
+            height={112}
           />
-        </FormGroup>
-      </div>
-      <div
-        id="home"
-        className='home d-flex justify-content-center align-items-center       data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" className="scrollspy-example  rounded-2" tabindex="0" '
-      >
-        <div
-          className="homeBox"
-          style={{
-            display: "flex",
-            justifyContent: "space-around",
-            alignItems: "center",
-          }}
-        >
-          <div className="d-flex justify-content-center ">
-            <img
-              className="homeImage"
-              loading="lazy"
-              ref={imageRef}
-              src={Dhiraj}
-              alt=""
-            />
-          </div>
-          <div style={{ margin: "20px" }} ref={infoRef}>
-            <div>
-              <div style={fontStyle}>
-                <div>
-                  <h2 style={{ color: "#4a48ff", fontSize: "1.5rem", fontWeight: 400, letterSpacing: "0.05em" }}>Hey, I'm</h2>
-                </div>
-
-                <h1 className="boldHeading" ref={nameRef}>
-                  Dhirendra Kumar
-                </h1>
-              </div>
-            </div>
-            <div style={fontStyle}>
-              <div>
-                <h2 style={{ color: theme.textColor }}>
-                  <TextTransition springConfig={presets.wobbly}>
-                    {TEXTS[index % TEXTS.length]}
-                  </TextTransition>
-                </h2>
-              </div>
-            </div>
-            <div
-              style={{ paddingTop: "20px", display: "flex", gap: "15px", flexWrap: "wrap", alignItems: "center" }}
-            >
-              <a
-                href="https://github.com/dhirendra-kumar9598"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: theme.textColor,
-                  transition: "all 0.3s ease",
-                }}
-                className="social-icon"
-              >
-                <GitHubIcon fontSize="large" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/dhirendra-kr/"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: theme.textColor,
-                  transition: "all 0.3s ease",
-                }}
-                className="social-icon"
-              >
-                <LinkedInIcon fontSize="large" />
-              </a>
-              {/* <a
-                href="https://twitter.com/yourusername"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: theme.textColor,
-                  transition: "all 0.3s ease",
-                }}
-                className="social-icon"
-              >
-                <TwitterIcon fontSize="large" />
-              </a> */}
-              <a
-                href="https://www.instagram.com/_dhiraj.kr"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: theme.textColor,
-                  transition: "all 0.3s ease",
-                }}
-                className="social-icon"
-              >
-                <InstagramIcon fontSize="large" />
-              </a>
-              {/* <a
-                href="https://www.youtube.com/@yourchannel"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: theme.textColor,
-                  transition: "all 0.3s ease",
-                }}
-                className="social-icon"
-              >
-                <YouTubeIcon fontSize="large" />
-              </a> */}
-              {/* <a
-                href="https://www.facebook.com/yourprofile"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  color: theme.textColor,
-                  transition: "all 0.3s ease",
-                }}
-                className="social-icon"
-              >
-                <FacebookIcon fontSize="large" />
-              </a> */}
-            </div>
-            <div
-              style={{ paddingTop: "30px", display: "flex", flexWrap: "wrap" }}
-            >
-              <a
-                href="#contact"
-                className="btn-primary"
-                style={{
-                  backgroundColor: "#4a48ff",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  color: "white",
-                  paddingTop: "10px",
-                  margin: "5px",
-                }}
-              >
-                Get In Touch
-              </a>
-              <a
-                href="/#portfolio"
-                className="btn-secondary"
-                style={{
-                  backgroundColor: "#97792c",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  color: "white",
-                  paddingTop: "10px",
-                  margin: "5px",
-                }}
-              >
-                See My Works
-              </a>
-              <a
-                href="../resume.pdf"
-                download={"resume.pdf"}
-                className="btn-dark"
-                style={{
-                  backgroundColor: "BLACK",
-                  padding: "10px",
-                  borderRadius: "5px",
-                  textDecoration: "none",
-                  color: "white",
-                  paddingTop: "10px",
-                  margin: "5px",
-                }}
-              >
-                Resume
-              </a>
-            </div>
-          </div>
         </div>
-      </div>
 
+        {/* Status badge */}
+        <div className="gh-hero-badge" aria-label="Availability status">
+          <span className="gh-hero-badge-dot" aria-hidden="true" />
+          Open to work · Full-Stack Developer
+        </div>
+
+        {/* Name */}
+        <h1 className="gh-hero-title">
+          Hi, I'm{" "}
+          <span className="gh-gradient-text">Dhirendra Kumar</span>
+        </h1>
+
+        {/* Rotating role */}
+        <div className="gh-hero-role" aria-live="polite">
+          <TextTransition springConfig={presets.wobbly}>
+            {ROLES[roleIndex % ROLES.length]}
+          </TextTransition>
+        </div>
+
+        {/* Bio */}
+        <p className="gh-hero-desc">
+          Building scalable web &amp; mobile apps with React, Node.js &amp;
+          React Native. I care about clean architecture, performance,
+          and shipping products people love.
+        </p>
+
+        {/* CTA buttons */}
+        <div className="gh-hero-actions">
+          <a href="#contact"   className="gh-btn gh-btn-green">Get In Touch</a>
+          <a href="#portfolio" className="gh-btn gh-btn-outline">View Projects</a>
+          <a
+            href="../resume.pdf"
+            download="resume.pdf"
+            className="gh-btn gh-btn-subtle"
+          >
+            Resume ↓
+          </a>
+        </div>
+
+        {/* Social links */}
+        <div className="gh-hero-socials">
+          <a
+            href="https://github.com/dhirendra-kumar9598"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            aria-label="GitHub profile"
+          >
+            <GitHubIcon fontSize="small" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/dhirendra-kr/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            aria-label="LinkedIn profile"
+          >
+            <LinkedInIcon fontSize="small" />
+          </a>
+          <a
+            href="https://www.instagram.com/_dhiraj.kr"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-icon"
+            aria-label="Instagram profile"
+          >
+            <InstagramIcon fontSize="small" />
+          </a>
+        </div>
+
+        {/* Stats row */}
+        <div className="gh-stats gh-reveal" ref={statsRef} aria-label="Key stats">
+          {STATS.map(({ value, suffix, label }) => (
+            <div className="gh-stat" key={label}>
+              <span className="gh-stat-number">{value}{suffix}</span>
+              <span className="gh-stat-label">{label}</span>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Page Sections ─────────────────────────────────────── */}
       <About />
       <Certifications />
       <Portfolio />
       <Contact />
 
-      {/* Scroll to top button */}
       {showScrollTop && (
         <button
           onClick={scrollToTop}
           className="scroll-to-top"
-          aria-label="Scroll to top"
+          aria-label="Scroll back to top"
         >
-          <KeyboardArrowUpIcon fontSize="large" />
+          <KeyboardArrowUpIcon fontSize="small" />
         </button>
       )}
     </div>
