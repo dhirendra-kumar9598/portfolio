@@ -101,87 +101,49 @@ const Contact = () => {
   const theme = useContext(ThemeContext).systemTheme;
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    // gsap.from(conRef.current, {
-    //   scrollTrigger: {
-    //     trigger:conRef.current,
-    //     start: "1% 60%",
-    //     end: "bottom 100%",
 
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   x: 50,
-    //   duration: 2,
-    //   delay: 2,
-    //   opacity: 0,
-    //   ease: "none",
-    // });
-    // gsap.from(locRef.current, {
-    //   scrollTrigger: {
-    //     trigger: form.current,
-    //     start: "1% 60%",
-    //     end: "bottom 100%",
+    // ── Parallax: heading drifts slowly ──
+    gsap.to(headRef.current, {
+      y: -35,
+      ease: "none",
+      scrollTrigger: {
+        trigger: "#contact",
+        start: "top center",
+        end: "bottom top",
+        scrub: 1.2,
+      },
+    });
 
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   x: -50,
-    //   duration: 2,
-    //   delay: 2,
-    //   opacity: 0,
-    //   ease: "none",
-    // });
-    // gsap.to(headRef.current, {
-    //   scrollTrigger: {
-    //     trigger: form.current,
-    //     start: "1% 50%",
-    //     end: "bottom 100%",
+    // ── Parallax: form slides up at moderate speed ──
+    gsap.to(conRef.current, {
+      y: -50,
+      ease: "none",
+      scrollTrigger: {
+        trigger: conRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
 
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   duration: 4,
-    //   delay: 2,
-    //   rotateY: 360,
-    //   ease: "none",
-    // });
-    // gsap.to(messRef.current, {
-    //   scrollTrigger: {
-    //     trigger: messRef.current,
-    //     start: "bottom 10%",
-    //     end: "bottom 10%",
-
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   y: 100,
-    //   duration: 2,
-    //   delay: 1,
-    //   rotateY: 360,
-    //   ease: "none",
-    // });
+    // ── Parallax: info panel slides up faster → appears closer ──
+    gsap.to(locRef.current, {
+      y: -80,
+      ease: "none",
+      scrollTrigger: {
+        trigger: locRef.current,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
   });
   return (
     <div className="pt-5" id="contact">
       <div>
-        <div className="d-flex justify-content-center align-items-center">
-          <hr
-            width="35%"
-            size="10"
-            align="center"
-            style={{ color: "#4a48ff" }}
-          />
-          <div style={{ textAlign: "center" }}>
-            <h1 className="boldHeading" ref={headRef}>
-              Contact Me
-            </h1>
-          </div>
-          <hr
-            width="35%"
-            size="10"
-            align="center"
-            style={{ color: "#4a48ff" }}
-          />
+        <div className="gh-section-head gh-reveal">
+          <span className="gh-label">Contact</span>
+          <h1 className="boldHeading" ref={headRef}>Contact Me</h1>
         </div>
 
         <div
@@ -196,10 +158,10 @@ const Contact = () => {
           <div
             className="formBox "
             ref={conRef}
-            style={{ backgroundColor: theme.boxColor }}
+            style={{}}
           >
             <div  className="formBox1 " >
-              <h4 className="subHeading" style={{ color: theme.textColor }}>
+              <h4 className="subHeading" style={{ color: "var(--gh-text)" }}>
                 Lets's conect
               </h4>
               <form onSubmit={sendMessage} ref={form}>
@@ -210,7 +172,7 @@ const Contact = () => {
                   >
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="name" style={{ color: theme.textColor }}>
+                        <label htmlFor="name" style={{ color: "var(--gh-text)" }}>
                           Name
                         </label>
                         <input
@@ -221,15 +183,16 @@ const Contact = () => {
                           name="name"
                           onChange={(e) => setName(e.target.value)}
                           style={{
-                            backgroundColor: theme.backgroundColor,
-                            color: theme.textColor,
+                            backgroundColor: "var(--gh-surface2)",
+                            color: "var(--gh-text)",
+                            border: "1px solid var(--gh-border)",
                           }}
                         />
                       </div>
                     </div>
                     <div className="col-md-6">
                       <div className="form-group">
-                        <label for="email" style={{ color: theme.textColor }}>
+                        <label htmlFor="email" style={{ color: "var(--gh-text)" }}>
                           Email
                         </label>
                         <input
@@ -240,8 +203,9 @@ const Contact = () => {
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           style={{
-                            backgroundColor: theme.backgroundColor,
-                            color: theme.textColor,
+                            backgroundColor: "var(--gh-surface2)",
+                            color: "var(--gh-text)",
+                            border: "1px solid var(--gh-border)",
                           }}
                         />
                       </div>
@@ -253,7 +217,7 @@ const Contact = () => {
                   >
                     <div className="col-md-12">
                       <div className="form-group">
-                        <label for="subject" style={{ color: theme.textColor }}>
+                        <label htmlFor="subject" style={{ color: "var(--gh-text)" }}>
                           Subject
                         </label>
                         <input
@@ -264,8 +228,9 @@ const Contact = () => {
                           value={subject}
                           onChange={(e) => setSubject(e.target.value)}
                           style={{
-                            backgroundColor: theme.backgroundColor,
-                            color: theme.textColor,
+                            backgroundColor: "var(--gh-surface2)",
+                            color: "var(--gh-text)",
+                            border: "1px solid var(--gh-border)",
                           }}
                         />
                       </div>
@@ -277,7 +242,7 @@ const Contact = () => {
                   >
                     <div className="col-md-12">
                       <div className="form-group">
-                        <label for="message" style={{ color: theme.textColor }}>
+                        <label htmlFor="message" style={{ color: "var(--gh-text)" }}>
                           Message
                         </label>
                         <textarea
@@ -287,8 +252,9 @@ const Contact = () => {
                           value={message}
                           onChange={(e) => setMessage(e.target.value)}
                           style={{
-                            backgroundColor: theme.backgroundColor,
-                            color: theme.textColor,
+                            backgroundColor: "var(--gh-surface2)",
+                            color: "var(--gh-text)",
+                            border: "1px solid var(--gh-border)",
                           }}
                           rows="5"
                         ></textarea>
@@ -352,40 +318,40 @@ const Contact = () => {
             <div
               className="d-flex flex-column justify-content-center align-items-center formBox"
               style={{
-                backgroundColor: theme.boxColor,
+                backgroundColor: "var(--gh-surface)",
                 padding: "20px",
                 margin: "5px",
               }}
             >
               <div style={{ padding: "10px" }}>
-                <MapIcon style={{ color: theme.textColor }} />
+                <MapIcon style={{ color: "var(--gh-text)" }} />
               </div>
               <div>
                 <div className="row">
                   <div className="d-flex fles-row justify-content-between">
                     <div>
-                      <span style={{ color: theme.textColor }}> Country:</span>
+                      <span style={{ color: "var(--gh-text)" }}> Country:</span>
                     </div>
                     <div>
-                      <span style={{ color: theme.textColor }}> India</span>
+                      <span style={{ color: "var(--gh-text)" }}> India</span>
                     </div>
                   </div>
                   <div className="d-flex fles-row justify-content-between">
                     <div>
-                      <span style={{ color: theme.textColor }}> State:</span>
+                      <span style={{ color: "var(--gh-text)" }}> State:</span>
                     </div>
                     <div>
-                      <span style={{ color: theme.textColor }}>
+                      <span style={{ color: "var(--gh-text)" }}>
                         Uttar Pradesh
                       </span>
                     </div>
                   </div>
                   <div className="d-flex fles-row justify-content-between">
                     <div>
-                      <span style={{ color: theme.textColor }}> City:</span>
+                      <span style={{ color: "var(--gh-text)" }}> City:</span>
                     </div>
                     <div>
-                      <span style={{ color: theme.textColor }}> Lucknow</span>
+                      <span style={{ color: "var(--gh-text)" }}> Lucknow</span>
                     </div>
                   </div>
                 </div>
@@ -395,19 +361,19 @@ const Contact = () => {
             <div
               className="d-flex flex-column justify-content-center align-items-center formBox"
               style={{
-                backgroundColor: theme.boxColor,
+                backgroundColor: "var(--gh-surface)",
                 padding: "20px",
                 margin: "5px",
               }}
             >
               <div style={{ padding: "10px" }}>
-                <EmailIcon style={{ color: theme.textColor }} />
+                <EmailIcon style={{ color: "var(--gh-text)" }} />
               </div>
               <div>
                 <div className="row">
                   <div className="d-flex fles-row justify-content-between">
                     <div>
-                      <span style={{ color: theme.textColor }}> Github:</span>
+                      <span style={{ color: "var(--gh-text)" }}> Github:</span>
                     </div>
                     <div>
                       <Link
@@ -417,7 +383,7 @@ const Contact = () => {
                           color: "black",
                         }}
                       >
-                        <span style={{ color: theme.textColor }}>
+                        <span style={{ color: "var(--gh-text)" }}>
                           dhirendra-kumar9598
                         </span>
                       </Link>
@@ -425,7 +391,7 @@ const Contact = () => {
                   </div>
                   <div className="d-flex fles-row justify-content-between">
                     <div>
-                      <span style={{ color: theme.textColor }}> Linkedin:</span>
+                      <span style={{ color: "var(--gh-text)" }}> Linkedin:</span>
                     </div>
                     <div>
                       <Link
@@ -435,7 +401,7 @@ const Contact = () => {
                           color: theme.textColor,
                         }}
                       >
-                        <span style={{ color: theme.textColor }}>
+                        <span style={{ color: "var(--gh-text)" }}>
                           dhirendra-kr
                         </span>
                       </Link>
@@ -448,27 +414,27 @@ const Contact = () => {
             <div
               className="d-flex flex-column justify-content-center align-items-center formBox"
               style={{
-                backgroundColor: theme.boxColor,
+                backgroundColor: "var(--gh-surface)",
                 padding: "20px",
                 margin: "5px",
               }}
             >
               <div style={{ padding: "10px" }}>
-                <CallIcon style={{ color: theme.textColor }} />
+                <CallIcon style={{ color: "var(--gh-text)" }} />
               </div>
               <div>
                 <div className="row">
                   <div className="d-flex flex-row justify-content-between">
                     <div>
-                      <span style={{ color: theme.textColor }}> Email:</span>
+                      <span style={{ color: "var(--gh-text)" }}> Email:</span>
                     </div>
                     <div>
                       <Link
                         to={"mailto:kumardhiraj609@gmail.com"}
                         className="skillItems"
-                        style={{ color: theme.textColor }}
+                        style={{ color: "var(--gh-text)" }}
                       >
-                        <span style={{ color: theme.textColor }}>
+                        <span style={{ color: "var(--gh-text)" }}>
                           kumardhiraj609@gmail.com
                         </span>
                       </Link>
@@ -476,13 +442,13 @@ const Contact = () => {
                   </div>
                   <div className="d-flex flex-row justify-content-between">
                     <div>
-                      <span style={{ color: theme.textColor }}> Phone:</span>
+                      <span style={{ color: "var(--gh-text)" }}> Phone:</span>
                     </div>
                     <div>
                       <Link
                         to={"tel:+919598560187"}
                         style={{
-                          color: theme.textColor,
+                          color: "var(--gh-text)",
                           textDecoration: "none",
                         }}
                       >

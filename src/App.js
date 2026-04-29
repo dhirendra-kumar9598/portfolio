@@ -14,25 +14,45 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Certifications from "./components/Certifications";
 import AnimatedBackground from "./components/AnimatedBackground";
 import { pdfjs } from "react-pdf";
-// Set the worker source globally
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
+pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
 
 const App = () => {
   const [loading, setLoading] = useState(false);
-  const [systemTheme, setSystemTheme] = useState(light);
+  const [systemTheme, setSystemTheme] = useState(dark);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(true);
-    }, 3000);
+    setTimeout(() => setLoading(true), 3000);
   }, []);
+
+  // Scroll reveal — watches all .gh-reveal elements after content loads
+  useEffect(() => {
+    if (!loading) return;
+    const timer = setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+      );
+      document.querySelectorAll(".gh-reveal").forEach((el) => observer.observe(el));
+      return () => observer.disconnect();
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [loading]);
+
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-
   });
+
+  const isDark = systemTheme === dark;
+
   return (
-    <div className="box-wrapper">
+    <div className={`box-wrapper ${isDark ? "dark-theme" : "light-theme"}`}>
       <div className="box-content">
         <ThemeContext.Provider value={{ systemTheme, setSystemTheme }}>
           <AnimatedBackground theme={systemTheme} />
@@ -42,11 +62,10 @@ const App = () => {
             <BrowserRouter>
               <Navbar />
               <Routes>
-                {/* <Route path="/" element={<Home/>} /> */}
                 <Route element={<Home />}>
                   <Route path="/" element={<Main />} />
                   <Route path="/project" element={<Project />} />
-                   <Route path="/certificates" element={<Certifications />} />
+                  <Route path="/certificates" element={<Certifications />} />
                 </Route>
               </Routes>
             </BrowserRouter>

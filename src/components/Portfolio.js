@@ -157,55 +157,53 @@ const Portfolio = () => {
   ];
 
   useGSAP(() => {
-    // Removed projectBox animation that was causing visibility issues
-    // gsap.from(".projectBox", {
-    //   scrollTrigger: {
-    //     trigger: ".projectBox",
-    //     start: "1% 100%",
-    //     end: "bottom 100%",
-    //     scrub: true,
-    //     toggleActions: "restart pause resume pause",
-    //   },
-    //   y: 200,
-    //   opacity: 0,
-    //   ease: "none",
-    //   duration: 2,
-    // });
-    gsap.to(headRef.current, {
-      scrollTrigger: {
-        trigger: ".projectBox",
-        start: "1% 50%",
-        end: "bottom 100%",
+    gsap.registerPlugin(ScrollTrigger);
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      duration: 4,
-      delay: 2,
-      rotateY: 360,
+    // ── Parallax: heading drifts up slowly ──
+    gsap.to(headRef.current, {
+      y: -40,
       ease: "none",
+      scrollTrigger: {
+        trigger: "#portfolio",
+        start: "top center",
+        end: "bottom top",
+        scrub: 1.2,
+      },
+    });
+
+    // ── Parallax: alternating card depth ──
+    // Odd-indexed cards move slower (shallow layer)
+    // Even-indexed cards move faster (deeper layer)
+    // This creates a subtle checkerboard depth on the grid.
+    gsap.utils.toArray(".projectBox").forEach((card, i) => {
+      gsap.to(card, {
+        y: i % 2 === 0 ? -30 : -55,
+        ease: "none",
+        scrollTrigger: {
+          trigger: card,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+      });
     });
   });
 
   return (
     <div className=" " id="portfolio">
-      <div className="d-flex justify-content-center align-items-center">
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
-        <h1 className="boldHeading" ref={headRef}>
-          Projects
-        </h1>
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
+      <div className="gh-section-head gh-reveal">
+        <span className="gh-label">Projects</span>
+        <h1 className="boldHeading" ref={headRef}>Projects</h1>
       </div>
 
       <div
         className="d-flex flex-row justify-content-center"
         style={{ flexFlow: "row", flexWrap: "wrap" }}
       >
-        {projects.map((item) => (
+        {projects.map((item, idx) => (
           <div
-            className="projectBox"
+            className={`projectBox gh-reveal gh-reveal-d${Math.min(idx + 1, 5)}`}
             ref={projectRef}
-            style={{ backgroundColor: theme.boxColor }}
           >
             <div className=" ">
               <div className="d-flex flex-column justify-content-center align-items-center">
@@ -230,10 +228,7 @@ const Portfolio = () => {
                 >
                   <div className="d-flex ">
                     <div>
-                      <h5
-                        className="projectName"
-                        style={{ color: theme.textColor }}
-                      >
+                      <h5 className="projectName">
                         {item.name}({item.type})
                       </h5>
                     </div>
@@ -264,9 +259,7 @@ const Portfolio = () => {
                       // alignItems: "center",
                     }}
                   >
-                    <p style={{ color: theme.textColor }}>
-                      {item.info.Overview}
-                    </p>
+                    <p>{item.info.Overview}</p>
                   </div>
                 </div>
               </div>

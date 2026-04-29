@@ -31,64 +31,69 @@ const Skills = () => {
   const headRef = useRef();
   useGSAP(() => {
     gsap.registerPlugin(ScrollTrigger);
-    gsap.from(languageRef.current, {
-      scrollTrigger: {
-        trigger: languageRef.current,
-        start: "top 100%",
-        end: "bottom 80%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 100,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
+    // ── Entrance: rows slide up as they enter viewport ──
+    [languageRef, technologyRef, databaseRef].forEach((ref) => {
+      gsap.from(ref.current, {
+        scrollTrigger: {
+          trigger: ref.current,
+          start: "top 100%",
+          end: "bottom 80%",
+          scrub: true,
+        },
+        y: 80,
+        opacity: 0,
+        ease: "none",
+      });
     });
-    gsap.from(technologyRef.current, {
-      scrollTrigger: {
-        trigger: technologyRef.current,
-        start: "top 100%",
-        end: "bottom 80%",
 
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 100,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
-    gsap.from(databaseRef.current, {
-      scrollTrigger: {
-        trigger: databaseRef.current,
-        start: "top 100%",
-        end: "bottom 80%",
-
-        scrub: true,
-        toggleActions: "restart pause resume pause",
-      },
-      y: 100,
-      duration: 2,
-      delay: 1,
-      opacity: 0,
-      ease: "none",
-    });
+    // ── Parallax: heading drifts slowest (furthest layer) ──
     gsap.to(headRef.current, {
+      y: -35,
+      ease: "none",
       scrollTrigger: {
         trigger: headRef.current,
-        start: "1% 60%",
-        end: "bottom 100%",
-
-        scrub: true,
-        toggleActions: "restart pause resume pause",
+        start: "top center",
+        end: "bottom top",
+        scrub: 1.2,
       },
-      duration: 4,
-      delay: 2,
-      rotateY: 360,
-      ease:"none",
+    });
+
+    // ── Parallax: staggered depth — each row moves more than previous ──
+    // Languages: shallowest layer (moves least)
+    gsap.to(languageRef.current, {
+      y: -40,
+      ease: "none",
+      scrollTrigger: {
+        trigger: languageRef.current,
+        start: "top center",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
+
+    // Technologies: mid layer
+    gsap.to(technologyRef.current, {
+      y: -65,
+      ease: "none",
+      scrollTrigger: {
+        trigger: technologyRef.current,
+        start: "top center",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
+
+    // Databases: deepest layer (moves most)
+    gsap.to(databaseRef.current, {
+      y: -90,
+      ease: "none",
+      scrollTrigger: {
+        trigger: databaseRef.current,
+        start: "top center",
+        end: "bottom top",
+        scrub: 1,
+      },
     });
   });
   const Languages = [
@@ -129,15 +134,14 @@ const Skills = () => {
     <div
     // className=' d-flex flex-column justify-content-center align-items-center p-6' style={{ backgroundColor: "#31333b", height: "100vh" }}
     >
-      <div className="d-flex justify-content-center align-items-center">
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
+      <div className="gh-section-head gh-reveal">
+        <span className="gh-label">Skills</span>
         <h1 className="boldHeading" ref={headRef}>Skills</h1>
-        <hr width="35%" size="10" align="center" style={{ color: "#4a48ff" }} />
       </div>
       {/* Programming Languages */}
       <div ref={languageRef}>
         <div className="d-flex justify-content-center  ">
-          <h5 className="subHeading" style={{ color: theme.textColor }}>
+          <h5 className="subHeading">
             Languages
           </h5>
         </div>
@@ -149,7 +153,7 @@ const Skills = () => {
             <div
               className="d-flex flex-column hustify-content-center align-items-center skillBox"
               key={index}
-              style={{ backgroundColor: theme.boxColor }}
+              style={{}}
             >
               <div className="skillItems">
                 <img
@@ -159,7 +163,7 @@ const Skills = () => {
                 ></img>
               </div>
               <div style={{ textAlign: "center" }}>
-                <h5 className="skillItems" style={{ color: theme.textColor }}>
+                <h5 className="skillItems" style={{ color: "var(--gh-text-muted)" }}>
                   {item.name}
                 </h5>
               </div>
@@ -170,7 +174,7 @@ const Skills = () => {
       {/* Technologies */}
       <div ref={technologyRef}>
         <div className="d-flex justify-content-center">
-          <h4 className="subHeading" style={{ color: theme.textColor }}>
+          <h4 className="subHeading">
             Technologies
           </h4>
         </div>
@@ -182,7 +186,7 @@ const Skills = () => {
             <div
               className="d-flex flex-column justify-content-center align-items-center skillBox"
               key={index}
-              style={{ backgroundColor: theme.boxColor }}
+              style={{}}
             >
               <div className="skillItems">
                 <img
@@ -192,7 +196,7 @@ const Skills = () => {
                 ></img>
               </div>
               <div style={{ textAlign: "center" }}>
-                <h5 className="skillItems" style={{ color: theme.textColor }}>
+                <h5 className="skillItems" style={{ color: "var(--gh-text-muted)" }}>
                   {item.name}
                 </h5>
               </div>
@@ -204,7 +208,7 @@ const Skills = () => {
       {/* Databases */}
       <div ref={databaseRef}>
         <div className="d-flex justify-content-center">
-          <h4 className="subHeading" style={{ color: theme.textColor }}>
+          <h4 className="subHeading">
             Databases
           </h4>
         </div>
@@ -216,7 +220,7 @@ const Skills = () => {
             <div
               className="d-flex flex-column justify-content-center align-items-center skillBox"
               key={index}
-              style={{ backgroundColor: theme.boxColor }}
+              style={{}}
             >
               <div className="skillItems">
                 <img
@@ -226,7 +230,7 @@ const Skills = () => {
                 ></img>
               </div>
               <div style={{ textAlign: "center" }}>
-                <h5 className="skillItems" style={{ color: theme.textColor }}>
+                <h5 className="skillItems" style={{ color: "var(--gh-text-muted)" }}>
                   {item.name}
                 </h5>
               </div>
