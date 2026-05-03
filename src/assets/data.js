@@ -1,3 +1,51 @@
+export const his = {
+  Title: "Healthcare Information System (HIS) multi-tenant SaaS application",
+  Overview:
+    "A SaaS-based, multi-tenant Healthcare Information System represents a modern approach to managing healthcare operations efficiently and at scale. By centralizing clinical, administrative, and financial processes into a unified platform, it reduces complexity, minimizes errors, and improves overall productivity. The cloud-based nature ensures accessibility, scalability, and cost-effectiveness, making it suitable for both small clinics and large hospital networks.",
+  features: {
+    Wishlist:
+      "Enable users to create and manage wishlists for future purchases.",
+  },
+  "Tech Stack": {
+    Frontend: "React.js, Redux for state management, React Router for routing",
+    Backend: "Node.js, Express.js for server-side logic, MongoDB for database",
+    "Payment Gateway": "Razorpay API for payment processing",
+  },
+  Challenges: {
+    "Integrating Razorpay":
+      "Understanding and implementing the Razorpay payment gateway API for secure payment processing.",
+    Scalability:
+      "Designing the application to handle a large number of users and transactions efficiently.",
+  },
+  tech: ["React", "Express", "Node", "Mongodb", "Redux Toolkit"],
+  Conclusion:
+    "By developing this e-commerce web application with the MERN stack and integrating the Razorpay payment gateway, we aim to provide users with a seamless and secure shopping experience while enabling admins to efficiently manage the e-commerce platform.",
+};
+
+export const fmtrack = {
+  Title: "FmTrack - Facility Management System",
+  Overview:
+    "Developed a scalable Facility Management System to handle the day-to-day operations of buildings and organizations. The system centralizes maintenance workflows, asset tracking, and operational processes into a unified platform, improving efficiency and reducing manual intervention. The application is organized into multiple modules, including Work Order Management, Scheduled Maintenance, Incident & Ticketing System, Asset Management, and Facility Item Tracking, ensuring smooth coordination across different operational areas.",
+  features: {
+    Wishlist:
+      "Enable users to create and manage wishlists for future purchases.",
+  },
+  "Tech Stack": {
+    Frontend: "React.js, Redux for state management, React Router for routing",
+    Backend: "Node.js, Express.js for server-side logic, MongoDB for database",
+    "Payment Gateway": "Razorpay API for payment processing",
+  },
+  Challenges: {
+    "Integrating Razorpay":
+      "Understanding and implementing the Razorpay payment gateway API for secure payment processing.",
+    Scalability:
+      "Designing the application to handle a large number of users and transactions efficiently.",
+  },
+  tech: ["Angular", "Express", "Node", "Mongodb", "AWS"],
+  Conclusion:
+    "By developing this e-commerce web application with the MERN stack and integrating the Razorpay payment gateway, we aim to provide users with a seamless and secure shopping experience while enabling admins to efficiently manage the e-commerce platform.",
+};
+
 export const shopee = {
   Title: "E-Commerce Web App with Razorpay Payment Interface",
   Overview:
@@ -35,7 +83,7 @@ export const shopee = {
     Scalability:
       "Designing the application to handle a large number of users and transactions efficiently.",
   },
-  tech: ["React", "Express", "Node", "Mongodb", "Redux","Razorpay"],
+  tech: ["React", "Express", "Node", "Mongodb", "Redux", "Razorpay"],
   Conclusion:
     "By developing this e-commerce web application with the MERN stack and integrating the Razorpay payment gateway, we aim to provide users with a seamless and secure shopping experience while enabling admins to efficiently manage the e-commerce platform.",
 };
@@ -80,7 +128,13 @@ export const Ezshop = {
     "Offline Functionality":
       "Implementing offline support for basic app functions to enhance user experience in low connectivity areas.",
   },
-  tech: ["React Native", "React Native Paper", "React Navigation", "Redux","Razorpay"],
+  tech: [
+    "React Native",
+    "React Native Paper",
+    "React Navigation",
+    "Redux",
+    "Razorpay",
+  ],
   Conclusion:
     "By developing this e-commerce Android app using React Native and integrating the Razorpay payment gateway, we aim to provide users with a convenient and secure platform for online shopping. The app will offer a wide range of features to enhance the shopping experience and encourage user engagement.",
 };
@@ -121,10 +175,7 @@ export const nuzino = {
     "Optimizing API Requests":
       "Implementing efficient data fetching strategies to minimize network usage and improve app performance.",
   },
-  tech: [
-    "React Native",
-    "MUI"
-  ],
+  tech: ["React Native", "MUI"],
   Conclusion:
     "By developing this news Android app using React Native and integrating the NewsAPI, we aim to provide users with a convenient and personalized platform for staying updated with the latest news. The app will offer a range of features to enhance the news reading experience and keep users engaged.",
 };
@@ -164,10 +215,7 @@ export const wallpaper = {
     "User Engagement":
       "Designing features to encourage user interaction and exploration of different wallpaper categories.",
   },
-  tech: [
-    "React Native",
-    "Pexels API",
-  ],
+  tech: ["React Native", "Pexels API"],
   Conclusion:
     "By developing this wallpaper Android app using React Native and integrating the Pexels API, we aim to provide users with a diverse collection of high-quality wallpapers to personalize their devices. The app will offer a range of features to enhance the wallpaper browsing and customization experience.",
 };
@@ -197,13 +245,7 @@ export const gym = {
     "Real-time Updates":
       "Implementing real-time updates for class schedules, member registrations, and other dynamic data.",
   },
-  tech: [
-    "HTML",
-    "CSS",
-    "Javascript",
-    "React",
-    "Next Js"
-  ],
+  tech: ["HTML", "CSS", "Javascript", "React", "Next Js"],
   Conclusion:
     "The Gym Web App using the MERN stack will provide a robust and scalable solution for managing gym operations effectively. By integrating features for member management, class scheduling, trainer management, and payment processing, the app will enhance the overall gym experience for both members and administrators.",
 };
@@ -230,12 +272,7 @@ export const travel = {
     "User Experience":
       "Designing a user-friendly interface for browsing destinations.",
   },
-  tech: [
-    "HTML",
-    "CSS",
-    "Javascript",
-    "React",
-  ],
+  tech: ["HTML", "CSS", "Javascript", "React"],
   Conclusion:
     "The Travel Web App using the MERN stack will provide travelers with a comprehensive platform to discover, plan, and book their travel experiences. By integrating features for destination discovery, trip planning, and booking services, the app will enhance the overall travel planning experience for users.",
 };

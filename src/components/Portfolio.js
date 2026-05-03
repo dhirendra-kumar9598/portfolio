@@ -7,7 +7,16 @@ import Habit from "../assets/images/projects/habit.png";
 import news from "../assets/images/projects/news.png";
 
 import Visibility from "@mui/icons-material/Outbound";
-import { shopee, Ezshop, nuzino, wallpaper, gym, travel } from "../assets/data";
+import {
+  his,
+  fmtrack,
+  shopee,
+  Ezshop,
+  nuzino,
+  wallpaper,
+  gym,
+  travel,
+} from "../assets/data";
 import shopee1 from "../assets/images/projects/images/Shoppe/shopee1.png";
 import shopee2 from "../assets/images/projects/images/Shoppe/shopee2.png";
 import shopee3 from "../assets/images/projects/images/Shoppe/shopee3.png";
@@ -49,11 +58,45 @@ import travel1 from "../assets/images/projects/images/travel/travel1.png";
 import travel2 from "../assets/images/projects/images/travel/travel2.png";
 import travel3 from "../assets/images/projects/images/travel/travel3.png";
 import travel4 from "../assets/images/projects/images/travel/travel4.png";
+import his_image from "../assets/images/projects/images/his/HIS.jpeg";
+import fmtrack_image from "../assets/images/projects/images/fmtrack/FMtrack.jpeg";
 const Portfolio = () => {
-
   const projects = [
     {
       id: 1,
+      name: "Healthcare Information System (HIS) multi-tenant SaaS application",
+      image: his_image,
+      type: "Web",
+      git: "#",
+      page: "#",
+      info: his,
+
+      screenshots: [
+        his_image,
+        // shopee2,
+        // shopee3,
+        // shopee4,
+        // shopee5,
+        // shopee6,
+        // shopee7,
+        // shopee8,
+        // shopee9,
+        // shopee10,
+      ],
+    },
+    {
+      id: 2,
+      name: "FmTrack - Facility Management System",
+      image: fmtrack_image,
+      type: "Web",
+      git: "#",
+      page: "#",
+      info: fmtrack,
+
+      screenshots: [fmtrack_image],
+    },
+    {
+      id: 3,
       name: "Shopee e-commerce",
       image: Shoppe,
       type: "Web",
@@ -75,7 +118,7 @@ const Portfolio = () => {
       ],
     },
     {
-      id: 1,
+      id: 4,
       name: "Ezshop e-commerce",
       image: ezshop,
       type: "Android",
@@ -108,7 +151,7 @@ const Portfolio = () => {
       screenshots: [nuzino1, nuzino2, nuzino3, nuzino4],
     },
     {
-      id: 5,
+      id: 6,
       name: "Photo Gallery",
       image: "",
       type: "Android",
@@ -119,7 +162,7 @@ const Portfolio = () => {
       screenshots: [wallpaper1, wallpaper2, wallpaper3, wallpaper4],
     },
     {
-      id: 2,
+      id: 7,
       name: "NeoGym",
       image: Neo,
       type: "Web",
@@ -129,7 +172,7 @@ const Portfolio = () => {
       screenshots: [gym1, gym2, gym3, gym4],
     },
     {
-      id: 3,
+      id: 8,
       name: "Travel",
       image: Travel,
       type: "Web",
