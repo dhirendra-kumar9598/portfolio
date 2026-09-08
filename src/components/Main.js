@@ -15,9 +15,9 @@ import Certifications from "./Certifications";
 
 const ROLES = [
   "Full-Stack Developer",
+  "Generative-AI Engineer",
   "Frontend Developer",
   "Backend Developer",
-  "Android Developer",
 ];
 
 const STATS = [
@@ -92,15 +92,15 @@ export default function Main() {
             alt="Dhirendra Kumar — Full-Stack Developer"
             className="gh-hero-avatar"
             loading="eager"
-            width={112}
-            height={112}
+            width={168}
+            height={168}
           />
         </div>
 
         {/* Status badge */}
         <div className="gh-hero-badge" aria-label="Availability status">
           <span className="gh-hero-badge-dot" aria-hidden="true" />
-          Open to work · Full-Stack Developer
+          Open to work · Full-Stack + AI
         </div>
 
         {/* Name */}
@@ -111,16 +111,15 @@ export default function Main() {
 
         {/* Rotating role */}
         <div className="gh-hero-role" aria-live="polite">
-          <TextTransition springConfig={presets.wobbly}>
+          <TextTransition springConfig={presets.gentle} inline>
             {ROLES[roleIndex % ROLES.length]}
           </TextTransition>
         </div>
 
         {/* Bio */}
         <p className="gh-hero-desc">
-          Building scalable web &amp; mobile apps with React, Node.js &amp;
-          React Native. I care about clean architecture, performance,
-          and shipping products people love.
+          I build full-stack products with React, Angular &amp; Node.js — and
+          the generative-AI layer on top: agents, RAG, and real-time voice.
         </p>
 
         {/* CTA buttons */}

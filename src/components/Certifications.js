@@ -48,14 +48,9 @@ export default function Certifications() {
 
   return (
     <div id="certificates">
-      <div
-        className="d-flex justify-content-center align-items-center pb-5 pt-5"
-        id="details"
-        style={{ height: "30%" }}
-      >
-        <div>
-          <h5 className="boldHeading">Certificates</h5>
-        </div>
+      <div className="gh-section-head gh-reveal" data-num="02">
+        <span className="gh-label">Certificates</span>
+        <h1 className="boldHeading">Certificates</h1>
       </div>
       <div className="d-flex flex-wrap justify-content-center">
         {certificates.map((item, index) => (

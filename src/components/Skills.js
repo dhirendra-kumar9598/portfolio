@@ -18,6 +18,28 @@ import Npm from "../components/images/Tech/npm.png";
 import MUI from "../components/images/Tech/mui.png";
 import Angular from "../components/images/Tech/angular.png";
 
+/* Platform / AI-engineering stack — logos in ./images/Stack */
+import Tailwind from "./images/Stack/tailwindcss.svg";
+import Postgres from "./images/Stack/postgresql.svg";
+import OpenAI from "./images/Stack/openai.svg";
+import MCP from "./images/Stack/mcp.svg";
+import Cohere from "./images/Stack/cohere.svg";
+import Qdrant from "./images/Stack/qdrant.svg";
+import Fastify from "./images/Stack/fastify.svg";
+import Prisma from "./images/Stack/prisma.svg";
+import Redis from "./images/Stack/redis.svg";
+import Docker from "./images/Stack/docker.svg";
+import Turborepo from "./images/Stack/turborepo.svg";
+import Nginx from "./images/Stack/nginx.svg";
+import AWS from "./images/Stack/aws.svg";
+import Prometheus from "./images/Stack/prometheus.svg";
+import OpenTelemetry from "./images/Stack/opentelemetry.svg";
+import Twilio from "./images/Stack/twilio.svg";
+import ElevenLabs from "./images/Stack/elevenlabs.svg";
+import Stripe from "./images/Stack/stripe.svg";
+import HubSpot from "./images/Stack/hubspot.svg";
+import Calendly from "./images/Stack/calendly.svg";
+
 const LANGUAGES = [
   { name: "HTML",       picture: HtmlLan },
   { name: "CSS",        picture: Css },
@@ -34,6 +56,7 @@ const TECHNOLOGIES = [
   { name: "React Native", picture: React_Native },
   { name: "Next.js",      picture: Next },
   { name: "Angular",      picture: Angular },
+  { name: "Tailwind CSS", picture: Tailwind },
   { name: "MUI",          picture: MUI },
   { name: "Bootstrap",    picture: Bootstrap },
   { name: "Git",          picture: Git },
@@ -41,8 +64,36 @@ const TECHNOLOGIES = [
 ];
 
 const DATABASES = [
-  { name: "MySQL",   picture: Mysql },
-  { name: "MongoDB", picture: Mongo },
+  { name: "PostgreSQL", picture: Postgres },
+  { name: "MySQL",      picture: Mysql },
+  { name: "MongoDB",    picture: Mongo },
+];
+
+const AI_STACK = [
+  { name: "OpenAI",  picture: OpenAI },
+  { name: "MCP",     picture: MCP },
+  { name: "Cohere",  picture: Cohere },
+  { name: "Qdrant",  picture: Qdrant },
+];
+
+const BACKEND_STACK = [
+  { name: "Fastify",       picture: Fastify },
+  { name: "Prisma",        picture: Prisma },
+  { name: "Redis",         picture: Redis },
+  { name: "Docker",        picture: Docker },
+  { name: "Turborepo",     picture: Turborepo },
+  { name: "Nginx",         picture: Nginx },
+  { name: "AWS",           picture: AWS },
+  { name: "Prometheus",    picture: Prometheus },
+  { name: "OpenTelemetry", picture: OpenTelemetry },
+];
+
+const INTEGRATIONS_STACK = [
+  { name: "Twilio",     picture: Twilio },
+  { name: "ElevenLabs", picture: ElevenLabs },
+  { name: "Stripe",     picture: Stripe },
+  { name: "HubSpot",    picture: HubSpot },
+  { name: "Calendly",   picture: Calendly },
 ];
 
 const SkillGrid = ({ items }) => (
@@ -77,6 +128,15 @@ const Skills = () => (
 
     <p className="skill-category-label" style={{ marginTop: "32px" }}>Databases</p>
     <SkillGrid items={DATABASES} />
+
+    <p className="skill-category-label" style={{ marginTop: "32px" }}>AI & Retrieval</p>
+    <SkillGrid items={AI_STACK} />
+
+    <p className="skill-category-label" style={{ marginTop: "32px" }}>Backend & Infrastructure</p>
+    <SkillGrid items={BACKEND_STACK} />
+
+    <p className="skill-category-label" style={{ marginTop: "32px" }}>Integrations & Voice</p>
+    <SkillGrid items={INTEGRATIONS_STACK} />
   </div>
 );
 

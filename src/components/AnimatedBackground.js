@@ -148,16 +148,7 @@ const AnimatedBackground = ({ theme }) => {
     <>
       {/* Base background */}
       <div className={`animated-background ${isLight ? "light" : "dark"}`}>
-        {!isLight && (
-          <>
-            {/* Static orange/amber glow layers — no scroll movement */}
-            <div aria-hidden="true" style={{
-              position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse 100% 60% at 50% -8%, rgba(255,105,0,0.18) 0%, transparent 70%)",
-              pointerEvents: "none",
-            }} />
-          </>
-        )}
+        <div className="ambient-blob" aria-hidden="true" />
       </div>
 
       {/* Star field */}

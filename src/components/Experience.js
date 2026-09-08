@@ -1,5 +1,4 @@
 import React from "react";
-import Boy from "../assets/images/characters/laptop2.png";
 
 const jobs = [
   {
@@ -26,26 +25,17 @@ const Experience = () => (
       <h1 className="boldHeading">Work History</h1>
     </div>
 
-    <div className="d-flex justify-content-center align-items-center flex-wrap" style={{ gap: "40px" }}>
-      <div className="timeline-list gh-reveal gh-reveal-d1">
-        {jobs.map((job, i) => (
-          <div className="timeline-item" key={i}>
-            <div className="timeline-dot" />
-            <div className="timeline-card">
-              <span className="timeline-badge">{job.period}</span>
-              <h3 className="timeline-title">{job.title}</h3>
-              <p className="timeline-stack">{job.stack}</p>
-            </div>
+    <div className="timeline-list gh-reveal gh-reveal-d1">
+      {jobs.map((job, i) => (
+        <div className="timeline-item" key={i}>
+          <div className="timeline-dot" />
+          <div className="timeline-card">
+            <span className="timeline-badge">{job.period}</span>
+            <h3 className="timeline-title">{job.title}</h3>
+            <p className="timeline-stack">{job.stack}</p>
           </div>
-        ))}
-      </div>
-
-      <img
-        loading="lazy"
-        src={Boy}
-        className="aboutImage gh-reveal gh-reveal-d2"
-        alt="Experience illustration"
-      />
+        </div>
+      ))}
     </div>
   </div>
 );

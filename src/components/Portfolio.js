@@ -185,7 +185,7 @@ const Portfolio = () => {
 
   return (
     <div id="portfolio">
-      <div className="gh-section-head gh-reveal">
+      <div className="gh-section-head gh-reveal" data-num="03">
         <span className="gh-label">Projects</span>
         <h1 className="boldHeading">Projects</h1>
       </div>

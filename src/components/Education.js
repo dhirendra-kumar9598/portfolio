@@ -1,5 +1,4 @@
 import React from "react";
-import Boy from "../assets/images/characters/laptop2.png";
 
 const degrees = [
   {
@@ -21,26 +20,17 @@ const Education = () => (
       <h1 className="boldHeading">Academic Background</h1>
     </div>
 
-    <div className="d-flex justify-content-center align-items-center flex-wrap" style={{ gap: "40px" }}>
-      <div className="timeline-list gh-reveal gh-reveal-d1">
-        {degrees.map((deg, i) => (
-          <div className="timeline-item" key={i}>
-            <div className="timeline-dot" />
-            <div className="timeline-card">
-              <span className="timeline-badge">{deg.year}</span>
-              <h3 className="timeline-title">{deg.title}</h3>
-              <p className="timeline-stack">{deg.institution}</p>
-            </div>
+    <div className="timeline-list gh-reveal gh-reveal-d1">
+      {degrees.map((deg, i) => (
+        <div className="timeline-item" key={i}>
+          <div className="timeline-dot" />
+          <div className="timeline-card">
+            <span className="timeline-badge">{deg.year}</span>
+            <h3 className="timeline-title">{deg.title}</h3>
+            <p className="timeline-stack">{deg.institution}</p>
           </div>
-        ))}
-      </div>
-
-      <img
-        loading="lazy"
-        src={Boy}
-        className="aboutImage gh-reveal gh-reveal-d2"
-        alt="Education illustration"
-      />
+        </div>
+      ))}
     </div>
   </div>
 );

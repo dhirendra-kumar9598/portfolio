@@ -12,7 +12,7 @@ import Certifications from "./components/Certifications";
 import AnimatedBackground from "./components/AnimatedBackground";
 import { pdfjs } from "react-pdf";
 
-pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.mjs`;
+pdfjs.GlobalWorkerOptions.workerSrc = `${process.env.PUBLIC_URL}/pdf.worker.min.mjs`;
 
 const App = () => {
   const [loading, setLoading] = useState(false);
@@ -50,19 +50,28 @@ const App = () => {
 
     const RULES = [
       { selector: ".gh-section-head", factor: 0.06 },
-      { selector: ".aboutImage",      factor: 0.10 },
       { selector: ".gh-hero-dot-grid",factor: 0.03 },
     ];
 
+    const MAX_OFFSET = 48; // px — keep the effect subtle so sections never overlap
+
     const tick = () => {
-      const vy = window.scrollY;
       const vh = window.innerHeight;
 
       RULES.forEach(({ selector, factor }) => {
         document.querySelectorAll(selector).forEach((el) => {
           const rect = el.getBoundingClientRect();
+
+          // Skip (and reset) anything well outside the viewport — otherwise the
+          // offset grows without bound and pulls elements over their neighbours.
+          if (rect.bottom < -vh || rect.top > vh * 2) {
+            if (el.style.transform) el.style.transform = "";
+            return;
+          }
+
           const center = rect.top + rect.height / 2;
-          const offset = (vh / 2 - center) * factor;
+          let offset = (vh / 2 - center) * factor;
+          offset = Math.max(-MAX_OFFSET, Math.min(MAX_OFFSET, offset));
           el.style.transform = `translateY(${offset.toFixed(2)}px)`;
         });
       });

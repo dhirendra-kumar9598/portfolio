@@ -55,7 +55,7 @@ const Contact = () => {
 
   return (
     <div id="contact">
-      <div className="gh-section-head gh-reveal">
+      <div className="gh-section-head gh-reveal" data-num="04">
         <span className="gh-label">Contact</span>
         <h1 className="boldHeading">Get In Touch</h1>
         <p style={{ marginTop: 12, maxWidth: 480, marginInline: "auto", fontSize: "1rem" }}>
